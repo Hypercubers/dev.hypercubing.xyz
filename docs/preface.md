@@ -1,6 +1,6 @@
 # Preface
 
-All content on this wiki assumes that you're familiar with basic linear algebra and has some geometric intuition. In particular, you should be comfortable with:
+All content on this wiki assumes that you're familiar with basic linear algebra and have some geometric intuition. In particular, you should be comfortable with:
 
 - vectors as a representation of directions and points in 2D and 3D space
 - matrices as a representation of linear transformations
