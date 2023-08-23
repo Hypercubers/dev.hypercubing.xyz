@@ -28,7 +28,10 @@ theme:
   features:
     - content.action.edit
     - content.code.copy
+    - navigation.footer
+    - navigation.indexes
     - navigation.instant
+    - navigation.sections
     - navigation.top
   icon:
     edit: material/pencil
@@ -68,6 +71,17 @@ markdown_extensions:
   - tables
   - pymdownx.arithmatex:
       generic: true
+nav:
+  - index.md
+  - preface.md
+  - Puzzle Development:
+    - puzzle-dev/intro.md
+  - Hyperspeedcube Internals:
+    - internals/intro.md
+    - internals/vga.md
+    - internals/pga.md
+    - internals/cga.md
+    - internals/slicing.md
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
