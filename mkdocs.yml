@@ -1,0 +1,78 @@
+site_name: Hypercubing Developers
+site_url: https://dev.hypercubing.xyz/
+docs_dir: docs/
+repo_name: Hypercubers/dev.hypercubing.xyz
+repo_url: https://github.com/Hypercubers/dev.hypercubing.xyz
+edit_uri: edit/main/docs/
+theme:
+  name: material
+  favicon: assets/images/favicon.png
+  logo: assets/images/logo.svg
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.action.edit
+    - content.code.copy
+    - navigation.instant
+    - navigation.top
+  icon:
+    edit: material/pencil
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Hypercubers
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/3hVSe8rDKa
+extra_css:
+  - stylesheets/extra.css
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - footnotes
+  - pymdownx.caret
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.toc:
+      permalink: true
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.keys
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.superfences:
+      custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+plugins:
+  - search
