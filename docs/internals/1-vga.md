@@ -21,7 +21,7 @@ So we have four basis vectors: $1$, $x$, $y$, and $z$. But earlier I said that 3
     - $a$, $b$, $c$, $d$ are arbitrary **vectors**
     - $A$, $B$, $C$, $D$ are arbitrary **multivectors**
 
-The geometric product is how we generalize multiplication to work on multivectors. We write it using ordinary multiplication, so $AB$ is the geometric product of $A$ and $B$. For scalars, it does what you expect. The geometric product has some nice properties:
+The geometric product is how we generalize multiplication to work on multivectors. We write it using ordinary multiplication, so $AB$ is the geometric product of $A$ and $B$. In code, the geometric product of `a` and `b` is written `a * b`. For scalars, it does what you expect. The geometric product has some nice properties:
 
 - :white_check_mark: Associativity[^assoc]: $A(BC) = (AB)C$
 - :white_check_mark: Distributivity: $A(B + C) = AB + AC$ and $(B + C)A = BA + CA$
@@ -73,19 +73,18 @@ It's time for some new terminology:
 
 - The **grade** of a multivector is the number of letters each component has. A scalar has grade 0, a vector has grade 1, a bivector has grade 2, a trivector has grade 3, etc.
 - A **blade** is a multivector whose components all have the same grade.
+- An **$r$-blade** is a blade with grade $r$ (where $r$ is a nonnegative integer).
 - The **pseudoscalar** is the unit-length multivector with maximum grade. In 3D space, that's $xyz$.
 
 To get a blade from a multivector, you can **grade-project** it, which extracts all the components of a particular grade. The projection of $A$ into grade $r$ is written $\langle A \rangle_r$
 
 Most of the time, all the multivectors we see will be blades. The only exception to this rule is rotors, which we'll get to later.
 
-## Outer product (wedge)
+## Outer product (wedge product)
 
-The **outer product** of two multivectors $A$ and $B$ is written $A \wedge B$ ("$A$ wedge $B$").
+The **wedge product** or **outer product** of an $r$-blade $A$ and an $s$-blade $B$ is written $A \wedge B$ ("$A$ wedge $B$") and is defined as $\langle AB \rangle_{r+s}$. In code, the wedge product of `a` and `b` is written `a ^ b`.
 
-When computing the geometric product of two multivectors, you get a lot of different components of different grades. The outer product selects only the components with the maximum possible grade. Formally:
-
-Given a blade $A$ with grade $s$ and a blade $B$ with grade $r$ is $\langle AB \rangle_{r+s}$. Here's some examples of how that works:
+To give an intuitive understanding: When computing the geometric product of two multivectors, you get a lot of different components of different grades. The outer product selects only the components with the maximum possible grade. Here's some examples of how that works:
 
 - The outer product of two vectors is always a bivector, with no scalar component (or zero, if the vectors are parallel).
 - The outer product of a bivector and a vector is always a trivector (or zero, if the vector is in the same plane as the bivector).
@@ -105,16 +104,30 @@ This area and volume are _oriented_ because they face in a particular direction.
 !!! question "This looks suspiciously similar to the determinant of a matrix ..."
     This is no coincidence! The determinant of a matrix is exactly equal to the pseudoscalar component of the outer product of its column vectors. Think about properties of the determinant, like how behaves when you swap adjacent columns or its representation of signed area/volume.
 
-## Inner product (scalar dot)
+## Inner product
 
-There's actually a few different "inner products" on multivectors. We'll start with the **scalar dot product**.
+There's a few different ways to generalize inner products to work on multivectors.
 
-The inner product of two multivectors $A$ and $B$ is written $A \cdot B$ ("$A$ dot $B$") and is defined as $\langle AB \rangle_{1}$, i.e., the scalar component of the geometric product. The inner product is commutative for vectors (so $a \cdot b = b \cdot a$) but not generally for multivectors.
+### Scalar dot product
+
+The **scalar dot product** (or simply **dot product**) of two multivectors $A$ and $B$ is written $A \cdot B$ ("$A$ dot $B$") and is defined as $\langle AB \rangle_{1}$, i.e., the scalar component of the geometric product. This is one of several **inner products**. The scalar dot product is commutative for vectors (so $a \cdot b = b \cdot a$) but not generally for multivectors.
+
+!!! example "Exercise"
+    Think about why the dot product of two blades with different grades is always zero.
 
 !!! warning "Common misconception: $AB = A \wedge B + A \cdot B$"
     There's a misconception in geometric algebra that the geometric product is the sum of the outer and inner products. This is true when multiplying vectors (so $ab = a \wedge b + a \cdot b$ is true) but not generally for multivectors (so $AB = A \wedge B + A \cdot B$ does _not_ always hold).
 
-Using the dot product, we can also define the **magnitude** of a multivector $\|A\| = \sqrt{A \cdot A}$. Note that the magnitude of a multivector is not always real; for example, the $xy \cdot xy = -1$, so its magnitude would be $\sqrt{-1}$, which is imaginary. Generally we only care about whether the magnitude is positive, negative, or imaginary.
+Using the dot product, we can also define the **magnitude** of a multivector $\|A\| = \sqrt{A \cdot A}$. Note that the magnitude of a multivector is not always real; for example, the $xy \cdot xy = -1$, so its magnitude would be $\sqrt{-1}$, which is imaginary.
+
+### Contraction
+
+The **left contraction** of an $s$-blade $A$ and an $r$-blade $B$ is written $A \rfloor B$ ("$A$ left-contract $B$" or "$A$ contracted from $B$) and is defined as $\langle AB \rangle_{s-r}$, where $A$ is an $s$-blade with an $r$-blade. In code, the left contraction of `a` and `b` is written `a << b`.
+
+!!! example "Special case"
+    When $s = r$, left contraction is equivalent to the scalar dot product.
+
+I have to admit that I don't have a great geometric understanding of left contraction. My understanding is that it's sort of a way to "remove" some multivector from a product of vectors, but that intuition may be wrong.
 
 ## Rotors
 
