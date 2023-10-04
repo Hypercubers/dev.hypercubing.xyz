@@ -1,6 +1,6 @@
 # Projective GA
 
-Vanilla geometric algebra gives us the tools to represent vectors, planes, etc. that intersect the origin, and rotations/reflections around the origin. Projective geometric algebra adds a new basis vector $w$, and uses it to represent points, lines, and planes _anywhere_ in Euclidean space[^projective], and any isometry of Euclidean space.
+VGA gives us the tools to represent vectors, planes, etc. that intersect the origin, and rotations/reflections around the origin. **PGA** (**Projective Geometric Algebra**) adds a new basis vector $w$, and uses it to represent points, lines, and planes _anywhere_ in Euclidean space[^projective], and any isometry of Euclidean space.
 
 [^projective]: Actually, anywhere in _projective space_, which is a superset of Euclidean space!
 
@@ -31,8 +31,17 @@ This gives the geometry of the **[projective plane]** (or in general, a **[proje
     - Every pair of distinct points has exactly one line passing through both.
     - Every pair of lines intersects at exactly one point, even if they are parallel.
 
-Given two points $p$ and $q$ represented using vectors, $p \wedge q$ is the line containing $p$ and $q$. Iff[^iff] $p$ and $q$ are the same point, then $p \wedge q = 0$.
+Here's some examples of how this works:
+
+- Given two points $p$ and $q$ represented using vectors, $p \wedge q$ is the line containing $p$ and $q$. Iff[^iff] $p$ and $q$ are the same point, then $p \wedge q = 0$.
+- Given a line $l$ represented using a bivector and a point $p$ represented using a vector, $l \wedge p$ is the plane containing $l$ and $p$. Iff $p$ is already on $l$, then $l \wedge p = 0$.
 
 [^iff]: "iff" is short for [if and only if](https://en.wikipedia.org/wiki/If_and_only_if).
 
-Given a line $l$ represented using a bivector and a point $p$ represented using a vector, $l \wedge p$ is the plane containing $l$ and $p$. Iff $p$ is already on $l$, then $l \wedge p = 0$.
+In general, any $s$-blade $A$ intersects the projective plane $w=0$ at an $s-1$-dimensional subspace $S$, so we say that $A$ represents $S$.
+
+The outer product works here too: $A_r \wedge B_s$ gives the representation of the unique $(r+s-1)$-dimensional subspace containing $A$ and $B$. If $A$ and $B$ are in the same $(r+s-2)$-dimensional subspace, then there is no unique $(r+s-1)$-dimensional subspace, so the result is zero.
+
+## Motors
+
+Remember rotors, our friends from the even subalgebra of VGA? They've gotten an upgrade in PGA: they're now called **motors** can now represent arbitrary _translations_ in addition to rotations! And of course we have **flectors**, which use the odd subalgebra and represent any combination of translations, rotations, and an odd number of reflections. You can use them exactly the same way you use rotors.

@@ -71,6 +71,8 @@ But what do all these components actually represent? Well just like the vector $
 
 A bivector with multiple components represents non-axis-aligned area. Consider the vector $x+2y$, which represents some length in the XY plane. Its projection onto the X axis is one unit long, and its projection onto the Y axis is two units long. Similarly, $2xy+xz-3yz$ represents an oriented area in the XYZ 3D space. Its projection (2D shadow) onto the XY plane has two units of positively-oriented area, its projection onto the XZ plane has 1 unit of positively-oriented area, and its projection onto the YZ plane has 3 units of negatively-oriented area. This is hard to visualize if you haven't seen it before; check out [Marc ten Bosch's explanation of rotors][marctenbosch-rotors] if you're confused.
 
+## Blades and grades
+
 It's time for some new terminology:
 
 - The **grade** of a multivector is the number of letters each component has. A scalar has grade 0, a vector has grade 1, a bivector has grade 2, a trivector has grade 3, etc.
@@ -78,13 +80,13 @@ It's time for some new terminology:
 - An **$r$-blade** is a blade with grade $r$ (where $r$ is a nonnegative integer).
 - The **pseudoscalar** $I$ (or `pss` in code) is the unit-length multivector with maximum grade. In 3D space, $I = xyz$.
 
-To get a blade from a multivector, you can **grade-project** it, which extracts all the components of a particular grade. The projection of $A$ into grade $r$ is written $\langle A \rangle_r$
+To get a blade from a multivector, you can **grade-project** it, which extracts all the components of a particular grade. The projection of $A$ into grade $r$ is written $\langle A \rangle_r$.
 
-Most of the time, all the multivectors we see will be blades. The only exception to this rule is rotors, which we'll get to later.
+Most of the time, all the multivectors we see will be blades. The only exception to this rule is rotors, which we'll get to later. We use the notation $A_r$ to indicate that $A$ is an $r$-blade (and similarly for $B_s$).
 
 ## Outer product (wedge product)
 
-The **wedge product** or **outer product** of an $r$-blade $A$ and an $s$-blade $B$ is written $A \wedge B$ ("$A$ wedge $B$") and is defined as $\langle AB \rangle_{r+s}$. In code, the wedge product of `a` and `b` is written `a ^ b`.
+The **wedge product** or **outer product** of $A_r$ and $B_s$ is written $A \wedge B$ ("$A$ wedge $B$") and is defined as $\langle A_r B_s \rangle_{r+s}$. In code, the wedge product of `a` and `b` is written `a ^ b`.
 
 To give an intuitive understanding: When computing the geometric product of two multivectors, you get a lot of different components of different grades. The outer product selects only the components with the maximum possible grade. Here's some examples of how that works:
 
@@ -124,12 +126,15 @@ Using the dot product, we can also define the **magnitude** of a multivector $\|
 
 ### Contraction
 
-The **left contraction** of an $s$-blade $A$ and an $r$-blade $B$ is written $A \rfloor B$ ("$A$ left-contract $B$" or "$A$ contracted from $B$) and is defined as $\langle AB \rangle_{s-r}$, where $A$ is an $s$-blade with an $r$-blade. In code, the left contraction of `a` and `b` is written `a << b`.
+The **left contraction** of $A_r$ and $B_s$ is written $A \rfloor B$ ("$A$ left-contract $B$" or "$A$ contracted from $B$) and is defined as $\langle A_r B_s \rangle_{s-r}$. In code, the left contraction of `a` and `b` is written `a << b`.
 
-!!! example "Special case"
-    When $s = r$, left contraction is equivalent to the scalar dot product.
+!!! tip "Exercise"
+    1. When is left contraction equivalent to the scalar dot product?
+    2. **:sparkles: Bonus :sparkles:** When is left contraction equivalent to the geometric product? (The answer is revealed later, in case you're stuck.)
 
 I have to admit that I don't have a great geometric understanding of left contraction. My understanding is that it's sort of a way to "remove" some multivector from a product of vectors, but that intuition may be wrong.
+
+For completeness: the **right contraction** of $A_r$ and $B_s$ is written $A \lfloor B$ and is defined as $\langle A_r B_s \rangle_{r-s}$, but we'll never use it.
 
 ## Reverse
 
@@ -167,6 +172,7 @@ Now that you understand multivectors and the geometric, outer, and inner product
 Important things to note:
 
 - In general, rotors use the **even subalgebra** of geometric algebra. For example, rotors in 4D have a quadvector component $xyzw$.
+- The rotor $ab$ represents a rotation in the plane spanned by $a$ and $b$ by twice the angle between $a$ and $b$.
 - The **reverse** of a rotor represents the reverse transformation.
 - The geometric product of two rotors is their composition.
 - To apply a rotor $R$ to an object $A$, compute the negative **sandwich product** $R A \tilde R$.
