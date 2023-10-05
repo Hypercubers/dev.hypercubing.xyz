@@ -38,9 +38,15 @@ Here's some examples of how this works:
 
 [^iff]: "iff" is short for [if and only if](https://en.wikipedia.org/wiki/If_and_only_if).
 
-In general, any $s$-blade $A$ intersects the projective plane $w=0$ at an $s-1$-dimensional subspace $S$, so we say that $A$ represents $S$.
+In general, any blade $C_r$ intersects the projective plane $w=1$ at an $(r-1)$-dimensional subspace $S$, so we say that $C_r$ represents $S$. If $C_r$ has no $w$ component, we say it represents a subspace at infinity. (In 2D, that's the line at infinity or a point at infinity.)
 
-The outer product works here too: $A_r \wedge B_s$ gives the representation of the unique $(r+s-1)$-dimensional subspace containing $A$ and $B$. If $A$ and $B$ are in the same $(r+s-2)$-dimensional subspace, then there is no unique $(r+s-1)$-dimensional subspace, so the result is zero.
+## Outer product
+
+The outer product works here too: $C_r \wedge D_s$ gives the representation of the unique $(r+s-1)$-dimensional subspace containing $C_r$ and $D_s$. If $C_r$ and $D_s$ are in the same $(r+s-2)$-dimensional subspace, then there isn't a unique $(r+s-1)$-dimensional subspace containing them, so $C_r \wedge D_s = 0$.
+
+## Which side?
+
+We can use this to check if a point $p$ is contained in a subspace $C_r$: just check whether $C_r \wedge p$ is zero. In $N$-dimensional space, we can check which side of a hyperplane $H$ (represented as an $N$-blade) contains $p$ using the sign of  we can check $C_n$ If the point is not contained in the subspace, then the sign of $C_r \wedge p$ is indicates which side of $C_r$
 
 ## Motors
 

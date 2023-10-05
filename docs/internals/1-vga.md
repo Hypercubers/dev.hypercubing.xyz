@@ -82,11 +82,15 @@ It's time for some new terminology:
 
 To get a blade from a multivector, you can **grade-project** it, which extracts all the components of a particular grade. The projection of $A$ into grade $r$ is written $\langle A \rangle_r$.
 
-Most of the time, all the multivectors we see will be blades. The only exception to this rule is rotors, which we'll get to later. We use the notation $A_r$ to indicate that $A$ is an $r$-blade (and similarly for $B_s$).
+Most of the time, all the multivectors we see will be blades. The only exception to this rule is rotors, which we'll get to later.
+
+!!! info "Conventions"
+    - $C_r$ is an arbitrary **blade** with **grade** $r$
+    - $D_s$ is an arbitrary **blade** with **grade** $s$
 
 ## Outer product (wedge product)
 
-The **wedge product** or **outer product** of $A_r$ and $B_s$ is written $A \wedge B$ ("$A$ wedge $B$") and is defined as $\langle A_r B_s \rangle_{r+s}$. In code, the wedge product of `a` and `b` is written `a ^ b`.
+The **wedge product** or **outer product** of $C_r$ and $D_s$ is written $C_r \wedge D_s$ ("$C_r$ wedge $D_s$") and is defined as $\langle C_r D_s \rangle_{r+s}$. In code, the wedge product of `a` and `b` is written `a ^ b`.
 
 To give an intuitive understanding: When computing the geometric product of two multivectors, you get a lot of different components of different grades. The outer product selects only the components with the maximum possible grade. Here's some examples of how that works:
 
@@ -126,7 +130,7 @@ Using the dot product, we can also define the **magnitude** of a multivector $\|
 
 ### Contraction
 
-The **left contraction** of $A_r$ and $B_s$ is written $A \rfloor B$ ("$A$ left-contract $B$" or "$A$ contracted from $B$) and is defined as $\langle A_r B_s \rangle_{s-r}$. In code, the left contraction of `a` and `b` is written `a << b`.
+The **left contraction** of $C_r$ and $D_s$ is written $C_r \rfloor D_s$ ("$C_r$ left-contract $D_s$" or "$C_r$ contracted from $D_s$) and is defined as $\langle C_r D_s \rangle_{s-r}$. In code, the left contraction of `a` and `b` is written `a << b`.
 
 !!! tip "Exercise"
     1. When is left contraction equivalent to the scalar dot product?
@@ -134,7 +138,7 @@ The **left contraction** of $A_r$ and $B_s$ is written $A \rfloor B$ ("$A$ left-
 
 I have to admit that I don't have a great geometric understanding of left contraction. My understanding is that it's sort of a way to "remove" some multivector from a product of vectors, but that intuition may be wrong.
 
-For completeness: the **right contraction** of $A_r$ and $B_s$ is written $A \lfloor B$ and is defined as $\langle A_r B_s \rangle_{r-s}$, but we'll never use it.
+For completeness: the **right contraction** of $C_r$ and $D_s$ is written $C_r \lfloor D_s$ and is defined as $\langle C_r D_s \rangle_{r-s}$, but we'll never use it.
 
 ## Reverse
 
@@ -171,7 +175,7 @@ Now that you understand multivectors and the geometric, outer, and inner product
 
 Important things to note:
 
-- In general, rotors use the **even subalgebra** of geometric algebra. For example, rotors in 4D have a quadvector component $xyzw$.
+- In general, rotors use the **even subalgebra** of geometric algebra -- that is they are multivectors where each component has even grade. That means they have scalar, bivector, quadvector, etc. components.
 - The rotor $ab$ represents a rotation in the plane spanned by $a$ and $b$ by twice the angle between $a$ and $b$.
 - The **reverse** of a rotor represents the reverse transformation.
 - The geometric product of two rotors is their composition.
