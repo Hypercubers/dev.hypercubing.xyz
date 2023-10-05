@@ -16,7 +16,11 @@ In projective GA, we keep $x^2 = y^2 = z^2 = 1$. But our new basis vector $w$ is
 
 ## Points, lines, and planes
 
-PGA gives us the ability to represent a point as a vector. A point at coordinates $\langle a, b \rangle$ is represented with the vector $ax + by + w$. The origin $\langle 0, 0 \rangle$ is represented with the vector $w$. These vectors can be scaled arbitrarily and still represent the same point, so $2x-y+w$, $-2x+y-w$, and $10x-5y+5w$ all represent the same point: $\langle 2, -1 \rangle$.
+PGA gives us the ability to represent a point as a vector. A point at coordinates $\langle a, b \rangle$ is represented with the vector $ax + by + w$. The origin $\langle 0, 0 \rangle$ is represented with the vector $w$. These vectors can be scaled arbitrarily and still represent the same point. For example, these blades all represent $\langle 2, -1 \rangle$:
+
+- $2x-y+w$
+- $-2x+y-w$
+- $10x-5y+5w$
 
 This gives the geometry of the **[projective plane]** (or in general, a **[projective space]**), where we have all the finite points $\langle x, y \rangle$ plus a **[line at infinity]** that can be reached by traveling infinitely far in any direction. (In 3D+, I like to think of it as half of a [skybox].) Points on the line at infinity are represented using vectors with zero $w$ component, such as $-3x+2y$.
 
@@ -42,7 +46,7 @@ In general, any blade $C_r$ intersects the projective plane $w=1$ at an $(r-1)$-
 
 ## Outer product
 
-The outer product works here too: $C_r \wedge D_s$ gives the representation of the unique $(r+s-1)$-dimensional subspace containing $C_r$ and $D_s$. If $C_r$ and $D_s$ are in the same $(r+s-2)$-dimensional subspace, then there isn't a unique $(r+s-1)$-dimensional subspace containing them, so $C_r \wedge D_s = 0$.
+The outer product works here too: The outer product $C_r \wedge D_s$ gives the representation of the unique $(r+s-1)$-dimensional subspace containing $C_r$ and $D_s$. If $C_r$ and $D_s$ are in the same $(r+s-2)$-dimensional subspace, then there isn't a unique $(r+s-1)$-dimensional subspace containing them, so $C_r \wedge D_s = 0$.
 
 ## Which side?
 
