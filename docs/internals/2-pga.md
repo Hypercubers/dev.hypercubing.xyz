@@ -44,14 +44,28 @@ Here's some examples of how this works:
 
 In general, any blade $C_r$ intersects the projective plane $w=1$ at an $(r-1)$-dimensional subspace $S$, so we say that $C_r$ represents $S$. If $C_r$ has no $w$ component, we say it represents a subspace at infinity. (In 2D, that's the line at infinity or a point at infinity.)
 
+The sign of a blade indicates the orientation of the subspace. So $-C_r$ represents the same $r$-dimensional subspace as $C_r$, but with the opposite orientation. Orientation will be very important later on.
+
 ## Outer product
 
 The outer product works here too: The outer product $C_r \wedge D_s$ gives the representation of the unique $(r+s-1)$-dimensional subspace containing $C_r$ and $D_s$. If $C_r$ and $D_s$ are in the same $(r+s-2)$-dimensional subspace, then there isn't a unique $(r+s-1)$-dimensional subspace containing them, so $C_r \wedge D_s = 0$.
 
 ## Which side?
 
-We can use this to check if a point $p$ is contained in a subspace $C_r$: just check whether $C_r \wedge p$ is zero. In $N$-dimensional space, we can check which side of a hyperplane $H$ (represented as an $N$-blade) contains $p$ using the sign of  we can check $C_n$ If the point is not contained in the subspace, then the sign of $C_r \wedge p$ is indicates which side of $C_r$
+We can use this to check if a point $p$ is contained in a subspace $C_r$: just check whether $C_r \wedge p$ is zero. In $N$-dimensional space, we can check which side of a hyperplane $H$ (represented as an $N$-blade) contains $p$ by computing $C_r \wedge p$, which gives a single pseudoscalar component whose sign is positive if $p$ is on one side of $C_r$ and negative if it's on the other side. To get a scalar, we take the dual: $(C_r \wedge p) \rfloor I$. Note that negating either $p$ or $C_r$ negates the sign of the result.
 
-## Motors
+We can generalize this to work in subspaces as well: If $C_r$ is a subspace of $D_{r+1}$, then the sign of the scalar $(C_r \wedge p) \rfloor D_{r+1}$ indicates which side of $C_r$ contains $p$. Note that negating either $p$, $C_r$, or $D_{r+1}$ negates the sign of the result.
+
+!!! tip "Exercise"
+    Think about smooth transformations of a point $p$, a line $C_1$, and a plane $D_2$ such that $p$ and $C_1$ stay in $D_2$ but $p$ ends up on the other side of $C_1$. By the [intermediate value theorem], the sign of $(C_r \wedge p) \rfloor D_s$ can only change when $p$ touches $C_1$, so the sign is the same. But $p$ is on the same side of $C_1$. How did this happen?
+
+    ??? success "Answer"
+        In order to get $p$ to the other side of $C_r$, $D_s$ got flipped over and changed sign.
+
+[intermediate value theorem]: https://en.wikipedia.org/wiki/Intermediate_value_theorem
+
+This pattern of replacing the pseudoscalar with another blade to simulate lower-dimensional environments will show up a lot.
+
+## Motors and flectors
 
 Remember rotors, our friends from the even subalgebra of VGA? They've gotten an upgrade in PGA: they're now called **motors** and can represent arbitrary _translations_ in addition to rotations! And of course we have **flectors**, which use the odd subalgebra and represent any combination of translations, rotations, and an odd number of reflections. You can use them exactly the same way you use rotors.
