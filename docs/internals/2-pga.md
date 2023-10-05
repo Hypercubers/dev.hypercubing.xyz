@@ -54,4 +54,4 @@ We can use this to check if a point $p$ is contained in a subspace $C_r$: just c
 
 ## Motors
 
-Remember rotors, our friends from the even subalgebra of VGA? They've gotten an upgrade in PGA: they're now called **motors** can now represent arbitrary _translations_ in addition to rotations! And of course we have **flectors**, which use the odd subalgebra and represent any combination of translations, rotations, and an odd number of reflections. You can use them exactly the same way you use rotors.
+Remember rotors, our friends from the even subalgebra of VGA? They've gotten an upgrade in PGA: they're now called **motors** and can represent arbitrary _translations_ in addition to rotations! And of course we have **flectors**, which use the odd subalgebra and represent any combination of translations, rotations, and an odd number of reflections. You can use them exactly the same way you use rotors.
