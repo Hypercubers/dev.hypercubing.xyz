@@ -118,7 +118,7 @@ There's a few different ways to generalize inner products to work on multivector
 
 ### Scalar dot product
 
-The **scalar dot product** (or simply **dot product**) of two multivectors $A$ and $B$ is written $A \cdot B$ ("$A$ dot $B$") and is defined as $\langle AB \rangle_{1}$, i.e., the scalar component of the geometric product. This is one of several **inner products**. The scalar dot product is commutative for vectors (so $a \cdot b = b \cdot a$) but not generally for multivectors.
+The **scalar dot product** (or simply **dot product**) of two multivectors $A$ and $B$ is written $A \cdot B$ ("$A$ dot $B$") and is defined as $\langle AB \rangle_{0}$, i.e., the scalar component of the geometric product. This is one of several **inner products**. The scalar dot product is commutative for vectors (so $a \cdot b = b \cdot a$) but not generally for multivectors.
 
 !!! tip "Exercise"
     Think about why the dot product of two blades with different grades is always zero.
