@@ -92,6 +92,9 @@ Most of the time, all the multivectors we see will be blades. The only exception
 
 The **wedge product** or **outer product** of $C_r$ and $D_s$ is written $C_r \wedge D_s$ ("$C_r$ wedge $D_s$") and is defined as $\langle C_r D_s \rangle_{r+s}$. In code, the wedge product of `a` and `b` is written `a ^ b`.
 
+??? "Wedge product of general multivectors"
+    We only ever need to compute the wedge product of two blades, but the wedge product of general multivectors exists too. $A \wedge B$ can be computed by breaking down $A$ and $B$ into their individual terms, computing the wedge product of each pair of terms separately, and then summing the result.
+
 To give an intuitive understanding: When computing the geometric product of two multivectors, you get a lot of different components of different grades. The outer product selects only the components with the maximum possible grade. Here's some examples of how that works:
 
 - The outer product of two vectors is always a bivector, with no scalar component (or zero, if the vectors are parallel).
