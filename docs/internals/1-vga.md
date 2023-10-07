@@ -182,6 +182,6 @@ Important things to note:
 - The rotor $ab$ represents a rotation in the plane spanned by $a$ and $b$ by twice the angle between $a$ and $b$.
 - The **reverse** of a rotor represents the reverse transformation.
 - The geometric product of two rotors is their composition.
-- To apply a rotor $R$ to an object $A$, compute the negative **sandwich product** $R A \tilde R$.
+- To apply a rotor $R$ to an object $A$, compute the **sandwich product** $R A \tilde R$.
 
-Rotors can be generalized to **rotoreflectors**, which use the **odd subalgebra** of geometric algebra. These work exactly like rotors except that they represent an odd number of reflections.
+Rotors can be generalized to **rotoreflectors**, which use the **odd subalgebra** of geometric algebra. These work exactly like rotors except that they represent an odd number of reflections and you have to negate the result when applying them: $-R A \tilde R$. (There's a negation for each reflection, but ordinary rotors have two reflections so the negations cancels.)
