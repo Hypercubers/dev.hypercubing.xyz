@@ -84,7 +84,7 @@ Other functions remain unmodified:
 
 ## String API
 
-The following utilities are allowed, unmodified from Lua:
+The string API is almost unmodified from Lua. The functions `string.dump`, `string.pack`, `string.packsize`, and `string.unpack` have been removed. Other functions remain unmodified:
 
 - `string.byte`
 - `string.char`
@@ -92,7 +92,6 @@ The following utilities are allowed, unmodified from Lua:
 - `string.format`
 - `string.gmatch`
 - `string.gsub`
-- `string.join`
 - `string.len`
 - `string.lower`
 - `string.match`
@@ -103,9 +102,9 @@ The following utilities are allowed, unmodified from Lua:
 
 The following have been added:
 
-### `string.join(t, connector)`
+### `string.join(connector, t)`
 
-Given a table `t` and a string `connector`, returns a string containing each element from `t` converted to a string using `tostring()` concatenated together, separated by `connector`.
+Given a string `connector` and a list `t`, returns a string containing each element from `t` converted to a string using `tostring()` concatenated together, separated by `connector`.
 
 ## Table API
 
