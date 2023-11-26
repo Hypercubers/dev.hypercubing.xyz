@@ -76,6 +76,7 @@ nav:
   - preface.md
   - Puzzle Development:
     - puzzle-dev/intro.md
+    - puzzle-dev/api-reference.md
   - Hyperspeedcube Internals:
     - internals/index.md
     - internals/1-vga.md
