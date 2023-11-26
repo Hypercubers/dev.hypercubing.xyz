@@ -23,7 +23,9 @@ The following functions mimic their original behavior, but have been modified to
 
 The following global constants have been added:
 
+- `_PUZZLE_ENGINE` - string containing the program name and version; e.g., `"hyperspeedcube v2.0.0"`
 - `FILENAME` - name of the file currently executing
+- `AXES` - table mapping axis names to numbers and vice versa
 
 The following global functions have been added:
 
@@ -38,6 +40,51 @@ Converts a value `v` of any type to a string in a "pretty" way:
 ### `pprint(...)`
 
 Same as `print()`, but uses `pstring()` instead of `tostring()`.
+
+### `vec(...)`
+
+Constructs a vector.
+
+- If no arguments are given, then the zero vector is returned.
+- If the only argument is a vector, then it is returned unmodified.
+- If the only argument is a string specifying an axis, then a unit vector pointing along that axis is returned.
+- If the only argument is a table, then the values in the table are used. See [Vector indexing](#vector-indexing) for valid keys.
+- Otherwise, each `i`th argument is assigned to the `i`th index in the vector.
+
+Values must be numbers.
+
+### `mvec([v])`
+
+Constructs a multivector from a value `v`.
+
+- If `v` is `nil` or omitted, then the zero vector is returned.
+- If `v` is a multivector, then it is returned unmodified.
+- If `v` is a number, then it is converted to a 0-blade (scalar blade) and returned.
+- If `v` is a string specifying a multivector component, then a unit multivector for that components is returned.
+- If `v` is a vector, then it is converted to a 1-blade (vector blade) and returned.
+- If `v` is a table, then the values in the table are used. See [Multivector indexing](#multivector-indexing) for valid keys.
+
+### `plane(...)`
+
+Constructs a multivector representing a plane. TODO: document more
+
+### `sphere(...)`
+
+Constructs a multivector representing a sphere. TODO: document more
+
+### `cd(indexes)`
+
+Constructs a [Coxeter group](https://en.wikipedia.org/wiki/Coxeter_group) from a [Coxeter-Dynkin diagram](https://en.wikipedia.org/wiki/Coxeter%E2%80%93Dynkin_diagram) specified as a table `indexes`. For example, `cd({4, 3})` is the symmetry group of a cube.
+
+Lua syntax allows omitting the parentheses when calling this function with a table literal. For example, you can write `cd{4, 3}` instead of `cd({4, 3})`.
+
+### `svec(...)`
+
+TODO: document
+
+### `puzzledef{...}`
+
+TODO: document
 
 ## Math API
 
@@ -84,10 +131,11 @@ Other functions remain unmodified:
 
 ## String API
 
-The string API is almost unmodified from Lua. The functions `string.dump`, `string.pack`, `string.packsize`, and `string.unpack` have been removed. Other functions remain unmodified:
+All functions from the Lua string API remain unmodified:
 
 - `string.byte`
 - `string.char`
+- `string.dump`
 - `string.find`
 - `string.format`
 - `string.gmatch`
@@ -95,9 +143,12 @@ The string API is almost unmodified from Lua. The functions `string.dump`, `stri
 - `string.len`
 - `string.lower`
 - `string.match`
+- `string.pack`
+- `string.packsize`
 - `string.rep`
 - `string.reverse`
 - `string.sub`
+- `string.unpack`
 - `string.upper`
 
 The following have been added:
@@ -236,46 +287,3 @@ Symmetries have the following methods:
 
 - `:ndim()` - Returns the minimum number of dimensions required by the symmetry.
 - `:vec(...)` - Constructs a vector by passing the arguments to `vec(...)`, then transforms that vector from the mirror basis. See [`svec(...)`](#svec).
-
-## Puzzle construction API
-
-### `vec(...)`
-
-Constructs a vector.
-
-- If no arguments are given, then the zero vector is returned.
-- If the only argument is a vector, then it is returned unmodified.
-- If the only argument is a string specifying an axis, then a unit vector pointing along that axis is returned.
-- If the only argument is a table, then the values in the table are used. See [Vector indexing](#vector-indexing) for valid keys.
-- Otherwise, each `i`th argument is assigned to the `i`th index in the vector.
-
-Values must be numbers.
-
-### `mvec([v])`
-
-Constructs a multivector from a value `v`.
-
-- If `v` is `nil` or omitted, then the zero vector is returned.
-- If `v` is a multivector, then it is returned unmodified.
-- If `v` is a number, then it is converted to a 0-blade (scalar blade) and returned.
-- If `v` is a string specifying a multivector component, then a unit multivector for that components is returned.
-- If `v` is a vector, then it is converted to a 1-blade (vector blade) and returned.
-- If `v` is a table, then the values in the table are used. See [Multivector indexing](#multivector-indexing) for valid keys.
-
-### `plane(...)`
-
-Constructs a multivector representing a plane.
-
-### `sphere(...)`
-
-Constructs a multivector representing a sphere.
-
-### `cd(indexes)`
-
-Constructs a [Coxeter group](https://en.wikipedia.org/wiki/Coxeter_group) from a [Coxeter-Dynkin diagram](https://en.wikipedia.org/wiki/Coxeter%E2%80%93Dynkin_diagram) specified as a table `indexes`. For example, `cd({4, 3})` is the symmetry group of a cube.
-
-Lua syntax allows omitting the parentheses when calling this function with a table literal. For example, you can write `cd{4, 3}` instead of `cd({4, 3})`.
-
-### `svec(...)`
-
-### `puzzledef`
