@@ -2,7 +2,7 @@
 
 ## General utilities
 
-See the [Lua 5.4 reference manual] for general Lua functionality.
+See the [Lua 5.4 reference manual](https://www.lua.org/manual/5.4/manual.html) for general Lua functionality.
 
 Hyperspeedcube user code is run in a sandbox with the following global constants and functions available, unmodified from Lua:
 
