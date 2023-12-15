@@ -1,4 +1,6 @@
-# API Reference
+# Lua API Reference
+
+!!! warning "This API is not stable and may change in future versions"
 
 ## General utilities
 

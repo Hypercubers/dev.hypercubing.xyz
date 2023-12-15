@@ -1,3 +1,7 @@
+---
+title: Projective GA
+---
+
 # Projective GA
 
 VGA gives us the tools to represent vectors, planes, etc. that intersect the origin, and rotations/reflections around the origin. **PGA** (**Projective Geometric Algebra**) adds a new basis vector $w$, and uses it to represent points, lines, and planes _anywhere_ in Euclidean space[^projective], and any isometry of Euclidean space.

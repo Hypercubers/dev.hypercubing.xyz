@@ -1,4 +1,10 @@
+---
+title: Conformal GA
+---
+
 # Conformal GA
+
+!!! warning "This page is incomplete"
 
 PGA added one new basis vector and unlocked projective geometry. **CGA** (**Conformal Geometric Algebra**) takes this to the extreme: by adding _two_ new basis vectors $e_-$ and $e_+$, we can represent circles, spheres, and arbitrary [conformal transformations], which unifies hyperbolic, spherical, and Euclidean space. CGA is incredibly powerful.
 

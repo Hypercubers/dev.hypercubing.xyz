@@ -1,4 +1,4 @@
-# Preface
+# Prerequisites
 
 All content on this wiki assumes that you're familiar with basic linear algebra and have some geometric intuition. In particular, you should be comfortable with:
 

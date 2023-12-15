@@ -70,17 +70,17 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 nav:
-  - index.md
-  - preface.md
+  - Welcome: index.md
+  - Prerequisites: prereqs.md
   - Puzzle Development:
-    - Introduction: puzzle-dev/index.md
-    - puzzle-dev/api-reference.md
+    - 1. Introduction: puzzle-dev/index.md
+    - Lua API Reference: puzzle-dev/api.md
   - Hyperspeedcube Internals:
-    - Introduction: internals/index.md
-    - internals/1-vga.md
-    - internals/2-pga.md
-    - internals/3-cga.md
-    - internals/4-slicing.md
+    - 1. Introduction: internals/index.md
+    - 2. Vectorspace GA: internals/vga.md
+    - 3. Projective GA: internals/pga.md
+    - 4. Conformal GA: internals/cga.md
+    - 5. Slicing: internals/slicing.md
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js

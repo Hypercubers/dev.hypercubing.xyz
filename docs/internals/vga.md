@@ -1,3 +1,7 @@
+---
+title: Vectorspace GA
+---
+
 # Vectorspace GA
 
 Complex numbers are a system where each number has two components: real and imaginary. Geometric Algebra is like complex numbers, but adds _way_ more components.[^complex] For example, **3D VGA** (**Vectorspace Geometric Algebra** or **Vanilla Geometric Algebra**) adds _seven_ extra components a total of eight.

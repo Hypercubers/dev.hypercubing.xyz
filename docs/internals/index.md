@@ -1,3 +1,7 @@
+---
+title: Hyperspeedcube Internals
+---
+
 # Hyperspeedcube Internals
 
 The goal of this tutorial series is to explain the entirety of the Hyperspeedcube puzzle engine, including construction and simulation. It proritizes geometric intuition for the mathematics and algorithms involved, but doesn't provide formal proofs. Especially in the earlier chapters, you'll just have to believe me that the math works the way it does.
@@ -6,7 +10,7 @@ This series is meant to be read in order; if you don't understand something, try
 
 There are occasional exercises throughout. Even for a casual read, I highly recommend completing these exercises; they're designed to take very little time and will massively improve your understanding of the material.
 
-Read the [preface](preface.md) first to make sure you have the prerequisite knowledge.
+Read [Prequisites](../prereqs.md) first to make sure you have the prerequisite knowledge.
 
 ## Roadmap
 
