@@ -1,4 +1,4 @@
-# Introduction
+# Puzzle Develpoment
 
 The goal of this tutorial series is to teach how to develop puzzles for Hyperspeedcube 2.
 

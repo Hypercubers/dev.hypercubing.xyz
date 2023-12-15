@@ -29,9 +29,7 @@ theme:
     - content.action.edit
     - content.code.copy
     - navigation.footer
-    - navigation.indexes
     - navigation.instant
-    - navigation.sections
     - navigation.top
   icon:
     edit: material/pencil
@@ -75,10 +73,10 @@ nav:
   - index.md
   - preface.md
   - Puzzle Development:
-    - puzzle-dev/intro.md
+    - Introduction: puzzle-dev/index.md
     - puzzle-dev/api-reference.md
   - Hyperspeedcube Internals:
-    - internals/index.md
+    - Introduction: internals/index.md
     - internals/1-vga.md
     - internals/2-pga.md
     - internals/3-cga.md

@@ -14,7 +14,7 @@ Hyperspeedcube user code is run in a sandbox with the following global constants
 - `tonumber`
 - `tostring`
 
-The following functions mimic their original behavior, but have been modified to capture their output:
+The following functions mimic their original behavior, but have been modified to capture their output or account for new types:
 
 - `assert`
 - `error`
