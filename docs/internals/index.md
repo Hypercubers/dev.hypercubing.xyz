@@ -12,6 +12,17 @@ There are occasional exercises throughout. Even for a casual read, I highly reco
 
 Read [Prequisites](../prereqs.md) first to make sure you have the prerequisite knowledge.
 
+## Code structure
+
+Hyperspeedcube is split into four crates, each depending on the previous ones:
+
+- **`hypermath`** - mathematical primitives (vectors, matrixes, CGA multivectors, and some data structures)
+- **`hypershape`** - shape slicing algorithms
+- **`hyperpuzzle`** - Lua API and any algorithms that are relevant particularly to twisty puzzles
+- **`hyperspeedcube`** - user interface
+
+This tutorial series describes how the first three crates work. The `hyperspeedcube` crate contains typical UI code and doesn't particularly need external documentation.
+
 ## Roadmap
 
 Hyperspeedcube makes heavy use of an algebraic system called **Conformal Geometric Algebra** (**CGA**). In order to understand CGA, you must first understand **Projective Geometric Algebra** (**PGA**), which in turn relies on an understanding of **Vectorspace Geometric Algebra** (**VGA**).
