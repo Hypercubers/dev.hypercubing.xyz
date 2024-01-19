@@ -17,7 +17,7 @@ You might recognize this as a **[vector space]**, which just means that addition
 [vector space]: https://en.wikipedia.org/wiki/Vector_space
 
 !!! warning "Confusing terminology"
-    A "multivector" is any element of the vector space, while a "vector" in GA consists of only vector components, like $2x-y$ (but not $4+2x-y$). But the term "basis vector" applies in the vector space as a whole, so $1$, $x$, $y$, and $z$ are all basis vectors. Blame the mathematicians, not me.
+    A "multivector" is any element of the vector space, while a "vector" in GA consists of only vector components, like $2x-y$ (but not $4+2x-y$). But the term "basis vector" applies in the vector space as a whole, so $1$, $x$, $y$, and $z$ are all basis vectors.
 
 So we have four basis vectors: $1$, $x$, $y$, and $z$. But earlier I said that 3D VGA actually has _eight_ basis vectors. How do we get all those extra basis vectors?
 
