@@ -201,7 +201,10 @@ Vectors have the following methods:
 - `:mag()` - Returns the magnitude of the vector.
 - `:at_ndim(new_ndim)` - Truncates or extends the vector with zeros to the desired number of components.
 - `:normalized([new_mag])` - Scales the vector so that its magnitude is `new_mag`, or `1` if `new_mag` is `nil`.
-- `:projected_to(other)` - Projects the vector onto another vector `other`.
+- `:dot(other)` - Returns the dot product between the vector and another vector `other`.
+- `:cross(other)` - Returns the 3D cross product between the vector and another vector `other`, ignoring components other than XYZ.
+- `:projected_to(other)` - Returns the component of the vector that is parallel to another vector `other`.
+- `:rejected_from(other)` - Returns the component of the vector that is perpendicular to another vector `other`.
 
 #### Vector operations
 
