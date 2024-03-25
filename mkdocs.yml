@@ -74,7 +74,10 @@ nav:
   - Prerequisites: prereqs.md
   - Puzzle Development:
     - 1. Introduction: puzzle-dev/index.md
-    - Lua API Reference: puzzle-dev/api.md
+    - 2. Puzzle Geometry: puzzle-dev/geometry.md
+    - 3. First Steps: puzzle-dev/first-steps.md
+    - Lua API Reference:
+      - puzzle-dev/api.md
   - Hyperspeedcube Internals:
     - 1. Introduction: internals/index.md
     - 2. Vectorspace GA: internals/vga.md
