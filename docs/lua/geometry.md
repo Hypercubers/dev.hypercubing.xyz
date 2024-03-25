@@ -149,16 +149,3 @@ Multivectors support the following operations:
 - `pairs(multivector)`
 
 For binary operations, either of the two multivectors may be substituted for a value of any other type and it will be converted to a multivector using [`mvec(v)`](#mvecv).
-
-### Symmetry
-
-Symmetries can be constructed using [`cd(...)`](#cdindexes). Symmetries are also constructed automatically by functions that require them, so you can often omit the call to `cd()`.
-
-A symmetry defined using `cd()` has a **mirror basis** of unit-length vectors, where each vector is parallel to all mirror planes except one.
-
-#### Symmetry methods
-
-Symmetries have the following methods:
-
-- `:ndim()` - Returns the minimum number of dimensions required by the symmetry.
-- `:vec(...)` - Constructs a vector by passing the arguments to `vec(...)`, then transforms that vector from the mirror basis. See [`svec(...)`](#svec).
