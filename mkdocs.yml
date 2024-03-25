@@ -75,15 +75,18 @@ nav:
   - Puzzle Development:
     - 1. Introduction: puzzle-dev/index.md
     - 2. Puzzle Geometry: puzzle-dev/geometry.md
-    - 3. First Steps: puzzle-dev/first-steps.md
-    - Lua API Reference:
-      - puzzle-dev/api.md
+    - 3. First Steps: puzzle-dev/first-puzzle.md
   - Hyperspeedcube Internals:
     - 1. Introduction: internals/index.md
     - 2. Vectorspace GA: internals/vga.md
     - 3. Projective GA: internals/pga.md
     - 4. Conformal GA: internals/cga.md
     - 5. Slicing: internals/slicing.md
+  - HSC2 Lua API Reference:
+    - lua/basic.md
+    - lua/geometry.md
+    - lua/symmetries.md
+    - lua/puzzles.md
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
