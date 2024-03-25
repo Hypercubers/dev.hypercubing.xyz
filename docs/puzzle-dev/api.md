@@ -180,18 +180,19 @@ Vectors cannot be mutated once constructed. To modify a vector, you must constru
 
 #### Vector indexing
 
-Vectors can be indexed by positive integers or single-character strings. The following strings are recognized, uppercase or lowercase:
+Vectors can be indexed by positive integers or single-character strings. The following single-letter and single-digit strings are recognized, uppercase or lowercase:
 
-- `X` = 1
-- `Y` = 2
-- `Z` = 3
-- `W` = 4
-- `V` = 5
-- `U` = 6
-- `T` = 7
-- `S` = 8
-- `R` = 9
-- `Q` = 10
+- `X` = `1` = 1
+- `Y` = `2` = 2
+- `Z` = `3` = 3
+- `W` = `4` = 4
+- `V` = `5` = 5
+- `U` = `6` = 6
+- `7` = 7
+- `8` = 8
+- `9` = 9
+
+Additionally, single-digit `1` through `9` are recognized.
 
 #### Vector methods
 
