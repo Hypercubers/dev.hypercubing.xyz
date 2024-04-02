@@ -18,8 +18,9 @@ The following functions mimic their original behavior, but have been modified to
 
 - `assert`
 - `error`
-- `warn`
+- `print`
 - `type`
+- `warn`
 
 ## Global constants
 
