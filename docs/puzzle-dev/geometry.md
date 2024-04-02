@@ -26,12 +26,12 @@ You may also see **edge-turning**, **facet-turning**, and **ridge-turning**. (We
 
 ## Shapes and Schläfli symbols
 
-Shapes can be described with names, like "cube" or "dodecahedron" or "12-gonal prism." The most important property of a shape is its **symmetry group**, which is all the ways it can be rotated and/or reflected and still look the same. The symmetries of most shapes we care about are a special kind of group called a **[Coxeter groups]**, which are written using **[Coxeter-Dynkin diagrams]**. Don't worry if you don't know group theory or haven't encountered these before; most of the Coxeter diagrams we want to write are linear (i.e., the diagram has no branching), so we can write them using **[Schläfli symbols]**, which are easier to understand without a strong background in group theory.
+Shapes can be described with names, like "cube" or "dodecahedron" or "12-gonal prism." The most important property of a shape is its **symmetry group**, which is all the ways it can be rotated and/or reflected and still look the same. The symmetries of most shapes we care about are a special kind of group called a **[Coxeter group]**, which are written using **[Coxeter-Dynkin diagrams]**. Don't worry if you don't know group theory or haven't encountered these before; most of the Coxeter diagrams we want to write are linear (i.e., the diagram has no branching), so we can write them using **[Schläfli symbols]**, which are easier to understand without a strong background in group theory.
 
 !!! abstract "Learn more"
     If you want to learn more about Coxeter groups and computer algorithms for generating their elements, check out the excellent interactive article [Building 4D Polytopes] by Mikael Hvidtfeldt Christensen.
 
-[Coxeter groups]: https://en.wikipedia.org/wiki/Coxeter_group
+[Coxeter group]: https://en.wikipedia.org/wiki/Coxeter_group
 [Coxeter-Dynkin diagrams]: https://en.wikipedia.org/wiki/Coxeter%E2%80%93Dynkin_diagram
 [Schläfli symbols]: https://en.wikipedia.org/wiki/Schl%C3%A4fli_symbol
 
