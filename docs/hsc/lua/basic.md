@@ -4,23 +4,15 @@
 
 See the [Lua 5.4 reference manual](https://www.lua.org/manual/5.4/manual.html) for general Lua functionality.
 
-Hyperspeedcube user code is run in a sandbox with the following global constants and functions available, unmodified from Lua:
+Hyperspeedcube user code is run in a sandbox, with some Lua functionality restricted. These globals are available from the Lua standard library:
 
-- `_VERSION`
-- `ipairs`
-- `next`
-- `pairs`
-- `select`
-- `tonumber`
-- `tostring`
+- **Constants:** `_VERSION`
+- **Functions:** `ipairs`, `next`, `pairs`, `pcall`, `select`, `tonumber`, `tostring`, `unpack`
+- **Modules:** `math`, `string`, `table`, `utf8`
 
-The following functions mimic their original behavior, but have been modified to capture their output or account for new types:
+These functions have been slightly modified from their default behavior to capture their output or account for new types, but should otherwise behave approximately the same:
 
-- `assert`
-- `error`
-- `print`
-- `type`
-- `warn`
+- **Modified functions:** `assert`, `error`, `print`, `type`, `warn`
 
 ## Global constants
 
