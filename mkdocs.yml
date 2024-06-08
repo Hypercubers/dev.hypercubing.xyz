@@ -90,6 +90,7 @@ nav:
     - Lua API Reference:
       - hsc/lua/basic.md
       - hsc/lua/blades.md
+      - hsc/lua/transforms.md
       - hsc/lua/symmetries.md
       - hsc/lua/puzzles.md
 extra_javascript:

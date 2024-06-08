@@ -1,7 +1,5 @@
 # Basics
 
-!!! warning "This API is not stable and may change in future versions"
-
 See the [Lua 5.4 reference manual](https://www.lua.org/manual/5.4/manual.html) for general Lua functionality.
 
 Hyperspeedcube user code is run in a [sandbox](http://lua-users.org/wiki/SandBoxes), with some Lua functionality restricted. The following globals are available from the Lua standard library:
