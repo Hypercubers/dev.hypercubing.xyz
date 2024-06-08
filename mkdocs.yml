@@ -101,3 +101,7 @@ extra_javascript:
 plugins:
   - search
   - glightbox
+validation:
+  absolute_links: relative_to_docs
+  anchors: warn
+  unrecognized_links: warn
