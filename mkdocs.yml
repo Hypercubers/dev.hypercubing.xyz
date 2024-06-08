@@ -49,6 +49,7 @@ markdown_extensions:
   - attr_list
   - footnotes
   - pymdownx.caret
+  - pymdownx.tilde
   - markdown.extensions.codehilite:
       guess_lang: false
   - markdown.extensions.toc:
@@ -88,7 +89,7 @@ nav:
       - 5. Slicing: hsc/internals/slicing.md
     - Lua API Reference:
       - hsc/lua/basic.md
-      - hsc/lua/geometry.md
+      - hsc/lua/blades.md
       - hsc/lua/symmetries.md
       - hsc/lua/puzzles.md
 extra_javascript:

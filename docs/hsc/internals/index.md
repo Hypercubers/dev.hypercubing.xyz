@@ -10,7 +10,7 @@ This series is meant to be read in order; if you don't understand something, try
 
 There are occasional exercises throughout. Even for a casual read, I highly recommend completing these exercises; they're designed to take very little time and will massively improve your understanding of the material.
 
-Read [Prequisites](../prereqs.md) first to make sure you have the prerequisite knowledge.
+Read [Prequisites](../../prereqs.md) first to make sure you have the prerequisite knowledge.
 
 ## Code structure
 
