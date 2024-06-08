@@ -88,7 +88,7 @@ nav:
       - 4. Conformal GA: hsc/internals/cga.md
       - 5. Slicing: hsc/internals/slicing.md
     - Lua API Reference:
-      - hsc/lua/basic.md
+      - hsc/lua/basics.md
       - hsc/lua/blades.md
       - hsc/lua/transforms.md
       - hsc/lua/symmetries.md

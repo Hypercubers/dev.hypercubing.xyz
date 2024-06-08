@@ -18,17 +18,25 @@ The function [`setmetatable()`](https://www.lua.org/manual/5.4/manual.html#pdf-s
 
 ## Operators
 
-The following operators are unmodified from standard Lua:
+The following unary (one-input) prefix operators are unmodified from standard Lua:
 
-- `+` - addition
-- `-` - negation/subtraction
-- `*` - multiplication
-- `/` - division
-- `^` - exponentiation
-- `<`/`>` - less/greater than
-- `<=`/`>=` - less/greater than or equal to
-- `==` - equal to (exact)
-- `~=` - not equal to (exact)
+- `-` (negation)
+- `~` (bitwise NOT)
+
+The following binary (two-input) operators are unmodified from standard Lua:
+
+- `+`, `-`, `*`, and `/` (addition, subtraction, multiplication, and division)
+- `//` (floor division)
+- `%` (modulo)
+- `^` (exponentiation)
+- `<<` and `>>` (bitshift operators)
+- `&`, `|`, and `~` (bitwise and/or/xor)
+- `..` (string concatenation)
+- `<` and `>` (less/greater than)
+- `<=` and `>=` (less/greater than or equal to)
+- `==` (equality)
+- `~=` (inequality)
+- `and`, `or`, and `not` (logical operators)
 
 See the [Approximate equality](#approximate-equality) section for alternatives to `==` and `~=` that check for approximate equality.
 
@@ -112,12 +120,12 @@ The Lua math API is almost unmodified from Lua.
 
 Since mathematical functions are used very often in puzzle development, most of the contents of the math module have been placed in the global scope. For example, `sqrt(3)` is equivalent to `math.sqrt(3)`.
 
-The following functions and constants are available from the math module:
+The following functions and constants are available from the math module.
 
 ### Trigonometry
 
-- `math.sin`, `math.cos`, `math.tan`
-- `math.asin`, `math.acos`, `math.atan`
+- `math.sin()`, `math.cos()`, `math.tan()`
+- `math.asin()`, `math.acos()`, `math.atan()`
 - `math.pi`
 
 The following additional trigonometric constants have been added:
@@ -130,29 +138,27 @@ All trigonometric functions and constants are accessible as globals. For example
 
 ### Mathematical functions
 
-- `math.ceil`, `math.floor`
-- `math.abs`
-- `math.exp`
-- `math.fmod`
-- `math.log`
-- `math.max`
-- `math.min`
-- `math.modf`
-- `math.sqrt`
+- `math.ceil()`, `math.floor()`
+- `math.max()`, `math.min()`
+- `math.abs()`
+- `math.exp()`
+- `math.fmod()`
+- `math.log()`
+- `math.modf()`
+- `math.sqrt()`
 
 The following additional mathematical functions have been added:
 
 - `math.round(x)` rounds a number to the nearest integer[^rounding]
 
-[^rounding]: If `x` is half-way between two integers, `round(x)` rounds away from `0.0`. Internally, it uses [Rust's rounding semantics](https://doc.rust-lang.org/std/primitive.f64.html#method.round).
+[^rounding]: If `x` is half-way between two integers, `math.round(x)` rounds away from `0.0`. Internally, it uses [Rust's rounding semantics](https://doc.rust-lang.org/std/primitive.f64.html#method.round).
 
 All these functions are accessible as globals. For example `sqrt(3)` and `math.sqrt(3)` are equivalent.
 
 ### Implementation utilities
 
+- `math.maxinteger` and `math.mininteger`
 - `math.huge`
-- `math.maxinteger`
-- `math.mininteger`
 - `math.ult`
 - `math.tointeger`
 - `math.type`
