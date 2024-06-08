@@ -18,7 +18,7 @@ All these constructors return a blade with the number of dimensions of the curre
 - **No arguments.** Calling `vec()` with no arguments returns the zero vector. For example, `vec()` constructs the blade $0$, which represents the vector $\langle 0, 0, 0 \rangle$.
 - **Components.** Calling `vec()` with multiple numbers constructs a vector with those components. For example, `vec(10, 20, 30)` constructs the blade $10x+20y+30z$, which represents the vector $\langle 10, 20, 30 \rangle$.
 - **Axis name.** Calling `vec()` with a single-character axis string constructs a unit vector along that axis. For example, `vec('y')` constructs the blade $y$, which represents the vector $\langle 0, 1, 0 \rangle$.
-- **Table.** Calling `vec()` with a table as its argument assigns each key-value pair to a component of the vector. The key may be a number or a string, using the same mapping as [vector component access](#vector-component-access). For example, `vec({10, z = 30})` constructs the blade $10x+30y$, which represents the vector $\langle 10, 0, 30 \rangle$.
+- **Table.** Calling `vec()` with a table as its argument assigns each key-value pair to a component of the vector. The key may be a number or a string, using the same mapping as [vector component access](#vector-component-access). For example, `vec{10, z = 30}`[^omit-braces] constructs the blade $10x+30y$, which represents the vector $\langle 10, 0, 30 \rangle$.
 - **Vector.** Calling `vec()` with an existing vector will return the vector unmodified.
 - **Point.** Calling `vec()` with an existing point will unitize the point then return its coordinates as a vector.
 
@@ -40,7 +40,7 @@ Extra components beyond the number of dimensions of the space are ignored.
 `plane()` constructs a [blade](#general-blades) representing a hyperplane and can be called in any of several ways:
 
 - **Table.** There are several ways to construct a plane using a table:
-    - Calling `plane{normal: vector, distance: number}` constructs the plane with normal vector `normal` and distance from the origin `distance`.
+    - Calling `plane{normal: vector, distance: number}`[^omit-braces] constructs the plane with normal vector `normal` and distance from the origin `distance`.
     - Calling `plane{normal: vector, point: point}` constructs the plane with normal vector `normal` that passes through the point `point`.
     - Calling `plane{pole: vector|point}` constructs the plane with `pole` that passes through the point `pole`. `plane{pole = p}` is equivalent to `plane{normal = p, point = p}` or `plane{normal = p, distance = p.mag}`.
 - **Normal vector and distance.** Calling `plane()` with a vector and a number constructs the plane with the given normal vector and distance from the origin. `plane(n, d)` is equivalent to `plane{normal = n, distance = d}`.
@@ -266,3 +266,7 @@ Blades support the following operations:
       print(x) -- 10, 20, 30
     end
     ```
+
+<!-- Footnotes -->
+
+[^omit-braces]: Lua syntax allows omitting the parentheses when calling a function with a table literal or string literal as its only argument. For example, you can write `vec{10, z = 30}` instead of `cd({10, z = 30})`.
