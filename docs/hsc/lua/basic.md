@@ -190,7 +190,3 @@ The entire [Lua UTF-8 API](https://www.lua.org/manual/5.4/manual.html#6.5) is un
 ## Tables
 
 The entire [Lua table API](https://www.lua.org/manual/5.4/manual.html#6.6) is unmodified.
-
-## Other global functions
-
-The folowing 
