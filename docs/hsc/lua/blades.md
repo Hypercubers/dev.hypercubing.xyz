@@ -2,11 +2,75 @@
 
 A blade is a geometric algebra primitive that can be used to represent a vector, a point, a line, a hyperplane, or numerous other geometric objects. Hyperspeedcube uses blades from the [Projective Geometric Algebra](https://en.wikipedia.org/wiki/Plane-based_geometric_algebra#Projective_Geometric_Algebra), but knowledge of geometric algebra is not required in order to use the API effectively.
 
-Blades cannot be mutated once constructed. To modify a blade, you must construct a new blade and then replace the old one.
+Blades cannot be mutated once [constructed](#constructors). To modify a blade, you must construct a new blade and then replace the old one.
+
+## Constructors
+
+### `vec()`
+
+`vec()` constructs a [vector](#vectors) and can be called in any of several ways:
+
+- **No arguments.** Calling `vec()` with no arguments returns the zero vector $\langle 0, 0, 0 \rangle$.
+- **Components.** Calling `vec()` with multiple numbers constructs a vector with those components. For example, `vec(10, 20, 30)` constructs the blade $10x+20y+30z$, which represents the vector $\langle 10, 20, 30 \rangle$.
+- **Axis name.** Calling `vec()` with a single-character axis string constructs a unit vector along that axis. For example, `vec('y')` constructs the blade $y$, which represents the vector $\langle 0, 1, 0 \rangle$.
+- **Table.** Calling `vec()` with a table as its argument assigns each key-value pair to a component of the vector. The key may be a number or a string, using the same mapping as [vector component access](#vector-component-access). For example, `vec({10, z = 30})` constructs the blade $10x+30y$, which represents the vector $\langle 10, 0, 30 \rangle$.
+- **Vector.** Calling `vec()` with an existing vector will return the vector unmodified.
+- **Point.** Calling `vec()` with an existing point will unitize the point then return its coordinates as a vector.
+
+`vec()` always returns a vector with the number of dimensions of the currently active space, and therefore can only be called in a context with a global number of dimensions (such as during the construction of a puzzle). `vec()` produces and error if it is called when there is not a global number of dimensions.
+
+Extra components beyond the number of dimensions of the space are ignored.
+
+### `point()`
+
+`point()` constructs a [point](#points), using the same argument structure as [`vec()`](#vec). The returned point is [unitized][unitization].
+
+### `blade()`
+
+`blade()` constructs a [blade](#general-blades) and can be called in either of two ways:
+
+- **Scalar.** Calling `blade()` with a scalar value returns a scalar blade. For example, `blade(6.5)` returns the blade $6.5$.
+- **Blade.** Calling `blade()` with an existing point, vector, or blade returns the value unmodified.
+
+### `plane()`
+
+`plane()` constructs a [blade](#general-blades) representing a hyperplane and can be called in any of several ways:
+
+- **Table.** There are several ways to construct a plane using a table:
+    - Calling `plane{normal: vector, distance: number}` constructs the plane with normal vector `normal` and distance from the origin `distance`.
+    - Calling `plane{normal: vector, point: point}` constructs the plane with normal vector `normal` that passes through the point `point`.
+    - Calling `plane{pole: vector|point}` constructs the plane with `pole` that passes through the point `pole`. `plane{pole = p}` is equivalent to `plane{normal = p, point = p}` or `plane{normal = p, distance = p.mag}`.
+- **Normal vector and distance.** Calling `plane()` with a vector and a number constructs the plane with the given normal vector and distance from the origin. `plane(n, d)` is equivalent to `plane{normal = n, distance = d}`.
+- **Pole vector.** Calling `plane()` with a vector or point constructs the plane with that vector as a normal vector that passes through that point. `plane(p)` is equivalent to `plane{pole = p}`.
+- **Plane.** Calling `plane()` with a blade representing a hyperplane returns the blade unchanged.
+
+??? example "Examples of plane construction"
+
+    ```lua
+    -- plane through point (2, -3, 6) with normal vector (2/7, -3/7, 6/7)
+    plane(vec(2, -3, 6))
+    plane(point(2, -3, 6))
+
+    -- plane through point (1, 0, 0) perpendicular to the X axis
+    plane('x')
+    plane{pole = vec(1)} -- note the curly braces!
+    plane{normal = vec(3), distance = 1}
+
+    -- plane through point (1, 0, 0) perpendicular to the X axis, but facing the other way
+    -plane('x')
+    plane(-vec('x'), -1)
+
+    -- plane through the origin with normal vector (0, 0, 1)
+    plane('z', 0)
+    plane{normal = 'z', point = vec()}
+    plane{normal = 'z', distance = 0}
+    ```
 
 ## Vectors
 
-Vectors can be constructed using [`vec()`](#vec). Vectors are also constructed automatically by functions that require them, so you can often omit the call to `vec()`.
+A vector is a direction in space and an associated magnitude. Vectors can be constructed using [`vec()`](#vec). Vectors are also constructed automatically by functions that require them, so you can often omit the call to `vec()`.
+
+Vectors are represented as 1-blades with no e~0~ component.
 
 ### Vector component access
 
@@ -55,7 +119,6 @@ Vectors support the following operations:
 - `-vector`
 - `vector == vector` (uses approximate floating-point comparison)
 - `vector ~= vector` (uses approximate floating-point comparison)
-- `#vector` (same as `vector:ndim()`)
 - `type(vector)` (returns `'blade'`)
 - `tostring(vector)`
 - `pairs(vector)`
@@ -64,13 +127,31 @@ For `+` and `-`, either of the two vectors may be substituted for a value of any
 
 ## Points
 
+A point is a point in space. Points can be constructed using [`point()`](#point). Points are also constructed automatically by functions that require them, so you can often omit the call to `point()`.
+
+Points are represented as 1-blades, with an e~0~ component.
+
+See [General blades](#general-blades) for fields, methods, and operations on points.
+
+!!! warning "Operations on points"
+
+    Be very cautious when doing operations on points. You can add two points to compute a position between them, but ensure that they are unitized first.
+
 ### Point component access
 
 !!! warning "Point component access"
 
     Accessing components of points (such as `p.x`) does **not** return a coordinate of the point unless the point is unitized: use either `p.unit.x` or `p.x / p.e0`.
 
-Points are represented as 1-blades, with an e~0~ component. Once a point has been unitized using `.unit` (see [Blade fields](#blade-fields)), its components can be accessed the same as a vector. The e~0~ component can be accessed with `.e0`
+Once a point has been unitized using `.unit` (see [Blade fields](#blade-fields)), its components can be accessed the same as a vector. The e~0~ component can be accessed with `.e0`.
+
+## Hyperplanes
+
+A hyperplane is an oriented flat $d-1$-dimensional surface in $d$-dimensional space. Hyperplanes can be constructed using [`plane()`](#plane). Hyperplanes are also constructed automatically by functions that require them, so you can often omit the call to `plane()`.
+
+Hyperplanes are represented as $d$-blades.
+
+See [General blades](#general-blades) for fields, methods, and operations on hyperplanes.
 
 ## General blades
 

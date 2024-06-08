@@ -1,10 +1,10 @@
-# Basic functionality
+# Basics
 
 !!! warning "This API is not stable and may change in future versions"
 
 See the [Lua 5.4 reference manual](https://www.lua.org/manual/5.4/manual.html) for general Lua functionality.
 
-Hyperspeedcube user code is run in a sandbox, with some Lua functionality restricted. The following globals are available from the Lua standard library:
+Hyperspeedcube user code is run in a [sandbox](http://lua-users.org/wiki/SandBoxes), with some Lua functionality restricted. The following globals are available from the Lua standard library:
 
 - **Constants:** `_VERSION`
 - **Functions:** `ipairs`, `next`, `pairs`, `pcall`, `select`, `tonumber`, `tostring`, `unpack`
@@ -16,7 +16,7 @@ The following functions have been slightly modified from their default behavior 
 
 - **Modified functions:** `assert`, `error`, `print`, `type`, `warn`
 
-The function [`setmetatable()`](https://www.lua.org/manual/5.4/manual.html#pdf-setmetatable) is included, however it has been modified to return a shallow copy of its input table instead of modifying an existing table. `getmetatable()` is not accessible.
+The function [`setmetatable()`](https://www.lua.org/manual/5.4/manual.html#pdf-setmetatable) is accessible, however it has been modified to return a shallow copy of its input table instead of modifying an existing table. `getmetatable()` is not accessible, for safety reasons.
 
 ## Operators
 
@@ -106,7 +106,11 @@ The trailing patterns `*` (or equivalently, `*.lua`) are supported; in this case
 
 ## Math
 
-The Lua math API is almost unmodified from Lua. The functions `math.random` and `math.randomseed` have been removed, and some new functions and constants have been added.
+The Lua math API is almost unmodified from Lua.
+
+- The functions `math.random` and `math.randomseed` have been removed because puzzle definitions (with the exception of certain novelty puzzles) should be deterministic.
+- The functions `math.deg` and `math.rad` have been removed because they have confusing names and semantics. They have been replaced by `math.degree`, a constant equal to the number of radians in one degree.
+- Some new functions and constants have been added; they are described below.
 
 Since mathematical functions are used very often in puzzle development, most of the contents of the math module have been placed in the global scope. For example, `sqrt(3)` is equivalent to `math.sqrt(3)`.
 
@@ -116,12 +120,12 @@ The following functions and constants are available from the math module:
 
 - `math.sin`, `math.cos`, `math.tan`
 - `math.asin`, `math.acos`, `math.atan`
-- `math.deg`, `math.rad`
 - `math.pi`
 
 The following additional trigonometric constants have been added:
 
 - `math.tau` is equivalent to `math.pi * 2`
+- `math.degree` is equivalent to `math.pi / 180`
 - `math.phi` is equivalent to `(1 + math.sqrt(5)) / 2`
 
 All trigonometric functions and constants are accessible as globals. For example `pi` and `math.pi` are equivalent.
