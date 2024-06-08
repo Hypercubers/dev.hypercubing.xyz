@@ -92,7 +92,8 @@ nav:
       - hsc/lua/blades.md
       - hsc/lua/transforms.md
       - hsc/lua/symmetries.md
-      - hsc/lua/puzzles.md
+      - hsc/lua/orbits.md
+      - hsc/lua/puzzle-construction.md
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
