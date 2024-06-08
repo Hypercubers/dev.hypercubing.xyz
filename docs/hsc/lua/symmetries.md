@@ -27,7 +27,7 @@ The table of branch labels is similar to a [Schläfli symbol]. For example, `cd{
 
 See this diagram for a list of named Coxeter groups:
 
-![Finite Coxeter groups](https://en.wikipedia.org/wiki/Coxeter%E2%80%93Dynkin_diagram#/media/File:Finite_coxeter.svg)
+![Diagrams representing finite Coxeter groups](https://en.wikipedia.org/wiki/Coxeter%E2%80%93Dynkin_diagram#/media/File:Finite_coxeter.svg)
 
 Here is a list of the names for the finite Coxeter groups:
 
@@ -58,7 +58,7 @@ assert(mirrors[2] == vec(-1, 1) / sqrt(2))
 assert(mirrors[3] == vec(0, -1, 1) / sqrt(2))
 ```
 
-Additionally, symmetries have a field corresponding to each [Coxeter vector] that uses only the characters `o` and `x`. For example `cd'bc3'.xoo` is a vector pointing toward the vertex of a cube or the face of an octahedron.
+Additionally, symmetries have a field corresponding to each possible vector written in [Dynkin notation] that uses only the characters `o` and `x`. For example `cd'bc3'.xoo` is a vector pointing toward the vertex of a cube or the face of an octahedron.
 
 ## Methods
 
@@ -76,7 +76,7 @@ TOOD: document `:orbit()`
 
 ### `symmetry:vec()`
 
-`:vec()` returns constructs a [Coxeter vector] from a string or converts a vector into the basis defined by `.mirror_vectors`
+`:vec()` returns constructs a vector written using [Dynkin notation] or converts a vector into the basis defined by `.mirror_vectors`
 
 TOOD: document `:vec()`
 
@@ -93,11 +93,34 @@ Symmetries support the following operations:
 - `type(symmetry)` (returns `'symmetry'`)
 - `tostring(symmetry)`
 
-## Coxeter vectors
+## Dynkin notation
 
-[Coxeter vector]: #coxeter-vectors
+[Dynkin notation]: #dynkin-notation
 
-TODO: document Coxeter vectors
+To describe points relative to a symmetric mirror construction, we use [Dynkin notation](https://web.archive.org/web/20230410033043/https://bendwavy.org/klitzing//explain/dynkin-notation.htm). A point specified in Dynkin notation consists of a string of characters, each specifying the distance from its corresponding mirror planes. Here is a list of all the symbols supported by Hyperspeedcube:
+
+| Symbol |            Distance            |
+| :----: | :----------------------------: |
+|  `o`   |              $0$               |
+|  `x`   |              $1$               |
+|  `u`   |              $2$               |
+|  `q`   |           $\sqrt 2$            |
+|  `f`   | $\phi = \frac{1 + \sqrt 5}{2}$ |
+
+For example, the string `oqx` describes a point touching the first mirror plane, $\sqrt 2$ units from the second mirror plane, and $\phi$ units from the third mirror plane.
+
+```lua title="Examples using Dynkin notation"
+local sym = cd'h3' -- symmetry of a dodecahedron or icosahedron
+sym:orbit(sym.oox.unit) -- face poles of a dodecahedron, or vertices of an icosahedron
+sym:orbit(sym.oxo.unit) -- edge poles of a dodecahedron or icosahedron
+sym:orbit(sym.xoo.unit) -- vertices of a dodecahedron or face poles of an icosahedron
+
+local sym = cd'bc4' -- symmetry of a hypercube or 16-cell
+sym:orbit(sym.ooox.unit) -- cell poles of a hypercube, or vertices of a 16-cell
+sym:orbit(sym.ooxo.unit) -- face poles of a hypercube, or edge poles of a 16-cell
+sym:orbit(sym.oxoo.unit) -- edge poles of a hypercube, or face poles of a 16-cell
+sym:orbit(sym.xooo.unit) -- vertices of a hypercube, or cell poles of a 16-cell
+```
 
 <!-- Footnotes -->
 
