@@ -25,22 +25,24 @@ The table of branch labels is similar to a [Schläfli symbol]. For example, `cd{
 
 [Schäfli symbol]: https://en.wikipedia.org/wiki/Schl%C3%A4fli_symbol
 
-See this diagram for a list of named Coxeter groups:
-
-![Diagrams representing finite Coxeter groups](https://en.wikipedia.org/wiki/Coxeter%E2%80%93Dynkin_diagram#/media/File:Finite_coxeter.svg)
-
 Here is a list of the names for the finite Coxeter groups:
 
 - `a2`, `a3`, `a4`, ... (simplical symmetries)
 - `bc2`, `bc3`, `bc4`, ... (hypercubic symmetries)
     - equivalently: `b2`, `b3`, `b4`, ...
     - equivalently: `c2`, `c3`, `c4`, ...
-- `d4`, `d5`, `d6`, ...
+- `d4`, `d5`, `d6`, ... (demicubic symmetries)
 - `e6`, `e7`, `e8`
-- `f4`
+- `f4` (24-cell symmetry)
+- `g2` (hexagonal symmetry)
 - `h2`, `h3`, `h4` (pentagonal, dodecahedral/icosahedral, and 120-cell/600-cell symmetries)
-- `g6` (hexagonal symmetry)
 - `i2`, `i3`, `i4`, ... (polygonal symmetries)
+
+This diagram describes the Coxeter groups graphically, with labels representing the indices of the nodes in the program[^attrib]:
+
+[^attrib]: Derived from <https://commons.wikimedia.org/wiki/File:Finite_coxeter.svg>
+
+![Finite Coxeter groups](https://assets.hypercubing.xyz/img/dev/cd-indices.png)
 
 ## Fields
 
