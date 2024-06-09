@@ -53,11 +53,11 @@ Symmetries have the following fields:
 - `.chiral` is the canonical chiral subgroup of the symmetry; i.e., the symmetry which is the same as this one but excluding reflections
 
 ```lua title="Example using mirror vectors of a symmetry"
-local mirrors = cd'bc3'.mirror_vectors
-assert(#mirrors == 3)
-assert(mirrors[1] == vec(1))
-assert(mirrors[2] == vec(-1, 1) / sqrt(2))
-assert(mirrors[3] == vec(0, -1, 1) / sqrt(2))
+local mirror_vectors = cd'bc3'.mirror_vectors
+assert(#mirror_vectors == 3)
+assert(mirror_vectors[1] == vec(1))
+assert(mirror_vectors[2] == vec(-1, 1) / sqrt(2))
+assert(mirror_vectors[3] == vec(0, -1, 1) / sqrt(2))
 ```
 
 Additionally, symmetries have a field corresponding to each possible vector written in [Dynkin notation] that uses only the characters `o` and `x`. For example `cd'bc3'.xoo` is a vector pointing toward the vertex of a cube or the face of an octahedron.
@@ -78,15 +78,22 @@ TOOD: document `:orbit()`
 
 ### `symmetry:vec()`
 
-`:vec()` returns constructs a vector written using [Dynkin notation] or converts a vector into the basis defined by `.mirror_vectors`
+`:vec()` returns constructs a vector in the mirror basis, where each axis is parallel to all but one mirror. It can be called in either of two ways:
 
-TOOD: document `:vec()`
+- **Dynkin notation.** Calling `:vec()` with a [Dynkin notation] string constructs the corresponding vector. See [Dynkin notation] for an explanation and examples.
+- **Vector.** Calling `:vec()` with an existing vector converts it to the mirror basis. The first component of the input determines the distance from the first mirror; the second component of the input determines the distance from the second mirror; etc.
 
 ### `symmetry:thru()`
 
-`:thru()` constructs a transformation by composing reflections across the corresponding mirror planes
+`:thru()` constructs a transformation by composing reflections across the corresponding mirror planes. Each mirror plane is specified as an index. First each reflection is constructed, and then they are composed in the order specified.
 
-TOOD: document `:thru()`
+For example, `symmetry:thru(1, 3, 2)` constructs a transformation that reflects through the second mirror plane, then the third, then the first. Note that the order [seems backwards](https://www.reddit.com/r/learnmath/comments/ymkpup/university_linear_algebra_misunderstanding_about/), because the transforms are composed in the order written.
+
+```lua title="Examples using symmetry:thru()"
+cd'bc3':thru(2, 1) -- clockwise 90-degree rotation of a face of a cube
+cd'bc3':thru(3, 2) -- clockwise 120-degree rotation of a vertex of a cube
+cd'bc3':thru(3, 1) -- clockwise 180-degree rotation of an edge of a cube
+```
 
 ## Operations
 
