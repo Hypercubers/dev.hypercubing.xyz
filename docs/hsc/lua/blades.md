@@ -124,7 +124,7 @@ Vectors support the following operations:
 - `tostring(vector)`
 - `pairs(vector)`
 
-[approximate]: basic.md#approximate-equality
+[approximate]: basics.md#approximate-equality
 
 For `+` and `-`, either of the two vectors may be substituted for a value of any other type and it will be converted to a vector using [`vec(...)`](#vec).
 
@@ -254,8 +254,8 @@ Blades support the following operations:
 - `tostring(blade)`
 - `pairs(blade)` iterates over the key/value pairs for a vector or point
 
-[approximate floating-point equality]: basic.md#approximate-equality
-[approximate floating-point inequality]: basic.md#approximate-equality
+[approximate floating-point equality]: basics.md#approximate-equality
+[approximate floating-point inequality]: basics.md#approximate-equality
 
 ??? example "Example using `pairs(blade)`"
 

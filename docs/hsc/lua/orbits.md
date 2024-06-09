@@ -93,7 +93,7 @@ for t, face_vector, edge_vector in sym:orbit(sym.oox, sym.oxo) do
 end
 ```
 
-It is good practice to call [`:iter()`](#iter) on a symmetry when using it in a `for` loop, unless the symmetry is constructed inline in a `for` loop.
+It is good practice to call [`:iter()`](#iteration) on a symmetry when using it in a `for` loop, unless the symmetry is constructed inline in a `for` loop.
 
 ```lua title="Examples of when to use orbit:iter()"
 local sym = cd'bc3'

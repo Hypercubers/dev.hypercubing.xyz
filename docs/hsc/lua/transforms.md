@@ -127,4 +127,4 @@ Transforms support the following operations:
 - `type(transform)` returns `'transform'`
 - `tostring(transform)`
 
-[approximate]: basic.md#approximate-equality
+[approximate]: basics.md#approximate-equality
