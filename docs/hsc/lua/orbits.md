@@ -21,43 +21,7 @@ Calling the `:orbit()` method on a [symmetry] with one or more [transformable] o
 
 ### `orbit:iter()`
 
-`:iter()` returns a new identical orbit that can be used for iteration. Once an orbit has been iterated over in a `for` loop, it cannot be used again.
-
-It is good practice to call `:iter()` on a symmetry when using it in a `for` loop, unless the symmetry is constructed inline in a `for` loop.
-
-```lua title="Examples iterating over orbits"
-local sym = cd'bc3'
-
--- This is ok, because the symmetry is constructed inline
-for _, v in sym:orbit(sym.oox) do
-  print(v)
-end
-
--- This is ok, because we call `:iter()`
-local orbit1 = sym:orbit(sym.oox)
-for _, v in orbit1:iter() do
-  print(v)
-end
-
--- This is questionable but will work, because we are only using the orbit once
-local orbit2 = sym:orbit(sym.oox)
-for _, v in orbit2 do
-  print(v)
-end
-
--- This is bad! We are using the same orbit object twice
-for _, v in orbit2 do
-  print(v) -- This will not be called because the iterator has been used up
-end
-
--- This is ok! Calling `:iter()` always gives a fresh iterator
-for _, v in orbit2:iter() do
-  print(v)
-end
-
--- This is also ok! Functions that take an orbit as a parameter implicitly call `:iter()`
-puzzle:carve(orbit2)
-```
+`:iter()` returns a new identical orbit that can be used for iteration. Once an orbit has been iterated over in a `for` loop, it cannot be used again. See [Iteration](#iteration).
 
 ### `orbit:with()`
 
@@ -108,4 +72,61 @@ You should almost never write one of these tables by hand. There are many of the
 
 ## Iteration
 
-TODO: document iteration over orbits
+Orbit objects can be used in `for` loops. When iterated over, they yield a transform from the symmetry group, the sequence of initial objects transformed by that symmetry (as separate values, not as a table), and lastly a name (or `nil` if none has been assigned for the element).
+
+There may be multiple transforms that produce the same element of the orbit; it is unspecified which one will be applied.
+
+```lua title="Examples iterating over orbits"
+local symmetries = require('symmetries')
+local sym = cd'bc3'
+
+for t, v1, name in sym:orbit(sym.oox):with(symmetries.cubic.FACE_NAMES_LONG) do
+  assert(v1 == t:transform(sym.oox))
+  print(v1) -- +X, -X, +Y, -Y, +Z, -Z
+  print(name) -- Right, Left, Up, Down, Front, Back
+end
+
+for t, face_vector, edge_vector in sym:orbit(sym.oox, sym.oxo) do
+  assert(face_vector == t:transform(sym.oox))
+  assert(edge_vector == t:transform(sym.oxo))
+  -- no names, because we didn't call `:with()`
+end
+```
+
+It is good practice to call [`:iter()`](#iter) on a symmetry when using it in a `for` loop, unless the symmetry is constructed inline in a `for` loop.
+
+```lua title="Examples of when to use orbit:iter()"
+local sym = cd'bc3'
+
+-- This is ok, because the symmetry is constructed inline
+for _, v in sym:orbit(sym.oox) do
+  print(v)
+end
+
+-- This is ok, because we call `:iter()`
+local orbit1 = sym:orbit(sym.oox)
+for _, v in orbit1:iter() do
+  print(v)
+end
+
+-- This is questionable but will work, because we are only using the orbit once
+local orbit2 = sym:orbit(sym.oox)
+for _, v in orbit2 do
+  print(v)
+end
+
+-- This is bad! We are using the same orbit object twice
+for _, v in orbit2 do
+  -- The contents of this loop will not be executed
+  -- because the iterator has been used up
+  print(v)
+end
+
+-- This is ok! Calling `:iter()` always gives a fresh iterator
+for _, v in orbit2:iter() do
+  print(v)
+end
+
+-- This is also ok! Functions that take an orbit as a parameter implicitly call `:iter()`
+puzzle:carve(orbit2)
+```
