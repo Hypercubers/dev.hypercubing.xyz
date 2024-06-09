@@ -51,6 +51,7 @@ Symmetries have the following fields:
 - `.ndim` is the minimum number of dimensions required to contain the symmetry
 - `.mirror_vectors` is a table of vectors, each corresponding to one of the mirror transformations that together generate the group
 - `.chiral` is the canonical chiral subgroup of the symmetry; i.e., the symmetry which is the same as this one but excluding reflections
+- `.is_chiral` is `true` if the symmetry is chiral (i.e., it does not contain any reflections), or `false` otherwise
 
 ```lua title="Example using mirror vectors of a symmetry"
 local mirror_vectors = cd'bc3'.mirror_vectors
@@ -74,8 +75,6 @@ Symmetries have the following methods:
 
 `:orbit()` returns the [orbit](orbits.md) of its arguments under the symmetry.
 
-TOOD: document `:orbit()`
-
 ### `symmetry:vec()`
 
 `:vec()` returns constructs a vector in the mirror basis, where each axis is parallel to all but one mirror. It can be called in either of two ways:
@@ -93,13 +92,18 @@ For example, `symmetry:thru(1, 3, 2)` constructs a transformation that reflects 
 cd'bc3':thru(2, 1) -- clockwise 90-degree rotation of a face of a cube
 cd'bc3':thru(3, 2) -- clockwise 120-degree rotation of a vertex of a cube
 cd'bc3':thru(3, 1) -- clockwise 180-degree rotation of an edge of a cube
+
+local sym = cd'bc3'
+local a = sym:thru(1, 2, 3)
+local b = sym:thru(1) * sym:thru(2) * sym:thru(3)
+assert(a == b)
 ```
 
 ## Operations
 
 Symmetries support the following operations:
 
-- `type(symmetry)` (returns `'symmetry'`)
+- `type(symmetry)` returns `'symmetry'`
 - `tostring(symmetry)`
 
 ## Dynkin notation

@@ -124,7 +124,7 @@ Transforms support the following operations:
 - `transform * transform` (composition of transforms)
 - `transform == transform` (uses [approximate] floating-point comparison)
 - `transform ~= transform` (uses [approximate] floating-point comparison)
-- `type(transform)` (returns `'transform'`)
+- `type(transform)` returns `'transform'`
 - `tostring(transform)`
 
 [approximate]: basic.md#approximate-equality
