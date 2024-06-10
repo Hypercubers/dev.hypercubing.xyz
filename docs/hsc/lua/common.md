@@ -8,8 +8,8 @@ On this page:
 - A **value** is some other value (often a string or number, but not always)
 
 [color]: puzzle-construction/colors.md#color
-[axis]: puzzle-construction/colors.md#axis
-[twist]: puzzle-construction/colors.md#twist
+[axis]: puzzle-construction/axes.md#axis
+[twist]: puzzle-construction/twists.md#twist
 
 ## Mappings
 
