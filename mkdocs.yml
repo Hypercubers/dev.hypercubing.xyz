@@ -92,6 +92,7 @@ nav:
       - hsc/lua/puzzle-library.md
       - Geometry:
         - hsc/lua/geometry/blade.md
+        - hsc/lua/geometry/hyperplane.md
         - hsc/lua/geometry/transform.md
         - hsc/lua/geometry/symmetry.md
         - hsc/lua/geometry/orbit.md
