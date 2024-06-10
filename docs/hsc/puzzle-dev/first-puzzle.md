@@ -47,7 +47,7 @@ The next string is the **puzzle name**. In this case, it's the same as the puzzl
 
 [Eitan's Star]: https://twistypuzzles.com/app/museum/museum_showitem.php?pkey=5356
 
-!!! note "Why the inconsistent quotation marks?"
+!!! question "Why the inconsistent quotation marks?"
 
     Lua doesn't actually care whether you use single quotes `'like this'` or double quotes `"like this"`, except that you can only put literal quotes inside a string with the opposite quotation type, `'like "this"'` or `"like 'this'"`. I like to use single quotes for non-user-facing strings, like the puzzle ID (since single quotes are slightly easier to type), and double quotes for user-facing strings (because they might contain apostrophes). Plus it gives a hint to anyone reading the code about the semantics of the string: is it user-facing, or just a string ID for use within code?
 
