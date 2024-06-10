@@ -29,7 +29,7 @@ The color system has no fields.
 
 #### `puzzle.colors:add()`
 
-`puzzle.colors:add()` adds a color to the color system. It takes a single argument: a string (which will be the name of the color), a hyperplane (which will be the surface for the color), a table with data about the color.
+`puzzle.colors:add()` adds a color to the color system. It takes a single argument: a string (which will be the name of the color), a hyperplane (which will be the surface for the color), or a table with data about the color.
 
 The table has the following keys:
 

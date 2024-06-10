@@ -4,7 +4,7 @@
 
 The **axis system** is an ordered list of twist axes. It can be accessed during [puzzle construction](puzzle.md) as `puzzle.axes`.
 
-Axes can be added to the axis system using [`puzzle:add_axes()`](puzzle.md#puzzleadd_axes).
+Axes can be added to the axis system using [`puzzle.axes:add()`](#puzzleaxesadd).
 
 ### Axis indexing
 
@@ -26,6 +26,36 @@ puzzle.axes[vec('x')]
 The axis system has no fields.
 
 ### Methods
+
+#### `puzzle.axes:add()`
+
+`puzzle.axes:add()` adds a [twist axis](axes.md) to the axis system, optionally adding [layers](twists.md#layer-system) to it and slicing the puzzle on each layer boundary. It takes two arguments: a [vector](../geometry/blade.md#vectors) for the new twist axis, and an optional table containing additional arguments.
+
+If the vector is an [orbit](../geometry/orbit.md) of [vectors](../geometry/blade.md#vectors) instead of just a single one, then `puzzle.axes:add()` will add an axis for each vector, all with the same layers. If the orbit has [names assigned](../geometry/orbit.md#orbitwith), then the new axes created by the cut will be assigned those names.
+
+The table may contain two optional keys:
+
+- `layers` is an optional sequential table of distances from the origin at which to add layer boundaries
+- `slice` is an optional boolean which defaults to `true`
+
+If the table contains a sequence, then that sequence is used in place of `layers`. In this case the `slice` key is still used as normal.
+
+If `layers` is specified, then `add_axes()` will automatically add [layers](twists.md#layer-system) to each axis it creates.
+
+If `slice` is `true`, then `add_axes()` will automatically [slice](puzzle.md#puzzleslice) all pieces at the layer boundaries specified by `layers`.
+
+```lua title="Examples using puzzle.axes:add()"
+local sym = cd'bc3'
+
+-- Add cubic axes with no layers
+puzzle.axes:add(sym:orbit(sym.oox.unit))
+
+-- Add cubic axes with a single cut through the origin
+puzzle.axes:add(sym:orbit(sym.oox.unit), {0})
+
+-- Add cubic axes with 3x3x3-like cuts
+puzzle.axes:add(sym:orbit(sym.oox.unit), {1/3})
+```
 
 #### `puzzle.axes:autoname()`
 
