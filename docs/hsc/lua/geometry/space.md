@@ -8,7 +8,7 @@ A **space** is a finite-dimensional [Euclidean space] in which a puzzle can be c
 
 Spaces have the following field:
 
-- `ndim` is the number of dimensions of the space.
+- `.ndim` is the number of dimensions of the space.
 
 ## Methods
 

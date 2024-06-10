@@ -73,18 +73,18 @@ Symmetries have the following methods:
 
 ### `symmetry:orbit()`
 
-`:orbit()` returns the [orbit](orbit.md) of its arguments under the symmetry.
+`symmetry:orbit()` returns the [orbit](orbit.md) of its arguments under the symmetry.
 
 ### `symmetry:vec()`
 
-`:vec()` returns constructs a vector in the mirror basis, where each axis is parallel to all but one mirror. It can be called in either of two ways:
+`symmetry:vec()` returns constructs a vector in the mirror basis, where each axis is parallel to all but one mirror. It can be called in either of two ways:
 
 - **Dynkin notation.** Calling `:vec()` with a [Dynkin notation] string constructs the corresponding vector. See [Dynkin notation] for an explanation and examples.
 - **Vector.** Calling `:vec()` with an existing vector converts it to the mirror basis. The first component of the input determines the distance from the first mirror; the second component of the input determines the distance from the second mirror; etc.
 
 ### `symmetry:thru()`
 
-`:thru()` constructs a transformation by composing reflections across the corresponding mirror planes. Each mirror plane is specified as an index. First each reflection is constructed, and then they are composed in the order specified.
+`symmetry:thru()` constructs a transformation by composing reflections across the corresponding mirror planes. Each mirror plane is specified as an index. First each reflection is constructed, and then they are composed in the order specified.
 
 For example, `symmetry:thru(1, 3, 2)` constructs a transformation that reflects through the second mirror plane, then the third, then the first. Note that the order [seems backwards](https://www.reddit.com/r/learnmath/comments/ymkpup/university_linear_algebra_misunderstanding_about/), because the transforms are composed in the order written.
 

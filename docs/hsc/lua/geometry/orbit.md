@@ -13,19 +13,19 @@ Calling the `:orbit()` method on a [symmetry] with one or more [transformable] o
 
 ## Fields
 
-- `symmetry` is the symmetry used to construct the orbit
-- `init` is a sequential table containing the elements used to construct the orbit
-- `names` is a sequential table containing the names of elements (assigned using [`:with()`](#orbitwith)), or `nil` if [`:with()`](#orbitwith) has not been called
+- `.symmetry` is the symmetry used to construct the orbit
+- `.init` is a sequential table containing the elements used to construct the orbit
+- `.names` is a sequential table containing the names of elements (assigned using [`:with()`](#orbitwith)), or `nil` if [`:with()`](#orbitwith) has not been called
 
 ## Methods
 
 ### `orbit:iter()`
 
-`:iter()` returns a new identical orbit that can be used for iteration. Once an orbit has been iterated over in a `for` loop, it cannot be used again. See [Iteration](#iteration).
+`orbit:iter()` returns a new identical orbit that can be used for iteration. Once an orbit has been iterated over in a `for` loop, it cannot be used again. See [Iteration](#iteration).
 
 ### `orbit:with()`
 
-`:with()` returns a new orbit, reordered and with names assigned. It takes as its only argument a table with a specific format.
+`orbit:with()` returns a new orbit, reordered and with names assigned. It takes as its only argument a table with a specific format.
 
 The table must have a single named key `symmetry` containing the symmetry it is defined with respect to. The rest of the table is a sequence of pairs, where the first value is the name of the element and the second value is a sequence of mirror reflections, optionally ending with the name of an initial element.
 
