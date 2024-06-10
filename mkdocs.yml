@@ -89,11 +89,18 @@ nav:
       - 5. Slicing: hsc/internals/slicing.md
     - Lua API Reference:
       - hsc/lua/basics.md
-      - hsc/lua/blades.md
-      - hsc/lua/transforms.md
-      - hsc/lua/symmetries.md
-      - hsc/lua/orbits.md
-      - hsc/lua/puzzle-construction.md
+      - hsc/lua/puzzle-library.md
+      - Geometry:
+        - hsc/lua/geometry/blade.md
+        - hsc/lua/geometry/transform.md
+        - hsc/lua/geometry/symmetry.md
+        - hsc/lua/geometry/orbit.md
+        - hsc/lua/geometry/space.md
+      - Puzzle construction:
+        - hsc/lua/puzzle-construction/puzzle.md
+        - hsc/lua/puzzle-construction/colors.md
+        - hsc/lua/puzzle-construction/axes.md
+        - hsc/lua/puzzle-construction/twists.md
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6

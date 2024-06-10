@@ -1,9 +1,9 @@
-# Orbits
+# Orbit
 
 An **orbit** is an iterator over all the unique locations of a set of [transformable] objects under some [symmetry].
 
-[transformable]: transforms.md#methods
-[symmetry]: symmetries.md
+[transformable]: transform.md#methods
+[symmetry]: symmetry.md
 
 ## Constructors
 
@@ -66,6 +66,8 @@ local named_orbit = sym:orbit(sym.oox.unit):with({
 You should almost never write one of these tables by hand. There are many of them bundled with the default Lua files in Hyperspeedcube, and there will soon be a user interface for generating them.
 
 ## Operations
+
+Orbits support the following operations:
 
 - `#orbit` returns the length of the orbit; i.e., the number of iterations
 - `type(orbit)` returns `'orbit'`

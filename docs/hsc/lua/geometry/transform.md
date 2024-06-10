@@ -1,4 +1,4 @@
-# Transforms
+# Transform
 
 A **transform** is a combination of some sequence of translations, rotations, and reflections in space. Hyperspeedcube uses motors from the [Projective Geometric Algebra](https://en.wikipedia.org/wiki/Plane-based_geometric_algebra#Projective_Geometric_Algebra), but knowledge of geometric algebra is not required in order to use the API effectively.
 
@@ -8,10 +8,10 @@ A **transform** is a combination of some sequence of translations, rotations, an
 [reflection]: https://en.wikipedia.org/wiki/Reflection_(mathematics)
 [point reflection]: https://en.wikipedia.org/wiki/Point_reflection
 
-[blade]: blades.md
-[point]: blades.md#points
-[vector]: blades.md#vectors
-[hyperplane]: blades.md#hyperplanes
+[blade]: blade.md
+[point]: blade.md#points
+[vector]: blade.md#vectors
+[hyperplane]: blade.md#hyperplanes
 
 ## Why not matrices?
 
@@ -113,9 +113,9 @@ Below is a list of all types that can be transformed:
 
 - [Blades][blade], including [vectors][vector] and [points][point]
 - Other transforms
-- [Axes](puzzles.md#axes)
-- [Colors](puzzles.md#colors)
-- [Twists](puzzles.md#twists)
+- [Axes](../puzzle-construction/axes.md)
+- [Colors](../puzzle-construction/colors.md)
+- [Twists](../puzzle-construction/twists.md)
 
 ## Operations
 
@@ -127,4 +127,4 @@ Transforms support the following operations:
 - `type(transform)` returns `'transform'`
 - `tostring(transform)`
 
-[approximate]: basics.md#approximate-equality
+[approximate]: ../basics.md#approximate-equality

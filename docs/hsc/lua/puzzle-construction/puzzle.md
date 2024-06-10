@@ -1,0 +1,79 @@
+# Puzzle
+
+When [defining a puzzle](../puzzle-library.md#puzzlesadd), the `build` function takes a single argument of type `puzzle`. The puzzle is initialized with a single infinite piece; this piece must be [carve()](#puzzlecarve)ed to make it finite in order to have a valid puzzle. It can then have [twist axes](#puzzleaddaxes) and [twists](axes.md#axesaddtwist) defined.
+
+## Fields
+
+Puzzles have the following fields:
+
+- `id` is the unique ID of the puzzle
+- `space` is the [space](../geometry/space.md) in which the puzzle is being constructed
+- `ndim` is the number of dimensions of the space in which the puzzle is being constructed
+- `colors` is the [color system](colors.md) of the puzzle
+- `axes` is the [axis system](axes.md) of the puzzle
+- `twists` is the [twist system](twists.md) of the puzzle
+
+## Methods
+
+### `puzzle:carve()`
+
+`puzzle:carve()` cuts all pieces in the puzzle and discards pieces that are "outside" the cut. It takes two arguments: the [plane](../geometry/blade.md#hyperplanes) along which to cut, and an optional table containing additional arguments.
+
+The orientation of the cutting plane determines which pieces are kept or discarded; the normal vector of the plane points toward pieces that will be discarded.
+
+If the cutting plane is an [orbit](../geometry/orbit.md) of [planes](../geometry/blade.md#hyperplanes) instead of just a single one, then `puzzle:carve()` will perform a cut for each plane in the orbit. If the orbit has [names assigned](../geometry/orbit.md#orbitwith), then the new colors created by the cut will be assigned those names.
+
+The table may contain one optional key:
+
+- `stickers` is an optional boolean which defaults to `true`
+
+If `stickers` is `true`, then `carve()` will add a new color for each cut and create stickers along the cut; if `stickers` is `false`, then `carve()` will leave the peices unstickered.
+
+!!! warning "Unstickered pieces"
+
+    If a piece is visible from the outside of the puzzle, it should be stickered, using an extra color if necessary.
+
+    Some puzzles with real-world designs leave faces of pieces unstickered; this is not adivised in Hyperspeedcube. It is much better to sticker them using an extra color, and let the user hide them if they would like to.
+
+```lua title="Examples using puzzle:carve()"
+local sym = cd'bc3'
+
+-- Carve at X=1, deleting everything with X>1
+p:carve(plane('x'))
+
+-- Carve at X=1, deleting everything with X<1
+p:carve(-plane('x'))
+
+-- Carve a cube
+p:carve(sym:orbit(sym.oox.unit))
+
+-- Carve an unstickered octahedron
+p:carve(sym:orbit(sym.xoo.unit), {stickers=false})
+```
+
+### `puzzle:slice()`
+
+`puzzle:slice()` cuts all pieces in the puzzle. It takes one argument: the [plane](../geometry/blade.md#hyperplanes) along which to cut.
+
+The orientation of the cutting plane is ignored.
+
+If the cutting plane is an [orbit](../geometry/orbit.md) of [planes](../geometry/blade.md#hyperplanes) instead of just a single one, then `puzzle:carve()` will perform a cut for each plane in the orbit.
+
+```lua title="Examples using puzzle:slice()"
+local sym = cd'bc3'
+
+-- Slice at X=1, keeping all resulting pieces
+p:slice(plane('x'))
+
+p:slice(sym:orbit('x'))
+```
+
+### `puzzle:add_axes()`
+
+`puzzle:add_axes()` adds a symmetric set of [twist axes](axes.md). It takes two arguments: an [orbit](../geometry/orbit.md) of vectors to add as new twist axes, and an optional table containing additional arguments.
+
+## Operations
+
+Puzzles support the following operations:
+
+- `type(puzzle)` returns `'puzzle'`

@@ -1,6 +1,6 @@
-# Symmetries
+# Symmetry
 
-A **symmetry** is a [group] of transformations in space. Each element of the [symmetry group] is represented as a [transform](transforms.md).
+A **symmetry** is a [group] of transformations in space. Each element of the [symmetry group] is represented as a [transform](transform.md).
 
 [group]: https://en.wikipedia.org/wiki/Group_(mathematics)
 [symmetry group]: https://en.wikipedia.org/wiki/Symmetry_group
@@ -73,7 +73,7 @@ Symmetries have the following methods:
 
 ### `symmetry:orbit()`
 
-`:orbit()` returns the [orbit](orbits.md) of its arguments under the symmetry.
+`:orbit()` returns the [orbit](orbit.md) of its arguments under the symmetry.
 
 ### `symmetry:vec()`
 

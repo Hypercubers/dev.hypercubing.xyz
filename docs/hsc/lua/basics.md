@@ -45,8 +45,11 @@ See the [Approximate equality](#approximate-equality) section for alternatives t
 The following global constants have been added:
 
 - `_PUZZLE_ENGINE` is a string containing the program name and version; e.g., `"hyperspeedcube v2.0.0"`
-- `FILENAME` is a string containing name of the file currently executing
 - `AXES` is a table mapping axis names to numbers and vice versa
+- `FILENAME` is a string containing name of the file currently executing
+- `SPACE` is currently active [space](geometry/space.md)
+- `NDIM` is the number of dimensions of the currently active [space](geometry/space.md)
+- `puzzles` is the [global puzzle library](puzzle-library.md)
 
 ## Global functions
 

@@ -1,4 +1,4 @@
-# Blades
+# Blade
 
 A **blade** is a geometric algebra primitive that can be used to represent a vector, a point, a line, a hyperplane, or numerous other geometric objects. Hyperspeedcube uses blades from the [Projective Geometric Algebra](https://en.wikipedia.org/wiki/Plane-based_geometric_algebra#Projective_Geometric_Algebra), but knowledge of geometric algebra is not required in order to use the API effectively.
 
@@ -124,7 +124,7 @@ Vectors support the following operations:
 - `tostring(vector)`
 - `pairs(vector)`
 
-[approximate]: basics.md#approximate-equality
+[approximate]: ../basics.md#approximate-equality
 
 For `+` and `-`, either of the two vectors may be substituted for a value of any other type and it will be converted to a vector using [`vec(...)`](#vec).
 
@@ -254,8 +254,8 @@ Blades support the following operations:
 - `tostring(blade)`
 - `pairs(blade)` iterates over the key/value pairs for a vector or point
 
-[approximate floating-point equality]: basics.md#approximate-equality
-[approximate floating-point inequality]: basics.md#approximate-equality
+[approximate floating-point equality]: ../basics.md#approximate-equality
+[approximate floating-point inequality]: ../basics.md#approximate-equality
 
 ??? example "Example using `pairs(blade)`"
 
