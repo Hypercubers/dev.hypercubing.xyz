@@ -6,24 +6,23 @@ Now that we know all the puzzle jargon, let's build a **shallow-cut face-turning
 puzzles:add('3x3x3', {
   name = "3x3x3",
   ndim = 3,
-  symmetry = cd{4, 3},
   build = function(p)
-    -- Build the shape
-    p.shape:carve('x')
-    p.shape.colors:add('x')
+    local sym = cd'bc3'
 
-    -- Axes
-    p.twists.axes:add('x')
+    -- Carve the base shape
+    for _, v in sym:orbit(sym.oox.unit) do
+      p:carve(plane(v))
+    end
 
-    -- Twists
-    local R = p.twists.axes[1]
-    local U = p.twists.axes[2]
-    local F = p.twists.axes[5]
-    p.twists:add{axis = U, transform = rot{fix = U, from = R, to = F}}
+    -- Add twist axes and slice puzzle
+    for _, v in sym:orbit(sym.oox.unit) do
+      p.axes:add(v, {1/3, -1/3})
+    end
 
-    -- Slicing and layers
-    p:slice(vec('z') / 3)
-    U.layers:add(vec('z') / 3)
+    -- Add twists
+    for _, axis in ipairs(p.axes) do
+      p.twists:add(axis, rot{fix = axis.vector, angle = tau/4})
+    end
   end,
 })
 ```
