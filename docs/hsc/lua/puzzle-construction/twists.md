@@ -4,7 +4,7 @@
 
 The **twist system** is a list of twists, sorted in alphabetical order by name. It can be accessed during [puzzle construction](puzzle.md) as `puzzle.twists`.
 
-Twists can be added to the twist system using [`puzzle.twists:add()`](#todo_bad_link).
+Twists can be added to the twist system using [`puzzle.twists:add()`](#puzzletwistsadd).
 
 ### Twist indexing
 
@@ -103,7 +103,7 @@ Axes have no methods.
 
 ## Layer system
 
-A **layer system** is an ordered list of the [layers](#layer) on an [axis](#axis). It can be accessed during [puzzle construction](puzzle.md) as `axis.layers`.
+A **layer system** is an ordered list of the [layers](#layer) on an [axis](axes.md#axis). It can be accessed during [puzzle construction](puzzle.md) as `axis.layers`.
 
 ### Layer system indexing
 
@@ -130,6 +130,6 @@ A layer system has no fields.
 
 ## Layer
 
-A **layer** is a region along a [twist axis](#axis) where pieces may be affected by a [twist](twists.md#twist). It is bounded below by a hyperplane, and optionally bounded above by another hyperplane.
+A **layer** is a region along a [twist axis](axes.md#axis) where pieces may be affected by a [twist](twists.md#twist). It is bounded below by a hyperplane, and optionally bounded above by another hyperplane.
 
 [mapping]: ../common.md#mappings

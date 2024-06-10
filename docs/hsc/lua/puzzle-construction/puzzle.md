@@ -1,6 +1,6 @@
 # Puzzle
 
-When [defining a puzzle](../puzzle-library.md#puzzlesadd), the `build` function takes a single argument of type `puzzle`. The puzzle is initialized with a single infinite piece; this piece must be [carve()](#puzzlecarve)ed to make it finite in order to have a valid puzzle. It can then have [twist axes](#puzzleadd_axes) and [twists](axes.md#axesadd_twist) defined.
+When [defining a puzzle](../puzzle-library.md#puzzlesadd), the `build` function takes a single argument of type `puzzle`. The puzzle is initialized with a single infinite piece; this piece must be [carve()](#puzzlecarve)ed to make it finite in order to have a valid puzzle. It can then have [twist axes](#puzzleadd_axes) and [twists](twists.md#puzzletwistsadd) defined.
 
 ## Fields
 
@@ -70,7 +70,7 @@ puzzle:slice(sym:orbit('x'))
 
 ### `puzzle:add_axes()`
 
-`puzzle:add_axes()` adds a symmetric set of [twist axes](axes.md), optionally adding layers to those axes and slicing the puzzle. It takes two arguments: an [orbit](../geometry/orbit.md) of vectors to add as new twist axes, and an optional table containing additional arguments.
+`puzzle:add_axes()` adds a symmetric set of [twist axes](axes.md), optionally adding [layers](twists.md#layer-system) to those axes and slicing the puzzle. It takes two arguments: an [orbit](../geometry/orbit.md) of vectors to add as new twist axes, and an optional table containing additional arguments.
 
 The table may contain up to two optional keys:
 
@@ -79,7 +79,7 @@ The table may contain up to two optional keys:
 
 If the table contains a sequence, then that sequence is used in place of `layers`. In this case the `slice` key is still used as normal.
 
-If `layers` is specified, then `add_axes()` will automatically add [layers](layers.md) to each axis it creates.
+If `layers` is specified, then `add_axes()` will automatically add [layers](twists.md#layer-system) to each axis it creates.
 
 If `slice` is `true`, then `add_axes()` will automatically [slice](#puzzleslice) all pieces at the layer boundaries specified by `layers`.
 

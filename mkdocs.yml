@@ -81,12 +81,6 @@ nav:
       - 1. Introduction: hsc/puzzle-dev/index.md
       - 2. Puzzle Geometry: hsc/puzzle-dev/geometry.md
       - 3. First Steps: hsc/puzzle-dev/first-puzzle.md
-    - Internals:
-      - 1. Introduction: hsc/internals/index.md
-      - 2. Vectorspace GA: hsc/internals/vga.md
-      - 3. Projective GA: hsc/internals/pga.md
-      - 4. Conformal GA: hsc/internals/cga.md
-      - 5. Slicing: hsc/internals/slicing.md
     - Lua API Reference:
       - hsc/lua/basics.md
       - hsc/lua/puzzle-library.md
@@ -103,6 +97,12 @@ nav:
         - hsc/lua/puzzle-construction/axes.md
         - hsc/lua/puzzle-construction/twists.md
       - hsc/lua/common.md
+    - Internals:
+      - 1. Introduction: hsc/internals/index.md
+      - 2. Vectorspace GA: hsc/internals/vga.md
+      - 3. Projective GA: hsc/internals/pga.md
+      - 4. Conformal GA: hsc/internals/cga.md
+      - 5. Slicing: hsc/internals/slicing.md
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
