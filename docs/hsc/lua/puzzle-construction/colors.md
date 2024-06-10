@@ -2,7 +2,7 @@
 
 ## Color system
 
-A **color system** is an ordered list of [sticker colors](#color).
+The **color system** is an ordered list of [sticker colors](#color). It can be accessed during [puzzle construction](puzzle.md) as `puzzle.colors`.
 
 ### Color indexing
 

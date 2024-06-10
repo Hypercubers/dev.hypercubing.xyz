@@ -1,6 +1,6 @@
 # Common patterns
 
-Many types have methods that behave similarly, and are implemented using the same generic code. To keep the documentation consistent, they are all documented here.
+Several types have methods that behave similarly and are implemented using the same generic code. To keep the documentation consistent and concise, they are all documented here.
 
 On this page:
 

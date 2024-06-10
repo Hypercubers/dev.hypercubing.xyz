@@ -1,10 +1,10 @@
 # Hyperplane
 
-A hyperplane is an oriented flat $d-1$-dimensional surface in $d$-dimensional space. The orientation of a hyperplane is determined by its normal vector; to flip a hyperplane's orientation, negate its normal vector.
+A hyperplane is an oriented flat $(d-1)$-dimensional surface in $d$-dimensional space. The orientation of a hyperplane is determined by its normal vector; to flip a hyperplane's orientation, negate its normal vector.
 
 Hyperplanes are also constructed automatically by functions that require them, so you can often omit the call to the constructor `plane()`.
 
-A **hyperplane** is an oriented flat $d-1$-dimensional surface in $d$-dimensional space.
+A **hyperplane** is an oriented flat $(d-1)$-dimensional surface in $d$-dimensional space.
 
 Hyperplanes cannot be mutated once [constructed](#constructors). To modify a hyperplane, you must construct a new hyperplane and then replace the old one.
 
