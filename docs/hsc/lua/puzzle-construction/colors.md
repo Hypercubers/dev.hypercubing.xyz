@@ -4,6 +4,8 @@
 
 The **color system** is an ordered list of [sticker colors](#color). It can be accessed during [puzzle construction](puzzle.md) as `puzzle.colors`.
 
+Colors can be added to the color system explicitly using [`puzzle.colors:add()`](#puzzlecolorsadd) or implicitly using [`puzzle:carve()`](puzzle.md#puzzlecarve).
+
 ### Color indexing
 
 The color system can be indexed by the name or index of a color, or by any of its hyperplanes.
@@ -12,7 +14,7 @@ The color system can be indexed by the name or index of a color, or by any of it
 -- Gets the color with the name "Left"
 puzzle.colors.Left
 
--- Gets the first color defined
+-- Gets the first color in the list
 puzzle.colors[1]
 
 -- Gets the color with the plane X=1 (oriented outward)
@@ -56,6 +58,7 @@ The table has the following keys:
 - `#puzzle.colors` returns the number of colors that have been defined
 - `type(puzzle.colors)` returns `'colorsystem'`
 - `tostring(puzzle.colors)`
+- `ipairs(puzzle.colors)`
 
 ## Color
 

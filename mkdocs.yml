@@ -101,7 +101,6 @@ nav:
         - hsc/lua/puzzle-construction/puzzle.md
         - hsc/lua/puzzle-construction/colors.md
         - hsc/lua/puzzle-construction/axes.md
-        - hsc/lua/puzzle-construction/layers.md
         - hsc/lua/puzzle-construction/twists.md
       - hsc/lua/common.md
 extra_javascript:
