@@ -34,7 +34,7 @@ All these constructors return a transform with the number of dimensions of the c
 `refl()` constructs a transform representing a [reflection] or [point reflection] and can be called in any of several ways:
 
 - **No arguments.** Calling `refl()` with no arguments constructs a point reflection across the origin.
-- **Point.** Calling `refl()` with a [point] constructs a point reflection across that point. For example, `refl(point(0, -2))` constructs a point reflection across the origin.
+- **Point.** Calling `refl()` with a [point] constructs a point reflection across that point. For example, `refl(point(0, -2))` constructs a point reflection across the point $\langle 0, -2, 0 \rangle$.
 - **Vector.** Calling `refl()` with a [vector] constructs a reflection through that vector. The magnitude of the vector is ignored. For example, `refl(point(0, -2))` constructs a reflection across the plane $y=0$.
 - **Hyperplane.** Calling `refl()` with a [hyperplane] constructs a reflection across that hyperplane. The orientation of the plane is ignored. For example, `refl(plane('z', 1/2))` constructs a reflection across the plane $z = 0.5$.
 
