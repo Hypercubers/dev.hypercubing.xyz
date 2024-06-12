@@ -80,7 +80,7 @@ nav:
     - Puzzle Development:
       - 1. Introduction: hsc/puzzle-dev/index.md
       - 2. Puzzle Geometry: hsc/puzzle-dev/geometry.md
-      - 3. First Steps: hsc/puzzle-dev/first-puzzle.md
+      - 3. First Puzzle: hsc/puzzle-dev/first-puzzle.md
     - Lua API Reference:
       - hsc/lua/basics.md
       - hsc/lua/puzzle-library.md

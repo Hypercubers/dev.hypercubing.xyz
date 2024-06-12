@@ -55,7 +55,34 @@ Then we have the number of dimensions, which should be pretty self-explanatory.
 
 Lastly, we have the `build` function, which runs when our puzzle is constructed. It takes a single argument, the [`puzzle`](../lua/puzzle-construction/puzzle.md), which we call `p`.
 
+## Symmetry
+
 ## Carving the base shape
+
+At the beginning of the `build` function, our puzzle has a single piece that takes up all of 3D space.[^primordial-cube] Think of it like a really big block of marble that we can [`carve()`](../lua/puzzle-construction/puzzle.md#puzzlecarve) our shape from.
+
+[^primordial-cube]: Ok technically it's just a very large **primordial cube** that takes up _a lot_ of 3D space, not all of it. The current iteration of the shape-cutting algorithm only knows how to handle finite shapes.
+
+We could carve out each face individually ...
+
+```lua title="Please don't do this"
+p:carve(vec(1, 0, 0))
+p:carve(vec(-1, 0, 0))
+p:carve(vec(0, 1, 0))
+p:carve(vec(0, -1, 0))
+p:carve(vec(0, 0, 1))
+p:carve(vec(0, 0, -1))
+```
+
+But since the puzzle is symmetric, we can use symmtery to simplify this. By starting with one face and iterating over its [**orbit**](https://en.wikipedia.org/wiki/Group_action#Orbits_and_stabilizers), we can generate the other five.
+
+We start by generating the group $BC_3$ (which you may recognize from the [last section](geometry.md#coxeter-group-names) as the symmetry group of a cube) using the global [`cd()` constructor](../lua/geometry/symmetry.md).
+
+```lua title="Carving a cube using a loop"
+local sym = cd'bc3'
+
+for _, v in sym:orbit
+```
 
 ## Adding axes
 

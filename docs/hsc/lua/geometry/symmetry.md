@@ -7,7 +7,7 @@ A **symmetry** is a [group] of transformations in space. Each element of the [sy
 
 !!! info "Coxeter groups"
 
-    The symmetry groups of most puzzle shapes are [Coxeter groups][Coxeter group]. It's highly recommended that you learn about Coxeter groups and their construction using mirror planes before reading the rest of this page. The section titled **Symmetries of the cube** in [this article](https://syntopia.github.io/Polytopia/polytopes.html) is a good primer, and the interactive demos with three planes are very helpful references.
+    The symmetry groups of most puzzle shapes are [Coxeter groups][Coxeter group]. It's highly recommended that you learn about Coxeter groups and their construction using mirror planes before reading the rest of this page. The section titled **Symmetries of the cube** in the excellent article [Building 4D polytopes](https://syntopia.github.io/Polytopia/polytopes.html) by Mikael Hvidtfeldt Christensen is a good primer, and the interactive demos with three planes are very helpful references.
 
 ## Constructors
 

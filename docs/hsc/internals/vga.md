@@ -6,7 +6,7 @@ title: Vectorspace GA
 
 Complex numbers are a system where each number has two components: real and imaginary. Geometric Algebra is like complex numbers, but adds _way_ more components.[^complex] For example, **3D VGA** (**Vectorspace Geometric Algebra** or **Vanilla Geometric Algebra**) adds _seven_ extra components a total of eight.
 
-[^complex]: In fact, complex numbers _are_ a geometric algebra! You can think of them either as a 1D GA with a single extra basis vector $i^2=-1$, or as the even subalgebra of 2D VGA -- but I'm getting ahead of myself.
+[^complex]: In fact, complex numbers _are_ a geometric algebra! You can think of them either as a 1D GA with a single extra basis vector $i^2=-1$, or as the even subalgebra of 2D VGA — but I'm getting ahead of myself.
 
 ## Multivectors
 
@@ -182,7 +182,7 @@ Now that you understand multivectors and the geometric, outer, and inner product
 
 Important things to note:
 
-- In general, rotors use the **even subalgebra** of geometric algebra -- that is they are multivectors where each component has even grade. That means they have scalar, bivector, quadvector, etc. components.
+- In general, rotors use the **even subalgebra** of geometric algebra; i.e., they are multivectors where each component has even grade. That means they have scalar, bivector, quadvector, etc. components.
 - The rotor $ab$ represents a rotation in the plane spanned by $a$ and $b$ by twice the angle between $a$ and $b$.
 - The **reverse** of a rotor represents the reverse transformation.
 - The geometric product of two rotors is their composition.
