@@ -4,10 +4,11 @@ In order to build a puzzle in Hyperspeedcube, first you must understand the geom
 
 - The 3^3^ puzzle is a **shallow-cut face-turning cube**.
 - The 2^3^ puzzle is a **half-cut face-turning cube**.
-- The skewb is a **half-cut vertex-turning cube**.
-- The Halpern-Maier tetrahedron is either a **deep-cut vertex-turning tetrahedron** or a **shallow-cut face-turning tetrahedron**.
-- The megaminx is a **shallow-cut face-turning dodecahedron**.
-- The square-1 is a **cube shapemod** of **bandaged 3-layer 12-gonal prism**.
+- The Skewb is a **half-cut vertex-turning cube**.
+- The Halpern-Maier Tetrahedron is either a **deep-cut vertex-turning tetrahedron** or a **shallow-cut face-turning tetrahedron**.
+- The Megaminx is a **shallow-cut face-turning dodecahedron**.
+- The Square-1 is a **cube shapemod** of a **bandaged 3-layer half-cut 12-gonal prism**.
+- The Curvy Copter and Helicopter Cube are both **shallow-cut edge-turning cubes**.
 - The [Pentultimate] is a **half-cut face-turning dodecahedron**.
 - The face-turning octahedron is — you guessed it! — a **face-turning octahedron**.
 
@@ -32,7 +33,7 @@ You may also see **edge-turning**, **facet-turning**, and **ridge-turning**. (We
 
 [group theory]: https://en.wikipedia.org/wiki/Group_theory
 
-A **point group** is a set of **transformations of space** that keep the origin fixed (i.e., rotations, reflections, and combinations of those). Each transformation is an **element** of the group. We can **compose** two elements by doing one transformation after the other. Each element has an **inverse**, which is just the reverse transformation. There's an **identity** elements, which is the transformation that keeps everything where it is.
+A **point group** is a set of **transformations of space** that keep the origin fixed (i.e., rotations, reflections, and combinations of those). Each transformation is an **element** of the group. We can **compose** two elements by doing one transformation after the other, which produces another element in the set. Each element has an **inverse**, which is just the reverse transformation. Lastly, there's an **identity** element, which is the transformation that keeps everything where it is.
 
 The point groups used in puzzle definitions will be **finite**, and
 we'll construct them by describing their **generators**, which are a handful of elements that can be combined and inverted to get every element of the group. We say that the generators **generate** the group.
