@@ -48,7 +48,7 @@ The table has the following keys:
 
 !!! note "Notes"
 
-    1. `false` if the table is present; `true` if it is not
+    1. `true` in 3D; `false` in 4D+
     2. If `inv_name` is `nil` or unspecified, then `inv_suffix` defaults to `"'"` (a string containing the `'` character); if `inv_name` is non-`nil`, then `inv_suffix` defaults to an empty string
 
 [^twist-multipliers]: E.g., `R2` from `R`
