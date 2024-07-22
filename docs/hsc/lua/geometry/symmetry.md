@@ -73,7 +73,7 @@ Symmetries have the following methods:
 
 ### `symmetry:orbit()`
 
-`symmetry:orbit()` returns the [orbit](orbit.md) of its arguments under the symmetry.
+`symmetry:orbit()` returns the [orbit](orbit.md) of its arguments under the symmetry. See [`symmetry:orbit()`](orbit.md#symmetryorbit) for more.
 
 ### `symmetry:vec()`
 

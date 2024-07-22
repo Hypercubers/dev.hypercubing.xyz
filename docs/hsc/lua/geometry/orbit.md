@@ -15,7 +15,8 @@ Calling the `:orbit()` method on a [symmetry] with one or more [transformable] o
 
 - `.symmetry` is the symmetry used to construct the orbit
 - `.init` is a sequential table containing the elements used to construct the orbit
-- `.names` is a sequential table containing the names of elements (assigned using [`:with()`](#orbitwith)), or `nil` if [`:with()`](#orbitwith) has not been called
+- `.names` is a sequential table containing names assigned to elements using [`:named()`](#orbitnamed)
+- `.displays` is a sequential table containing display names assigned to elements using [`:named()`](#orbitnamed)
 
 ## Methods
 
@@ -23,47 +24,46 @@ Calling the `:orbit()` method on a [symmetry] with one or more [transformable] o
 
 `orbit:iter()` returns a new identical orbit that can be used for iteration. Once an orbit has been iterated over in a `for` loop, it cannot be used again. See [Iteration](#iteration).
 
-### `orbit:with()`
+### `orbit:named()`
 
-`orbit:with()` returns a new orbit, reordered and with names assigned. It takes as its only argument a table with a specific format.
+`orbit:named()` returns a new orbit with names assigned to the elements. It takes as its only argument a table with a specific format.
 
-The table must have a single named key `symmetry` containing the symmetry it is defined with respect to. The rest of the table is a sequence of pairs, where the first value is the name of the element and the second value is a sequence of mirror reflections, optionally ending with the name of an initial element.
+The keys of the table are the names to assign, and the values are a sequence of mirror reflections, optionally ending with the name of an initial element.
 
 An example will make this clearer:
 
-```lua title="Example using symmetry:with()"
+```lua title="Example using symmetry:named()"
 local sym = cd'bc3'
-local named_orbit = sym:orbit(sym.oox.unit):with({
+local named_orbit = sym:orbit(sym.oox.unit):named({
   symmetry = sym,
-  {'R', {2, 'U'}},
-  {'L', {1, 'R'}},
-  {'U', {3, 'F'}},
-  {'D', {2, 'L'}},
-  {'F', {}}, -- oox
-  {'B', {3, 'D'}},
+  F = {}, -- oox
+  U = {3, 'F'},
+  R = {2, 'U'},
+  L = {1, 'R'},
+  D = {2, 'L'},
+  B = {3, 'D'},
 })
 ```
 
-In this example, the initial element of the orbit (`sym.oox.unit`) is assigned the name `'F'`, since its mirror sequence is the empty table `{}`. Starting with `'F'`, applying the third mirror brings us to a new element, which is assigned the name `'U'` (since `'U'` corresponds to the sequence `{3, 'F'}`; i.e., starting with `'F'`, reflect across mirror 3). `'R'` is generated from `'U'`, etc.
+In this example, the initial element of the orbit (`sym.oox.unit`) is assigned the name `F`, since its mirror sequence is the empty table `{}`. Starting with `F`, applying the third mirror brings us to a new element, which is assigned the name `U` (since `U` corresponds to the sequence `{3, 'F'}`; i.e., starting with `F`, reflect across mirror 3). `R` is generated from `U`, etc.
 
-This example also specifies an order for the elements: `'R'` is the first element, `'L''` is the second, etc.
+This example also specifies an order for the elements: `R` is the first element, `L'` is the second, etc.
 
 This could also be written like this, using longer mirror sequences instead of referring to other elements:
 
-```lua title="Example using symmetry:with() with no named references"
+```lua title="Example using symmetry:named() with no named references"
 local sym = cd'bc3'
-local named_orbit = sym:orbit(sym.oox.unit):with({
-  symmetry = sym,
-  {'R', {2, 3}},
-  {'L', {1, 2, 3}},
-  {'U', {3}},
-  {'D', {2, 1, 2, 3}},
-  {'F', {}}, -- oox
-  {'B', {3, 2, 1, 2, 3}},
+local named_orbit = sym:orbit(sym.oox.unit):named({
+  F = {}, -- oox
+  U = {3},
+  R = {2, 3},
+  L = {1, 2, 3},
+  D = {2, 1, 2, 3},
+  B = {3, 2, 1, 2, 3},
 })
 ```
 
-You should almost never write one of these tables by hand. There are many of them bundled with the default Lua files in Hyperspeedcube, and there will soon be a user interface for generating them.
+You should never write one of these tables by hand. There are many of them bundled with the default Lua files in Hyperspeedcube, and there will soon be a user interface for generating them.
 
 ## Operations
 
@@ -74,15 +74,15 @@ Orbits support the following operations:
 
 ## Iteration
 
-Orbit objects can be used in `for` loops. When iterated over, they yield a transform from the symmetry group, the sequence of initial objects transformed by that symmetry (as separate values, not as a table), and lastly a name (or `nil` if none has been assigned for the element).
+Orbit objects can be used in `for` loops. When iterated over, they yield a transform from the symmetry group, the sequence of initial objects transformed by that symmetry (as separate values, not as a table), and lastly a name (or `nil` if no name has been assigned for the element).
 
-There may be multiple transforms that produce the same element of the orbit; it is unspecified which one will be applied.
+There may be multiple transforms that produce the same element of the orbit; it is unspecified which one will used when iterating.
 
 ```lua title="Examples iterating over orbits"
 local symmetries = require('symmetries')
 local sym = cd'bc3'
 
-for t, v1, name in sym:orbit(sym.oox):with(symmetries.cubic.FACE_NAMES_LONG) do
+for t, v1, name in sym:orbit(sym.oox):named(symmetries.cubic.FACE_NAMES_LONG) do
   assert(v1 == t:transform(sym.oox))
   print(v1) -- +X, -X, +Y, -Y, +Z, -Z
   print(name) -- Right, Left, Up, Down, Front, Back
@@ -91,7 +91,7 @@ end
 for t, face_vector, edge_vector in sym:orbit(sym.oox, sym.oxo) do
   assert(face_vector == t:transform(sym.oox))
   assert(edge_vector == t:transform(sym.oxo))
-  -- no names, because we didn't call `:with()`
+  -- no names, because we didn't call `:named()`
 end
 ```
 
