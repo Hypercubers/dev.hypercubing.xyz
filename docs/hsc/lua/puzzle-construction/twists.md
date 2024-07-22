@@ -33,17 +33,18 @@ The twist system has no fields.
 
 The table has the following keys:
 
-| Key           | Type       | Default value | Description                                                       |
-| ------------- | ---------- | ------------- | ----------------------------------------------------------------- |
-| `multipliers` | `boolean`  | _See note 1_  | whether to generate double/triple/etc. twists[^twist-multipliers] |
-| `inverse`     | `boolean`  | _See note 1_  | whether to generate inverse twist[^twist-inverse]                 |
-| `prefix`      | `string`   | axis name     | prefix before twist name                                          |
-| `name`        | `string`   | `nil`         | name for twist                                                    |
-| `suffix`      | `string`   | `nil`         | suffix after twist name                                           |
-| `inv_name`    | `string`   | `nil`         | name for inverse twist                                            |
-| `inv_suffix`  | `string`   | _See note 2_  | suffix after inverse twist name                                   |
-| `name_fn`     | `function` | `nil`         | function from integer to string                                   |
-| `qtm`         | `integer`  | `1`           | value of the twist in the quantum turn metric                     |
+| Key                   | Type       | Default value | Description                                                       |
+| --------------------- | ---------- | ------------- | ----------------------------------------------------------------- |
+| `multipliers`         | `boolean`  | _See note 1_  | whether to generate double/triple/etc. twists[^twist-multipliers] |
+| `inverse`             | `boolean`  | _See note 1_  | whether to generate inverse twist[^twist-inverse]                 |
+| `prefix`              | `string`   | axis name     | prefix before twist name                                          |
+| `name`                | `string`   | `nil`         | name for twist                                                    |
+| `suffix`              | `string`   | `nil`         | suffix after twist name                                           |
+| `inv_name`            | `string`   | `nil`         | name for inverse twist                                            |
+| `inv_suffix`          | `string`   | _See note 2_  | suffix after inverse twist name                                   |
+| `name_fn`             | `function` | `nil`         | function from integer to string                                   |
+| `qtm`                 | `integer`  | `1`           | value of the twist in the quantum turn metric                     |
+| `gizmo_pole_distance` | `number`   | `nil`         | distance of the gizmo pole facet                                  |
 
 !!! note "Notes"
 
