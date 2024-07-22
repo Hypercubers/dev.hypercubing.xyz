@@ -25,9 +25,15 @@ If the cutting plane is an [orbit](../geometry/orbit.md) of [planes](../geometry
 
 The table may contain one optional key:
 
-- `stickers` is an optional boolean which defaults to `true`
+- `stickers` is an optional value which defaults to `true`
 
-If `stickers` is `true`, then `carve()` will add a new color for each cut and create stickers along the cut; if `stickers` is `false`, then `carve()` will leave the peices unstickered.
+If `stickers` is `nil` or `true`, then `carve()` will add a new color for each cut and create stickers along the cut; if `stickers` is `false`, then `carve()` will leave the peices unstickered.
+
+If `stickers` is [color](colors.md#color) or a string containing the name of a color, `carve()` will create stickers along the cut and assign that color to them.
+
+If `stickers` is a table, then each key is a string containing the name of an element in the orbit and each value is the color to assign to the stickers along the cut. If the table is missing a key, then no stickers are created.
+
+A color may be specified as a [color](colors.md#color) value or as a string containing the name of a color. If there is no color with the given name, then one will be created.
 
 !!! warning "Unstickered pieces"
 

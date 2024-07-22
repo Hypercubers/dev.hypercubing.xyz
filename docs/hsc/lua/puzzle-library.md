@@ -8,14 +8,15 @@ The **puzzle library** is the database of all known puzzle definitions. The glob
 
 `puzzles:add()` adds a puzzle to the global puzzle library. It takes two arguments: the unique string ID for the puzzle, and a table containing the puzzle data with the following keys:
 
-- `name` is a string containing the user-facing name of the puzzle
 - `ndim` is the number of dimensions for the puzzle
 - `build` is a function used to construct the puzzle
+- `name` is a string containing the user-facing name of the puzzle
 - `aliases` is a sequential table of alternate string names for the puzzle
 - `meta` is a table containing metadata about the puzzle and its file.
 - `properties` is a table containing additional information about the puzzle's properties.
+- `colors` is a string containing the ID of a color system in the [color system library](color-system-library.md)
 
-The keys `ndim` and `build` are required. All other keys are optional.
+The keys `ndim` and `build` are required. All other keys are optional. The keys `name` and `colors` are recommended.
 
 The puzzle is not constructed immediately when `puzzles:add()` is called. (Otherwise, the program would slow to a crawl loading all the puzzles on startup.) Instead, the ID and table are stored, and the puzzle is constructed when the user first opens it.
 

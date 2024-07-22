@@ -11,8 +11,8 @@ Colors can be added to the color system explicitly using [`puzzle.colors:add()`]
 The color system can be indexed by the name or index of a color, or by any of its hyperplanes.
 
 ```lua title="Examples of color indexing"
--- Gets the color with the name "Left"
-puzzle.colors.Left
+-- Gets the color with the name "L"
+puzzle.colors.L
 
 -- Gets the first color in the list
 puzzle.colors[1]
@@ -29,13 +29,15 @@ The color system has no fields.
 
 #### `puzzle.colors:add()`
 
-`puzzle.colors:add()` adds a color to the color system. It takes a single argument: a string (which will be the name of the color), a hyperplane (which will be the surface for the color), or a table with data about the color.
+`puzzle.colors:add()` adds a color to the color system. It takes a single argument: a string (which will be the name of the color), or a table with data about the color.
 
 The table has the following keys:
 
 - `name` is an optional string, and will be the name of the color
-- `surfaces` is an optional hyperplane or sequential table of hyperplanes, and will be the surfaces of the color
-- `default_color` is an optional string, and will be the default for the color
+- `display` is an optional string, and will be the display name of the color
+- `default` is an optional string, and will be the default for the color
+
+Names should be short (typically 1-3 uppercase letters), but display names can be longer.
 
 #### `puzzle.colors:set_defaults()`
 
@@ -73,15 +75,16 @@ Each color has a **default color**, which is a string used to look up the user's
 Colors have the following fields:
 
 - `.name` is the string name of the color
+- `.display` is the string name of the color
 - `.index` is the integer index of the color in the color system
-- `.surfaces` is a sequential table containing all
-- `.default_color` is the string used to look up the default value for the color
+- `.default` is the string used to look up the default value for the color
 
 Some fields can be written to:
 
 - Writing a new string to `.name` renames the color
+- Writing a new string to `.display` changes the display name
 - Writing to `.index` reorders the color to that index, shifting the colors in between
-- Writing a new string to `.default_color` changes the default color
+- Writing a new string to `.default` changes the default color
 
 All other fields are read-only.
 
