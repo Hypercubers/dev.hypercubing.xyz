@@ -15,7 +15,7 @@ The **puzzle library** is the database of all known puzzle definitions. The glob
 - `meta` is a table containing metadata about the puzzle and its file.
 - `properties` is a table containing additional information about the puzzle's properties.
 
-The keys `name`, `ndim`, and `build` are required. All other keys are optional.
+The keys `ndim` and `build` are required. All other keys are optional.
 
 The puzzle is not constructed immediately when `puzzles:add()` is called. (Otherwise, the program would slow to a crawl loading all the puzzles on startup.) Instead, the ID and table are stored, and the puzzle is constructed when the user first opens it.
 
