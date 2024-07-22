@@ -21,7 +21,7 @@ Puzzles have the following fields:
 
 The orientation of the cutting plane determines which pieces are kept or discarded; the normal vector of the plane points toward pieces that will be discarded.
 
-If the cutting plane is an [orbit](../geometry/orbit.md) of [planes](../geometry/hyperplane.md) instead of just a single one, then `puzzle:carve()` will perform a cut for each plane in the orbit. If the orbit has [names assigned](../geometry/orbit.md#orbitwith), then the new colors created by the cut will be assigned those names.
+If the cutting plane is an [orbit](../geometry/orbit.md) of [planes](../geometry/hyperplane.md) instead of just a single one, then `puzzle:carve()` will perform a cut for each plane in the orbit. If the orbit has [names assigned](../geometry/orbit.md#orbitnamed), then the new colors created by the cut will be assigned those names.
 
 The table may contain one optional key:
 

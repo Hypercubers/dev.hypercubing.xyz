@@ -84,6 +84,7 @@ nav:
     - Lua API Reference:
       - hsc/lua/basics.md
       - hsc/lua/puzzle-library.md
+      - hsc/lua/color-system-library.md
       - Geometry:
         - hsc/lua/geometry/blade.md
         - hsc/lua/geometry/hyperplane.md
