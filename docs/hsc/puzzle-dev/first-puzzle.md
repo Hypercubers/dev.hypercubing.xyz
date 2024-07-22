@@ -6,22 +6,22 @@ Now that we know all the puzzle jargon, let's build a **shallow-cut face-turning
 puzzles:add('3x3x3', {
   name = "3x3x3",
   ndim = 3,
-  build = function(p)
+  build = function(self)
     local sym = cd'bc3'
 
     -- Carve the base shape
     for _, v in sym:orbit(sym.oox.unit) do
-      p:carve(plane(v))
+      self:carve(plane(v))
     end
 
     -- Add twist axes and slice puzzle
     for _, v in sym:orbit(sym.oox.unit) do
-      p.axes:add(v, {1/3, -1/3})
+      self.axes:add(v, {1/3, -1/3})
     end
 
     -- Add twists
-    for _, axis in ipairs(p.axes) do
-      p.twists:add(axis, rot{fix = axis.vector, angle = tau/4})
+    for _, axis in ipairs(self.axes) do
+      self.twists:add(axis, rot{fix = axis.vector, angle = tau/4})
     end
   end,
 })
@@ -35,7 +35,7 @@ I've tried my best to minimize the amount of boilerplate required to define a pu
 puzzles:add('3x3x3', {
   name = "3x3x3",
   ndim = 3,
-  build = function(p)
+  build = function(self)
     ...
   end,
 })
@@ -66,12 +66,12 @@ At the beginning of the `build` function, our puzzle has a single piece that tak
 We could carve out each face individually ...
 
 ```lua title="Please don't do this"
-p:carve(vec(1, 0, 0))
-p:carve(vec(-1, 0, 0))
-p:carve(vec(0, 1, 0))
-p:carve(vec(0, -1, 0))
-p:carve(vec(0, 0, 1))
-p:carve(vec(0, 0, -1))
+self:carve(vec(1, 0, 0))
+self:carve(vec(-1, 0, 0))
+self:carve(vec(0, 1, 0))
+self:carve(vec(0, -1, 0))
+self:carve(vec(0, 0, 1))
+self:carve(vec(0, 0, -1))
 ```
 
 But since the puzzle is symmetric, we can use symmtery to simplify this. By starting with one face and iterating over its [**orbit**](https://en.wikipedia.org/wiki/Group_action#Orbits_and_stabilizers), we can generate the other five.
