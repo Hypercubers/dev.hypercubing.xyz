@@ -44,6 +44,12 @@ This diagram describes the Coxeter groups graphically, with labels representing 
 
 ![Finite Coxeter groups](https://assets.hypercubing.xyz/img/dev/cd-indices.png)
 
+### `symmetry()`
+
+`symmetry()` constructs a group from generators. It takes a single argument: a sequential table of generator [transforms](transform.md). [Twists](../puzzle-construction/twists.md) are automatically converted to transforms.
+
+The fields `.mirror_vectors`, `.chiral`, and `.is_chiral` and the method `:vec()` are not supported on symmetries constructed using `symmetry()`.
+
 ## Fields
 
 Symmetries have the following fields:

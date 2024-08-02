@@ -12,6 +12,7 @@ A **transform** is a combination of some sequence of translations, rotations, an
 [point]: blade.md#points
 [vector]: blade.md#vectors
 [hyperplane]: hyperplane.md
+[region]: region.md
 
 ## Why not matrices?
 
@@ -113,6 +114,7 @@ Below is a list of all types that can be transformed:
 
 - [Blades][blade], including [vectors][vector] and [points][point]
 - [Hyperplanes][hyperplane]
+- [Regions][region]
 - Other transforms
 - [Axes](../puzzle-construction/axes.md)
 - [Colors](../puzzle-construction/colors.md)
