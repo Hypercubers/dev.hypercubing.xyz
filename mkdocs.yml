@@ -86,12 +86,13 @@ nav:
       - hsc/lua/puzzle-library.md
       - hsc/lua/color-system-library.md
       - Geometry:
+        - hsc/lua/geometry/space.md
         - hsc/lua/geometry/blade.md
         - hsc/lua/geometry/hyperplane.md
         - hsc/lua/geometry/transform.md
         - hsc/lua/geometry/symmetry.md
         - hsc/lua/geometry/orbit.md
-        - hsc/lua/geometry/space.md
+        - hsc/lua/geometry/region.md
       - Puzzle construction:
         - hsc/lua/puzzle-construction/puzzle.md
         - hsc/lua/puzzle-construction/colors.md

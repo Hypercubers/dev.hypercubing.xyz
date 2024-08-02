@@ -1,10 +1,8 @@
 # Hyperplane
 
-A hyperplane is an oriented flat $(d-1)$-dimensional surface in $d$-dimensional space. The orientation of a hyperplane is determined by its normal vector; to flip a hyperplane's orientation, negate its normal vector.
+A **hyperplane** is an oriented flat $(d-1)$-dimensional surface in $d$-dimensional space. The orientation of a hyperplane is determined by its normal vector; to flip a hyperplane's orientation, negate its normal vector.
 
 Hyperplanes are also constructed automatically by functions that require them, so you can often omit the call to the constructor `plane()`.
-
-A **hyperplane** is an oriented flat $(d-1)$-dimensional surface in $d$-dimensional space.
 
 Hyperplanes cannot be mutated once [constructed](#constructors). To modify a hyperplane, you must construct a new hyperplane and then replace the old one.
 
@@ -55,8 +53,17 @@ Hyperplanes have the following fields:
 - `.normal` is the (normalized) normal vector of the hyperplane
 - `.distance` is the minimum distance of the hyperplane from the origin
 - `.blade` is the [blade](blade.md) representing the hyperplane
+- `.region` is the [region](region.md) of space bounded on the side of the hyperplane facing away from the normal vector
 
 ## Methods
+
+Hyperplanes have the following methods:
+
+- [`:signed_distance()`](#hyperplanesigned_distance)
+
+### `hyperplane:signed_distance()`
+
+`hyperplane:signed_distance()` returns the signed distance of a point to a hyperplane. It takes one argument: a point. The distance returned is zero if the point is on the hyperplane, positive if the point is in the direction of the hyperplane's normal vector, or negative if the point is in the opposite direction.
 
 ## Operations
 

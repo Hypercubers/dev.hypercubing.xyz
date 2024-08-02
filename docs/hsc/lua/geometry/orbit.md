@@ -16,9 +16,12 @@ Calling the `:orbit()` method on a [symmetry] with one or more [transformable] o
 - `.symmetry` is the symmetry used to construct the orbit
 - `.init` is a sequential table containing the elements used to construct the orbit
 - `.names` is a sequential table containing names assigned to elements using [`:named()`](#orbitnamed)
-- `.displays` is a sequential table containing display names assigned to elements using [`:named()`](#orbitnamed)
 
 ## Methods
+
+### `orbit:intersection()`
+
+See [`orbit:intersection()`](region.md#orbitintersection).
 
 ### `orbit:iter()`
 
@@ -63,7 +66,11 @@ local named_orbit = sym:orbit(sym.oox.unit):named({
 })
 ```
 
-You should never write one of these tables by hand. There are many of them bundled with the default Lua files in Hyperspeedcube, and there will soon be a user interface for generating them.
+You should never write one of these tables by hand. There are many of them bundled with the default Lua files in Hyperspeedcube, and you can generate new ones using the **Developer Tools** window in Hyperspeedcube.
+
+### `orbit:union()`
+
+See [`orbit:union()`](region.md#orbitunion).
 
 ## Operations
 

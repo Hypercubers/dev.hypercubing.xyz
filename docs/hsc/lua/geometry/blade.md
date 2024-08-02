@@ -71,7 +71,7 @@ See [Blade fields](#blade-fields) for a full list.
 
 ### Vector methods
 
-Vectors support all the same methods as general [blades](#blade-methods). Additionally, they have the following method:
+Vectors have all the same methods as general [blades](#blade-methods). Additionally, they have the following method:
 
 - `:cross(other)` returns the 3D cross product between the vector and another vector `other`, ignoring components other than XYZ
 
