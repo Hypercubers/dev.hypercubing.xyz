@@ -1,6 +1,6 @@
 # Puzzle
 
-When [defining a puzzle](../puzzle-library.md#puzzlesadd), the `build` function takes a single argument of type `puzzle`. The puzzle is initialized with a single infinite piece; this piece must be [carve()](#puzzlecarve)ed to make it finite in order to have a valid puzzle. It can then have [twist axes](axes.md#puzzleaxesadd) and [twists](twists.md#puzzletwistsadd) defined.
+When [defining a puzzle](../puzzle-library.md#puzzlesadd), the `build` function takes a single argument of type `puzzle`. The puzzle is initialized with a single infinite piece; this piece must be [`carve()`](#puzzlecarve)ed to make it finite in order to have a valid puzzle. It can then have [twist axes](axes.md#puzzleaxesadd) and [twists](twists.md#puzzletwistsadd) defined.
 
 ## Fields
 
