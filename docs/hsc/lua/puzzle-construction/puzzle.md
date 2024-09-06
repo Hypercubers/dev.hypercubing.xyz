@@ -39,7 +39,7 @@ A color may be specified as a [color](colors.md#color) value or as a string cont
 
     If a piece is visible from the outside of the puzzle, it should be stickered, using an extra color if necessary.
 
-    Some puzzles with real-world designs leave faces of pieces unstickered; this is not adivised in Hyperspeedcube. It is much better to sticker them using an extra color, and let the user hide them if they would like to.
+    Some puzzles with real-world designs leave faces of pieces unstickered; this is not advised in Hyperspeedcube. It is much better to sticker them using an extra color, and let the user hide them if they would like to.
 
 ```lua title="Examples using puzzle:carve()"
 local sym = cd'bc3'
