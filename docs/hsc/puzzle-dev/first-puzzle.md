@@ -1,6 +1,6 @@
 # First Puzzle
 
-Now that we know all the puzzle jargon, let's build a **shallow-cut face-turning cube** (that's the standard 3x3x3 Rubik's cube) in Hyperspeedcube. First I'll show you the code and then we'll disect each part.
+Now that we know all the puzzle jargon, let's build a **shallow-cut face-turning cube** (that's the standard 3x3x3 Rubik's cube) in Hyperspeedcube. First I'll show you the code and then we'll dissect each part.
 
 ```lua title="3x3x3.lua"
 puzzles:add('3x3x3', {
