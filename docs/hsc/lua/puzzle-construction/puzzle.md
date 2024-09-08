@@ -85,6 +85,16 @@ The key `name` is required. `display` is optional.
 
 `name` consists of segments separated by `/`, which describes its position in the hierarchy of piece types. Parent piece types are automatically created; for example, `puzzle:add_piece_type{ name = 'a/b/c' }` will create the piece types `a`, `a/b`, and `a/b/c` if they do not already exist. Only the leaf piece (`a/b/c` in the example) will have its display name set.
 
+!!! tip
+    When `name` and `display` are both format strings derived from the same parameters, use `string.fmt2` for conciseness.
+
+    ```lua title="Example using `string.fmt2()`"
+    for i = 1, size do
+      local name, display = string.fmt2('center/x_%d', "X-center (%d)", i)
+      puzzle:mark_piece{ region = ..., name = name, display = display }
+    end
+    ```
+
 ### `puzzle:mark_piece()`
 
 `puzzle:mark_piece()` marks the piece type of a piece. It takes one argument: a table containing the following keys:

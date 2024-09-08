@@ -190,6 +190,10 @@ Calculations done with [floating-point numbers][how floating point works] are of
 
 The entire [Lua string API](https://www.lua.org/manual/5.4/manual.html#6.4) is unmodified.
 
+The following additional string functions have been added:
+
+- `string.fmt2(s1, s2, ...)` is equivalent a `string.format(s1, ...), string.format(s2, ...)`
+
 ## UTF-8
 
 The entire [Lua UTF-8 API](https://www.lua.org/manual/5.4/manual.html#6.5) is unmodified.
