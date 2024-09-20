@@ -94,6 +94,8 @@ Colors have no methods.
 
 ### Operations
 
+- `color == color`
+- `color ~= color`
 - `type(color)` returns `'color'`
 - `tostring(color)`
 

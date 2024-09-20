@@ -105,6 +105,8 @@ Axes have no methods.
 
 ### Operations
 
+- `axis == axis`
+- `axis ~= axis`
 - `type(axis)` returns `'axis'`
 - `tostring(axis)`
 

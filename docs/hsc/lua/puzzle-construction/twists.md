@@ -97,6 +97,8 @@ Axes have no methods.
 
 ### Operations
 
+- `twist == twist`
+- `twist ~= twist`
 - `twist * twist` composes two twists, if there is a twist corresponding to their composition
 - `twist ^ number` returns the twist composed with itself some number of times (which may be negative), if there is such a twist
 - `type(twist)` returns `'twist'`
