@@ -2,6 +2,13 @@
 
 A **region** is a subset of a [space](space.md) bounded by [hyperplanes](hyperplane.md). They are most commonly used to identify pieces.
 
+## Constants
+
+The following global constants contain regions:
+
+- `EVERYWHERE` is the region containing all of space
+- `NOWHERE` is the region containing none of space
+
 ## Constructors
 
 ### `axis()`
