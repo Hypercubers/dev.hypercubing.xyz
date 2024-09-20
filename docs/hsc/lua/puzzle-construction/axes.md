@@ -29,9 +29,9 @@ The axis system has no fields.
 
 #### `puzzle.axes:add()`
 
-`puzzle.axes:add()` adds a [twist axis](axes.md) to the axis system, optionally adding [layers](twists.md#layer-system) to it and slicing the puzzle on each layer boundary. It takes two arguments: a [vector](../geometry/blade.md#vectors) for the new twist axis, and an optional table containing additional arguments.
+`puzzle.axes:add()` adds a [twist axis](axes.md) to the axis system, optionally adding [layers](twists.md#layer-system) to it and slicing the puzzle on each layer boundary. It takes two arguments: a [vector](../geometry/blade.md#vectors) for the new twist axis, and an optional table containing additional arguments. The new axis is returned.
 
-If the vector is an [orbit](../geometry/orbit.md) of [vectors](../geometry/blade.md#vectors) instead of just a single one, then `puzzle.axes:add()` will add an axis for each vector, all with the same layers. If the orbit has [names assigned](../geometry/orbit.md#orbitnamed), then the new axes created by the cut will be assigned those names.
+If the vector is an [orbit](../geometry/orbit.md) of [vectors](../geometry/blade.md#vectors) instead of just a single one, then `puzzle.axes:add()` will add an axis for each vector, all with the same layers. If the orbit has [names assigned](../geometry/orbit.md#orbitnamed), then the new axes created by the cut will be assigned those names. An orbit of the new axes is returned.
 
 The table may contain two optional keys:
 
