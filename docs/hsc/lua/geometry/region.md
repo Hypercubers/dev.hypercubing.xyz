@@ -6,8 +6,8 @@ A **region** is a subset of a [space](space.md) bounded by [hyperplanes](hyperpl
 
 The following global constants contain regions:
 
-- `EVERYWHERE` is the region containing all of space
-- `NOWHERE` is the region containing none of space
+- `REGION_ALL` is the region containing all of space
+- `REGION_NONE` is the region containing none of space
 
 ## Constructors
 
