@@ -6,11 +6,13 @@ The **puzzle library** is the database of all known puzzle definitions. The glob
 
 ### `puzzles:add()`
 
-`puzzles:add()` adds a puzzle to the global puzzle library. It takes two arguments: the unique string ID for the puzzle, and a table containing the puzzle data with the following keys:
+`puzzles:add()` adds a puzzle to the global puzzle library. It takes one argument: a table containing the following keys:
 
+- `id` is a string containing a unique ID for the puzzle
+- `name` is a string containing a user-facing name for the puzzle
+- `version` is a string containing the [semantic version](../versioning.md) for the puzzle
 - `ndim` is the number of dimensions for the puzzle
 - `build` is a function used to construct the puzzle
-- `name` is a string containing the user-facing name of the puzzle
 - `aliases` is a sequential table of alternate string names for the puzzle
 - `meta` is a table containing metadata about the puzzle and its file.
 - `properties` is a table containing additional information about the puzzle's properties.

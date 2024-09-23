@@ -10,7 +10,8 @@ A **color scheme** is a mapping from puzzle color (`R`, `U`, etc.) to default co
 
 `color_systems:add()` adds a color system to the global color system library. It takes two arguments: the unique string ID for the color system (which may be the same as a puzzle ID), and a table containing the color system data with the following keys:
 
-- `name` is a string containing the user-facing name of the puzzle
+- `id` is a string containing a unique ID for the color system
+- `name` is a string containing a user-facing name for the color system
 - [`colors`](#colors) is a sequential table of color names and display names in order
 - `schemes` is a sequential table of [color scheme definitions](#color-scheme-definitions)
 - `default` is either a [color scheme definition](#color-scheme-definitions) or a string the name of a color scheme defined in `schemes`
