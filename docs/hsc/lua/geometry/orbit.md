@@ -19,6 +19,20 @@ Calling the `:orbit()` method on a [symmetry] with one or more [transformable] o
 
 ## Methods
 
+### `orbit:get()`
+
+`orbit:get()` returns noe step of the iteration. It takes a single argument: an index.
+
+The first value returned is always the transform for the orbit element. The remaining values are the transformed objects.
+
+```lua title="Example using orbit:get()"
+local sym = cd'bc3'
+local axes_orbit = sym:orbit(sym.oox.unit)
+local tranform1, axis1 = axes_orbit:get(1)
+local tranform2, axis2 = axes_orbit:get(2)
+local tranform3, axis3 = axes_orbit:get(3)
+```
+
 ### `orbit:intersection()`
 
 See [`orbit:intersection()`](region.md#orbitintersection).
@@ -35,7 +49,7 @@ The keys of the table are the names to assign, and the values are a sequence of 
 
 An example will make this clearer:
 
-```lua title="Example using symmetry:named()"
+```lua title="Example using orbit:named()"
 local sym = cd'bc3'
 local named_orbit = sym:orbit(sym.oox.unit):named({
   symmetry = sym,
@@ -54,7 +68,7 @@ This example also specifies an order for the elements: `R` is the first element,
 
 This could also be written like this, using longer mirror sequences instead of referring to other elements:
 
-```lua title="Example using symmetry:named() with no named references"
+```lua title="Example using orbit:named() with no named references"
 local sym = cd'bc3'
 local named_orbit = sym:orbit(sym.oox.unit):named({
   F = {}, -- oox
@@ -77,6 +91,7 @@ See [`orbit:union()`](region.md#orbitunion).
 Orbits support the following operations:
 
 - `#orbit` returns the length of the orbit; i.e., the number of iterations
+- `orbit[index]` returns the first transformed object at the given index in the orbit
 - `type(orbit)` returns `'orbit'`
 
 ## Iteration
