@@ -80,7 +80,7 @@ local named_orbit = sym:orbit(sym.oox.unit):named({
 })
 ```
 
-You should never write one of these tables by hand. There are many of them bundled with the default Lua files in Hyperspeedcube, and you can generate new ones using the **Developer Tools** window in Hyperspeedcube.
+You should rarely write one of these tables by hand. There are many of them bundled with the default Lua files in Hyperspeedcube, and you can generate new ones using the **Developer Tools** window in Hyperspeedcube.
 
 ### `orbit:union()`
 
