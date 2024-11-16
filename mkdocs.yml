@@ -84,6 +84,7 @@ nav:
     - Lua API Reference:
       - hsc/lua/basics.md
       - hsc/lua/puzzle-library.md
+      - hsc/lua/puzzle-generator-library.md
       - hsc/lua/color-system-library.md
       - Geometry:
         - hsc/lua/geometry/space.md
@@ -105,7 +106,10 @@ nav:
       - 3. Projective GA: hsc/internals/pga.md
       - 4. Conformal GA: hsc/internals/cga.md
       - 5. Slicing: hsc/internals/slicing.md
-    - Rules: hsc/rules.md
+    - Tags: hsc/tags.md
+    - Versioning: hsc/versioning.md
+  - Other Software:
+    - Guidelines: other/guidelines.md
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6

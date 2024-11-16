@@ -52,7 +52,6 @@ An example will make this clearer:
 ```lua title="Example using orbit:named()"
 local sym = cd'bc3'
 local named_orbit = sym:orbit(sym.oox.unit):named({
-  symmetry = sym,
   F = {}, -- oox
   U = {3, 'F'},
   R = {2, 'U'},
@@ -81,6 +80,25 @@ local named_orbit = sym:orbit(sym.oox.unit):named({
 ```
 
 You should rarely write one of these tables by hand. There are many of them bundled with the default Lua files in Hyperspeedcube, and you can generate new ones using the **Developer Tools** window in Hyperspeedcube.
+
+### `orbit:prefixed()`
+
+`orbit:prefixed()` returns a new orbit with a prefix prepended to each name in the orbit. It takes as its only argument an optional string to prepend. If no argument is supplied, then the orbit is returned unmodified.
+
+```lua title="Example using orbit:named()"
+local sym = cd'bc3'
+local named_orbit = sym:orbit(sym.oox.unit):named({
+  F = {}, -- oox
+  U = {3, 'F'},
+  R = {2, 'U'},
+  L = {1, 'R'},
+  D = {2, 'L'},
+  B = {3, 'D'},
+})
+local orbit1 = named_orbit -- F, U, R, ...
+local orbit2 = named_orbit:prefixed(nil) -- F, U, R, ...
+local orbit3 = named_orbit:prefixed('Cubic') -- CubicF, CubicU, CubicR, ...
+```
 
 ### `orbit:union()`
 

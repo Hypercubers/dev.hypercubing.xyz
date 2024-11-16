@@ -1,6 +1,6 @@
-# Hyperspeedcube Rules
+# Guidelines
 
-Here is a list of rules that new additions to Hyperspeedcube must follow. Of course, rules are made to be broken, so many of these rules have exceptions.
+Here is a list of guidelines to follow when building puzzle simulators, particularly ones that might be allowed for speedsolves on the [Hypercubing leaderboards](https://hypercubing.xyz/leaderboards/). Of course, rules are made to be broken, so many of these rules have exceptions.
 
 ## Thou shalt not reveal excess information
 

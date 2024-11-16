@@ -50,6 +50,54 @@ The following global constants have been added:
 - `SPACE` is currently active [space](geometry/space.md)
 - `NDIM` is the number of dimensions of the currently active [space](geometry/space.md)
 - `puzzles` is the [global puzzle library](puzzle-library.md)
+- `lib` provides access to other Lua files; see below
+
+### `lib`
+
+`lib` is a table that provides access to global variables and functions defined in other Lua files. For example, `lib.utils` returns a table of global variables and functions defined in `utils.lua`, and `lib.symmetries.cubic` returns a similar table for `symmetries/cubic.lua`.
+
+??? example "Example using `lib`"
+
+    ```lua title="utils/my_utility_file.lua"
+    function hello()
+      return "Hello, world!"
+    end
+
+    favorite_number = 12
+
+    local super_secret = "can't touch this"
+    ```
+
+    ```lua title="demos/some_other_file.lua"
+    local my_utils = lib.utils.my_utility_file
+    print(my_utils.hello()) -- Hello, world!
+    print(my_utils.favorite_number) -- 12
+    print(my_utils.super_secret) -- nil
+    ```
+
+??? example "Example using `lib` with subdirectories"
+
+    ```lua title="friends/luna.lua"
+    name = "Luna Harran"
+    ```
+
+    ```lua title="friends/milo.lua"
+    name = "Milo Jacquet"
+    ```
+
+    ```lua title="friends/rowan.lua"
+    name = "Rowan Fortier"
+    ```
+
+    ```lua title="demos/friends_demo.lua"
+    print(lib.friends.luna.name) -- Luna Harran
+    print(lib.friends.milo.name) -- Milo Jacquet
+    print(lib.friends.rowan.name) -- Rowan Fortier
+    ```
+
+Note that `pairs()` does not work with `lib` and other tables, since the files are loaded dynamically as needed.
+
+Circular dependencies between files are not allowed and will result in errors.
 
 ## Global functions
 
@@ -66,52 +114,6 @@ Converts a value `v` of any type to a string in a "pretty" way:
 ### `pprint(...)`
 
 Same as `print()` function built into Lua, but uses `pstring()` instead of `tostring()`.
-
-### `require()`
-
-Loads another Lua file and returns a table containing all its global variables and functions. This cannot be called while a puzzle is being constructed. A filename is specified relative to the Lua directory, with an optional `.lua` suffix. If the file has already been loaded, it is not loaded again; the existing table is returned.
-
-??? example "Example using `require()`"
-
-    ```lua title="utils/my_utility_file.lua"
-    function hello()
-      return "Hello, world!"
-    end
-
-    favorite_number = 12
-
-    local super_secret = "can't touch this"
-    ```
-
-    ```lua title="demos/some_other_file.lua"
-    local my_utils = require('utils/my_utility_file')
-    print(my_utils.hello()) -- Hello, world!
-    print(my_utils.favorite_number) -- 12
-    print(my_utils.super_secret) -- nil
-    ```
-
-The trailing patterns `*` (or equivalently, `*.lua`) are supported; in this case, a table is returned where each key is a filename (without the trailing Lua suffix) and each value is the table resulting from loading that file.
-
-??? example "Example using `require()` with `*`"
-
-    ```lua title="friends/luna.lua"
-    name = "Luna Harran"
-    ```
-
-    ```lua title="friends/milo.lua"
-    name = "Milo Jacquet"
-    ```
-
-    ```lua title="friends/rowan.lua"
-    name = "Rowan Fortier"
-    ```
-
-    ```lua title="demos/friends_demo.lua"
-    local all_friends = require('friends/*')
-    print(all_friends.luna.name) -- Luna Harran
-    print(all_friends.milo.name) -- Milo Jacquet
-    print(all_friends.rowan.name) -- Rowan Fortier
-    ```
 
 ## Math
 

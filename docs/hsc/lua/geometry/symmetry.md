@@ -13,7 +13,11 @@ A **symmetry** is a [group] of transformations in space. Each element of the [sy
 
 ### `cd()`
 
-`cd()` constructs a [Coxeter group] and can be called in either of two ways:
+`cd()` constructs a [Coxeter group]. It takes two arguments: a Coxeter group description and an optional basis.
+
+#### Coxeter group description
+
+The Coxeter group description is either of the following:
 
 - **Table of branch labels.** Calling `cd()` with a table containing a sequence of positive integers constructs group corresponding to the linear [Coxeter-Dynkin diagram] with those branch labels.
 - **Coxeter group name.** Calling `cd()` with the name of a Coxeter group constructs that Coxeter group. The name is case-insensitive and must consist of one or two letters followed by a number.
@@ -43,6 +47,23 @@ This diagram describes the Coxeter groups graphically, with labels representing 
 [^attrib]: Derived from <https://commons.wikimedia.org/wiki/File:Finite_coxeter.svg>
 
 ![Finite Coxeter groups](https://assets.hypercubing.xyz/img/dev/cd-indices.png)
+
+#### Coxeter group basis
+
+The basis for a Coxeter group may be specified as a string of axis names (such as `'yzw'`) or a table of vectors (such as `{vec(1, 2), vec(-2, 1)}`). In either case, the number of vectors specified must be equal to the number of mirrors in the Coxeter group. Vectors are normalized before constructing the Coxeter group so they do not need to be normalized, but they must all be nonzero and mutually perpendicular.
+
+```lua title="Example using cd()"
+local sym
+
+sym = cd'a5' -- pentagonal symmetry in the XY plane (first mirror is along X)
+sym = cd{5} -- pentagonal symmetry in the XY plane (first mirror is along X)
+sym = cd('a6', 'yz') -- hexagonal symmetry in YZ plane (first mirror is along Y)
+sym = cd('a7', {vec(1, 2), vec(-2, 1)}) -- heptagonal symmetry in XY plane (first mirror is along `vec(1, 2)`)
+
+sym = cd'bc3' -- cubic symmetry in the XYZ hyperplane (first mirror is along X)
+sym = cd{4, 3} -- cubic symmetry in the XYZ hyperplane (first mirror is along X)
+sym = cd('bc3', 'wyz') -- cubic symmetry in WYZ hyperplane (first mirror is along W)
+```
 
 ### `symmetry()`
 

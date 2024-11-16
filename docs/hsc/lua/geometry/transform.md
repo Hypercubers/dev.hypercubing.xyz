@@ -109,6 +109,7 @@ Transforms have the following fields:
 Transforms have the following method:
 
 - `:transform(object)` returns the object transformed according to the transform
+- `:transform_oriented(transform2)` returns `transform2` transformed according to the transform, but reversed it if it was mirrored
 
 Below is a list of all types that can be transformed:
 
