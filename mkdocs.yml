@@ -99,6 +99,8 @@ nav:
         - hsc/lua/puzzle-construction/colors.md
         - hsc/lua/puzzle-construction/axes.md
         - hsc/lua/puzzle-construction/twists.md
+      - hsc/lua/tags.md
+      - hsc/lua/versioning.md
       - hsc/lua/common.md
     - Internals:
       - 1. Introduction: hsc/internals/index.md
@@ -106,8 +108,6 @@ nav:
       - 3. Projective GA: hsc/internals/pga.md
       - 4. Conformal GA: hsc/internals/cga.md
       - 5. Slicing: hsc/internals/slicing.md
-    - Tags: hsc/tags.md
-    - Versioning: hsc/versioning.md
   - Other Software:
     - Guidelines: other/guidelines.md
 extra_javascript:
