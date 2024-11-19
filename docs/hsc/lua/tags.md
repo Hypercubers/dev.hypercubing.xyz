@@ -8,15 +8,15 @@ Hyperspeedcube uses a tag-based system to organize puzzles (as opposed to the hi
 - String list
 - Puzzle name
 
-Most tags have the boolean value, so the tables on this page only indicate a tag's type if it is not boolean. A tag is **present** if it contains any value other than `false`, or if any of its subtags are present.
+Most tags have the boolean value, so the tables on this page only indicate a tag's type if it is not boolean. A tag is **present** if it is assigned any value other than `false`, or if any of its subtags are present. The value `false` is valid for all tags, regardless of type.
 
 Some tags (such as `colors/system`) are automatically added when generating the puzzle and so do not need to be specified in the puzzle definition. Most tags are not automatically added, so the tables on this page only indicate if they are.
 
 ## List of tags
 
-[`hyperpuzzle/src/tags.kdl`][tags.kdl] is the most up-to-date list of tags. If you're doing puzzle development, it's a good idea to skim that list. Note that leading underscores are removed, so `_120cell` becomes `120cell`.
+[`hyperpuzzle/src/tags.kdl`] is the most up-to-date list of tags. If you're doing puzzle development, it's a good idea to skim that list. Note that leading underscores are removed, so `_120cell` becomes `120cell`.
 
-[tags.kdl]: https://github.com/HactarCE/Hyperspeedcube/blob/main/hyperpuzzle/src/tags.kdl
+[`hyperpuzzle/src/tags.kdl`]: https://github.com/HactarCE/Hyperspeedcube/blob/main/hyperpuzzle/src/tags.kdl
 
 ### Type
 
@@ -249,4 +249,58 @@ TODO: should `variant/bump` and `variant/bandaging` also have type `Puzzle`?
 
 ## Specification
 
-TODO: document Lua tag specification
+A Lua **tag specification** is a table specifying a set of tags for a puzzle or other tagged object.
+
+The sequence values of the table must be strings. If a string does not start with `!`, then that tag is assigned the value `true`. If a string starts with `!`, then it is a **negated tag**: the `!` is removed and the tag specified in the rest of the string is assigned the value `false`.
+
+Non-sequence keys must be strings containing tag names. The value of each entry may be a tag value of the appropriate type, or table containing a specification for subtags.
+
+Tag names may contain multiple `/`-separated components, which is used to specify subtags.
+
+Generated puzzles inherit tags from their generators, unless explicitly overridden with a negated tag.
+
+### Types
+
+Booleans, integers, and strings are all specified using the corresponding Lua types.
+
+A string list may be specified as a single string (such as `"Andrew Farkas"`) table containing a sequence of strings (such as `{"Andrew Farkas", "Milo Jacquet"}`).
+
+A puzzle name is specified using a string containing its ID.
+
+### Expected tags
+
+Many tags are expected to be specified on all puzzles, to ensure that nothing is forgotten and that new tags are added to existing puzzles. Hyperspeedcube will emit a warning when loading a puzzle definition that leaves certain tags unspecified. See [`tags_template.kdl`].
+
+[`tags_template.kdl`]: https://github.com/HactarCE/Hyperspeedcube/blob/main/tags_template.lua
+
+### Examples
+
+```lua title="Example tag specification"
+local tags = {
+  builtin = '1.0.0',
+  external = {
+    gelatinbrain = '3.1.2', -- external/gelatinbrain
+    '!hof',                 -- external/hof = false
+    museum = 7629,          -- external/museum
+    wca = '333',            -- external/wca
+  },
+
+  author = { "Andrew Farkas", "Milo Jacquet" }, -- string list (2)
+  inventor = "Ernő Rubik",                      -- string list (1)
+
+  'shape/3d/platonic/cube',
+  algebraic = {
+    'doctrinaire', 'pseudo/doctrinaire',
+    '!fused', '!orientations/non_abelian', '!trivial', '!weird_orbits',
+  },
+  axes = { '3d/elementary/cubic', '!hybrid', '!multicore' },
+  colors = { '!multi_facet_per', '!multi_per_facet' },
+  cuts = { depth = { 'shallow' }, '!stored', '!wedge' },
+  turns_by = { 'face', 'facet' },
+  '!experimental',
+  '!family',
+  '!variant',
+  '!meme',
+  '!shapeshifting',
+}
+```
