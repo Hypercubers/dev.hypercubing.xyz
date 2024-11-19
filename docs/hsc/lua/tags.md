@@ -164,7 +164,7 @@ The `turns_by` tags indicate which element(s) of the shape correspond to the twi
     - A finite puzzle is always either doctrinaire, bandaged, or jumbling
     - A finite puzzle is always either pseudodoctrinaire, pseudobandaged, or pseudojumbling
     - All doctrinaire puzzles are pseudodoctrinaire
-    - All jumbling puzzles are pseudojumbling
+    - All pseudojumbling puzzles are jumbling
     - Trivial puzzles are _not necessarily_ abelian
     - Trivial puzzles are _not necessarily_ doctrinaire
 
