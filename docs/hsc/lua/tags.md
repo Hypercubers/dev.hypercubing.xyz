@@ -125,18 +125,18 @@ The `turns_by` tags indicate which element(s) of the shape correspond to the twi
 
 ### Algebraic properties
 
-| Tag                                  | Description                                            |
-| ------------------------------------ | ------------------------------------------------------ |
-| `algebraic/nonpseudo/bandaged`       | Bandaged                                               |
-| `algebraic/nonpseudo/doctrinaire`    | Doctrinaire                                            |
-| `algebraic/nonpseudo/jumbling`       | Jumbling                                               |
-| `algebraic/pseudo/bandaged`          | Pseduobandaged                                         |
-| `algebraic/pseudo/doctrinaire`       | Pseudodoctrinaire                                      |
-| `algebraic/pseudo/jumbling`          | Pseudojumbling                                         |
-| `algebraic/abelian`                  | The puzzle's state space is [abelian] (commutative)    |
-| `algebraic/fused`                    | Fused                                                  |
-| `algebraic/orientations/non_abelian` | At least one piece has a non-abelian orientation group |
-| `algebraic/trivial`                  | Trivial                                                |
+| Tag                                  | Description                                                                                                                                  |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `algebraic/bandaged`                 | Bandaged                                                                                                                                     |
+| `algebraic/doctrinaire`              | Doctrinaire                                                                                                                                  |
+| `algebraic/jumbling`                 | Jumbling                                                                                                                                     |
+| `algebraic/pseudo/bandaged`          | Pseduobandaged                                                                                                                               |
+| `algebraic/pseudo/doctrinaire`       | Pseudodoctrinaire                                                                                                                            |
+| `algebraic/pseudo/jumbling`          | Pseudojumbling                                                                                                                               |
+| `algebraic/abelian`                  | The puzzle's state space is [abelian] (commutative)                                                                                          |
+| `algebraic/fused`                    | Fused                                                                                                                                        |
+| `algebraic/orientations/non_abelian` | At least one piece has a non-abelian orientation group                                                                                       |
+| `algebraic/trivial`                  | Trivial                                                                                                                                      |
 | `algebraic/weird_orbits`             | The permutation group of at least one orbit of one piece type is a group other than an [alternating][alternating group] or [symmetric group] |
 
 [abelian]: https://en.wikipedia.org/wiki/Abelian_group
