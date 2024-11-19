@@ -9,9 +9,9 @@ The **puzzle library** is the database of all known puzzle definitions. The glob
 `puzzles:add()` adds a puzzle to the global puzzle library. It takes one argument: a table containing the following keys:
 
 - `id` is a string containing a unique ID for the puzzle
-- `version` is a string containing the [semantic version](../versioning.md) for the puzzle
+- `version` is a string containing the [semantic version](versioning.md) for the puzzle
 - `name` is a string containing a user-facing name for the puzzle
-- `tags` is a table containing a [tag specification](../tags.md#specification).
+- `tags` is a table containing a [tag specification](tags.md#specification).
 - `colors` is a string containing the ID of a color system in the [color system library](color-system-library.md)
 - `ndim` is the number of dimensions for the puzzle
 - `build` is a function used to construct the puzzle
