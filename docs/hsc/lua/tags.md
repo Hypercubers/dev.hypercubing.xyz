@@ -88,7 +88,7 @@ Here are a few of the most common axis system tags:
 | `axes/3d/elementary/icosahedral`        | Icosahedral axes              |
 | `axes/3d/prism`                         | Polygonal prism axes          |
 | `axes/3d/compound`                      | Polyhedral compound axes      |
-| `axes/4d/elementary/hypercube`          | Hypercubic axexs (4D)         |
+| `axes/4d/elementary/hypercube`          | Hypercubic axes (4D)         |
 | `axes/4d/elementary/simplex`            | 4-simplex axes                |
 | `axes/4d/elementary/120cell`            | 120-cell axes                 |
 | `axes/4d/elementary/prism/dodecahedron` | Dodecahedral prism axes       |
@@ -98,7 +98,7 @@ Here are a few of the most common axis system tags:
 
 ### Turning element
 
-The `turns_by` tags indicate which element(s) of the shape correspond to the twisting axes.
+The `turns_by` tags indicate which element(s) of the shape correspond to the twisting axes. Since these can be synonyms in low dimensions (for instance, in 3 dimensions, face and facet are the same), most puzzles will have more than one of these tags.
 
 | Tag               | Description                                 |
 | ----------------- | ------------------------------------------- |
@@ -133,17 +133,15 @@ The `turns_by` tags indicate which element(s) of the shape correspond to the twi
 | `algebraic/pseudo/bandaged`          | Pseduobandaged                                         |
 | `algebraic/pseudo/doctrinaire`       | Pseudodoctrinaire                                      |
 | `algebraic/pseudo/jumbling`          | Pseudojumbling                                         |
-| `algebraic/abelian`                  | Puzzle state space is [abelian] (commutative)          |
+| `algebraic/abelian`                  | The puzzle's state space is [abelian] (commutative)    |
 | `algebraic/fused`                    | Fused                                                  |
 | `algebraic/orientations/non_abelian` | At least one piece has a non-abelian orientation group |
 | `algebraic/trivial`                  | Trivial                                                |
-| `algebraic/weird_orbits`             | The state space of at least one piece type is a group other than an [alternating][alternating group] or [non-alternating permutation group][permutation group] |
-
-TODO: is the "weird orbits" definition correct?
+| `algebraic/weird_orbits`             | The permutation group of at least one orbit of one piece type is a group other than an [alternating][alternating group] or [symmetric group] |
 
 [abelian]: https://en.wikipedia.org/wiki/Abelian_group
 [alternating group]: https://en.wikipedia.org/wiki/Alternating_group
-[permutation group]: https://en.wikipedia.org/wiki/Permutation_group
+[symmetric group]: https://en.wikipedia.org/wiki/Symmetric_group
 
 !!! info "Definitions"
 
@@ -152,10 +150,10 @@ TODO: is the "weird orbits" definition correct?
     - A **doctrinaire** puzzle is one whose moves are all always accessible (never blocked)
     - A **bandaged** puzzle is one that is not doctrinaire, but can be unbandaged into a finite doctrinaire puzzle
     - A **jumbling** puzzle is one that cannot be unbandaged into a finite doctrinaire puzzle
-    - A **pseudodoctrinaire** puzzle is one whose moves are all always either accessible or blocked by [1-grip pieces][grip theory]
+    - A **pseudodoctrinaire** puzzle is one where the set of accessible moves of a state can be determined only from the orientations of the [1-grip pieces][grip theory]
     - A **pseudojumbling** puzzle is one that cannot be unbandaged into a finite pseudodoctrinaire puzzle
     - A **pseudobandaged** puzzle is one that is not pseudodoctrinaire, but can be unbandaged into a finite pseudodoctrinaire puzzle
-    - A **fused** puzzle is one that can be decomposed into several non-interacting puzzles
+    - A **fused** puzzle is one that can be decomposed into several non-interacting puzzles, i.e. the puzzle's state space is a [direct product] and each generator is only from one factor
     - A **trivial** puzzle is one whose state space can be expressed as a [direct product] of "line puzzles," where a "line puzzle" is a puzzle with at most two moves available from any position
 
     [grip theory]: https://hypercubing.xyz/theory/grip_theory/
@@ -178,8 +176,8 @@ The `cuts` tags indicate properties of the cuts of the puzzle. A puzzle may have
 | ------------------------------- | ---------------------------------------------------- |
 | `cuts/depth/shallow`            | Shallow-cut                                          |
 | `cuts/depth/deep`               | Deep-cut (deeper than shallow-cut, but not half-cut) |
-| `cuts/depth/deep/to_adjacent`   | Cut to the adjacent center                           |
-| `cuts/depth/deep/past_adjacent` | Cut past the adjacent center                         |
+| `cuts/depth/deep/to_adjacent`   | Cut to the adjacent axis                             |
+| `cuts/depth/deep/past_adjacent` | Cut past the adjacent axis                           |
 | `cuts/depth/deep/past_origin`   | Cut past the origin                                  |
 | `cuts/depth/half`               | Half-cut (cut through the center of the puzzle)      |
 | `cuts/stored`                   | At least one stored cut                              |
@@ -194,7 +192,7 @@ The `cuts` tags indicate properties of the cuts of the puzzle. A puzzle may have
 
 | Tag         | Description                                                                                                                                             |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `canonical` | The puzzle is widely accepted as the "canonical" example for its shape and turning eleement (e.g., the Rubik's cube is the canonical face-turning cube) |
+| `canonical` | The puzzle is widely accepted as the "canonical" example for its shape and turning element (e.g., the Rubik's cube is the canonical face-turning cube)  |
 | `meme`      | The puzzle is included as a joke and is not intended to be studied or solved                                                                            |
 
 #### Families
