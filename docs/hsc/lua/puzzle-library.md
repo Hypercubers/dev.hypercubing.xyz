@@ -18,7 +18,7 @@ The **puzzle library** is the database of all known puzzle definitions. The glob
 
 The keys `id`, `version`, `ndim` and `build` are required. All other keys are optional. The keys `name`, `tags`, and `colors` are recommended.
 
-The puzzle is not constructed immediately when `puzzles:add()` is called. (Otherwise, the program would slow to a crawl loading all the puzzles on startup.) Instead, only the ID, name, tags, and other metadata stored.
+The puzzle is not constructed immediately when `puzzles:add()` is called. (Otherwise, the program would slow to a crawl loading all the puzzles on startup.) Instead, only the ID, name, tags, and other metadata is stored.
 
 When the user first opens a puzzle, a [puzzle](puzzle-construction/puzzle.md) object is initialized with a new `ndim`-dimensional space, and an empty color system, axis system, and twist system; `build` is then called with that puzzle as its argument. `build` is responsible for cutting the pieces and defining colors, axes, and twists. See [Puzzle](puzzle-construction/puzzle.md), [Colors](puzzle-construction/colors.md), [Axes](puzzle-construction/axes.md), and [Twists](puzzle-construction/twists.md) for more.
 

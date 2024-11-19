@@ -14,9 +14,9 @@ Some tags (such as `colors/system`) are automatically added when generating the 
 
 ## List of tags
 
-[`hyperpuzzle/src/tags.kdl`] is the most up-to-date list of tags. If you're doing puzzle development, it's a good idea to skim that list. Note that leading underscores are removed, so `_120cell` becomes `120cell`.
+[`hyperpuzzle/src/tags.kdl`][tags.kdl] is the most up-to-date list of tags. If you're doing puzzle development, it's a good idea to skim that list. Note that leading underscores are removed, so `_120cell` becomes `120cell`.
 
-[`hyperpuzzle/src/tags.kdl`]: https://github.com/HactarCE/Hyperspeedcube/blob/main/hyperpuzzle/src/tags.kdl
+[tags.kdl]: https://github.com/HactarCE/Hyperspeedcube/blob/main/hyperpuzzle/src/tags.kdl
 
 ### Type
 
@@ -269,9 +269,9 @@ A puzzle name is specified using a string containing its ID.
 
 ### Expected tags
 
-Many tags are expected to be specified on all puzzles, to ensure that nothing is forgotten and that new tags are added to existing puzzles. Hyperspeedcube will emit a warning when loading a puzzle definition that leaves certain tags unspecified. See [`tags_template.kdl`].
+Many tags are expected to be specified on all puzzles, to ensure that nothing is forgotten and that new tags are added to existing puzzles. Hyperspeedcube will emit a warning when loading a puzzle definition that leaves certain tags unspecified. See [`tags_template.kdl`][tags_template.kdl].
 
-[`tags_template.kdl`]: https://github.com/HactarCE/Hyperspeedcube/blob/main/tags_template.lua
+[tags_template.kdl]: https://github.com/HactarCE/Hyperspeedcube/blob/main/tags_template.lua
 
 ### Examples
 
