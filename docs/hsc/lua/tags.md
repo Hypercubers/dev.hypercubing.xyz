@@ -55,6 +55,8 @@ Here are a few of the most common shape tags:
 | `shape/5d/platonic/simplex`            | 5-simplex                |
 | `shape/5d/platonic/hypercube`          | Hypercube (5D)           |
 
+There are many more shape tags (including Archimedian and Catalan solids) defined in [`tags.kdl`][tags.kdl]. More will be added as they are used in puzzles.
+
 ### Colors
 
 The `colors` tags relate to the color system of the puzzle.
