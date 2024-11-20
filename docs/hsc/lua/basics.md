@@ -49,8 +49,10 @@ The following global constants have been added:
 - `FILENAME` is a string containing name of the file currently executing
 - `SPACE` is currently active [space](geometry/space.md)
 - `NDIM` is the number of dimensions of the currently active [space](geometry/space.md)
-- `puzzles` is the [global puzzle library](puzzle-library.md)
 - `lib` provides access to other Lua files; see below
+- `color_systems` is the [global color systems library](color-system-library.md)
+- `puzzle_generators` is the [global puzzle generators library](puzzle-generator-library.md)
+- `puzzles` is the [global puzzle library](puzzle-library.md)
 
 ### `lib`
 
