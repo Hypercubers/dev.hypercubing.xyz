@@ -59,8 +59,8 @@ https://aio.cloud.hypercubing.xyz:443 {
     }
 }
 
-https://cloud.hypercubing.xyz:12345 {
-    reverse_proxy * https://localhost:12345
+https://lb.hypercubing.xyz:443 {
+    reverse_proxy localhost:3000
 }
 ```
 
@@ -162,8 +162,58 @@ And these records for other subdomains:
 
 If using Cloudflare, proxy status should be set to "DNS only" for all of these records.
 
-## Initialize Nextcloud
+### Initialize Nextcloud
 
 Go to <https://aio.cloud.hypercubing.xyz/>. Note the passphrase somewhere safe, then click **Open Nextcloud AIO login**.
 
 If you have access to a backup, save it on the server in `/mnt/backup` and enter that for **Local backup location**. Leave **Remote borg repo** blank. Enter the **Borg passphrase** saved from when the backup was created.
+
+## Leaderboards
+
+The leaderboards are hosted by a single Rust program that controls the Discord bot, database, and web server.
+
+### Installation
+
+1. `cd ~ && git clone https://github.com/Hypercubers/hsc-leaderboard.git && cd hsc-leaderboard` to download the leaderboards bot
+2. `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` to install Rust
+3. `sudo apt install postgresql` to install PostgreSQL (the database)
+4. `sudo systemctl enable --now postgresql` to run PostgreSQL at startup
+6. `sudo apt install gcc libssl-dev pkg-config` to install dependencies of `sqlx`
+5. `cargo install sqlx-cli` to install `sqlx`
+
+### Postgres setup
+
+Use `sudo -u postgres psql` to access the database. Within `psql`:
+
+1. `CREATE DATABASE leaderboards;`
+2. `CREATE USER leaderboards WITH PASSWORD 'password';`
+3. `ALTER DATABASE leaderboards OWNER TO leaderboards;`
+
+(Commands are case insensitive but I use the conventional casing for clarity.)
+
+## Fancy command line setup
+
+```sh
+# global
+sudo apt install make bat btm cloc eza fd-find fish fzf gh hexyl jq ripgrep sd trash-cli unp zoxide
+sudo snap install zellij --classic
+curl -sS https://starship.rs/install.sh | sh
+```
+
+```fish
+# per user, in fish
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source .cargo/env.fish
+cargo install du-dust pfetch
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+fisher install jorgebucaran/fisher
+fisher install PatrickF1/fzf.fish
+fisher install lewisacidic/fish-git-abbr
+chsh -s /usr/bin/fish
+```
+
+On local machine with fish shell config:
+
+```sh
+scp -r .config/fish/{config.fish,fish_plugins} <user>@hypercubing:.config/fish/
+```
