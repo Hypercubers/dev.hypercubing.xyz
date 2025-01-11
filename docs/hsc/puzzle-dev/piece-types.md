@@ -1,10 +1,12 @@
 # Piece types
 
+How to name piece types for an HSC2 puzzle.
+
 !!! warning
 
     This is a draft
 
-How to name piece types for an HSC2 puzzle.
+In general, piece types should be based on ther geometric layout, rather than being based on a particular solution method or solving order. This system was chosen so the piece names are neutral relative to the solution.
 
 A piece that is at the center of the puzzle should be called a *core*. However, if this piece is not fixed, like in the &lt;Rw, Uw&gt; 3×3, it can have another name, such as *anticore*.
 A piece that is at the center of a facet of the puzzle should be called a *center*.
