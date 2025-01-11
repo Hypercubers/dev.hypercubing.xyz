@@ -102,6 +102,9 @@ nav:
       - hsc/lua/tags.md
       - hsc/lua/versioning.md
       - hsc/lua/common.md
+    - Conventions:
+      - Piece Types: hsc/conventions/piece-types.md
+      - Puzzle Versions: hsc/conventions/versions.md
     - Internals:
       - 1. Introduction: hsc/internals/index.md
       - 2. Vectorspace GA: hsc/internals/vga.md
