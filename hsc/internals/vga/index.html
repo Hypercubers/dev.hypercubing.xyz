@@ -1,0 +1,2042 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://dev.hypercubing.xyz/hsc/internals/vga/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../pga/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>Vectorspace GA - Hypercubing Developers</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vectorspace-ga" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Hypercubing Developers" class="md-header__button md-logo" aria-label="Hypercubing Developers" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hypercubing Developers
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vectorspace GA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Hypercubers/dev.hypercubing.xyz" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hypercubers/dev.hypercubing.xyz
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Hypercubing Developers" class="md-nav__button md-logo" aria-label="Hypercubing Developers" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.svg" alt="logo">
+
+    </a>
+    Hypercubing Developers
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Hypercubers/dev.hypercubing.xyz" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Hypercubers/dev.hypercubing.xyz
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prereqs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prerequisites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Hyperspeedcube
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Hyperspeedcube
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Puzzle Development
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Puzzle Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../puzzle-dev/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../puzzle-dev/geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Puzzle Geometry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../puzzle-dev/first-puzzle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. First Puzzle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lua API Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lua API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/basics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/puzzle-library/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Puzzle library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/puzzle-generator-library/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Puzzle generator library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/color-system-library/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Color system library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Geometry
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Geometry
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/geometry/space/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Space
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/geometry/blade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blade
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/geometry/hyperplane/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hyperplane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/geometry/transform/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transform
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/geometry/symmetry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Symmetry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/geometry/orbit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Orbit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/geometry/region/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Region
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Puzzle construction
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Puzzle construction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/puzzle-construction/puzzle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Puzzle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/puzzle-construction/colors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Colors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/puzzle-construction/axes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Axes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/puzzle-construction/twists/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Twists
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/versioning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Puzzle versioning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Common patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Conventions
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Conventions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conventions/piece-types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Piece Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conventions/versions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Puzzle Versions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Internals
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Internals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    2. Vectorspace GA
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    2. Vectorspace GA
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#multivectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multivectors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometric-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geometric product
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blades-and-grades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blades and grades
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outer-product-wedge-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outer product (wedge product)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inner-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inner product
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inner product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scalar-dot-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scalar dot product
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contraction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reverse
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inverse
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dual
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotors
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pga/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Projective GA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cga/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Conformal GA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../slicing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Slicing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Other Software
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Other Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../other/guidelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guidelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Infrastructure
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Infrastructure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../infrastructure/server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#multivectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multivectors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometric-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geometric product
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blades-and-grades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blades and grades
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outer-product-wedge-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outer product (wedge product)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inner-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inner product
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inner product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scalar-dot-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scalar dot product
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contraction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reverse
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inverse
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dual
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotors
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/Hypercubers/dev.hypercubing.xyz/edit/main/docs/hsc/internals/vga.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="vectorspace-ga">Vectorspace GA<a class="headerlink" href="#vectorspace-ga" title="Permanent link">&para;</a></h1>
+<p>Complex numbers are a system where each number has two components: real and imaginary. Geometric Algebra is like complex numbers, but adds <em>way</em> more components.<sup id="fnref:complex"><a class="footnote-ref" href="#fn:complex">1</a></sup> For example, <strong>3D <abbr title="Vectorspace Geometric Algebra">VGA</abbr></strong> (<strong>Vectorspace Geometric Algebra</strong> or <strong>Vanilla Geometric Algebra</strong>) adds <em>seven</em> extra components a total of eight.</p>
+<h2 id="multivectors">Multivectors<a class="headerlink" href="#multivectors" title="Permanent link">&para;</a></h2>
+<p>All geometric algebra systems have <strong>scalars</strong>, the ordinary positive and negative numbers you know and love. In 3D <abbr title="Vectorspace Geometric Algebra">VGA</abbr>, we also have <strong>vector</strong> components <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>, and <span class="arithmatex">\(z\)</span>, and we can build vectors out of them. For example, <span class="arithmatex">\(x-7z\)</span> represents the vector <span class="arithmatex">\(\langle 1, 0, -7 \rangle\)</span>. Just like a complex number has both real and imaginary components (e.g., <span class="arithmatex">\(3+2i\)</span>), a <strong>multivector</strong> represented in <abbr title="Vectorspace Geometric Algebra">VGA</abbr> can have both scalar and vector components (e.g., <span class="arithmatex">\(5+3x+y-2z\)</span>). Each of these components is a <strong>term</strong></p>
+<p>You might recognize this as a <strong><a href="https://en.wikipedia.org/wiki/Vector_space">vector space</a></strong>, which just means that addition, subtraction, and scalar multiplication all work how you expect. But 3D <abbr title="Vectorspace Geometric Algebra">VGA</abbr> isn't actually a 3D vector space, because we have <span class="arithmatex">\(1\)</span>, the unit scalar, as a fourth <strong>basis vector</strong>, orthogonal to <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>, and <span class="arithmatex">\(z\)</span>. Don't worry, you can still visualize it using just three dimensions by treating the scalar component as separate.</p>
+<div class="admonition warning">
+<p class="admonition-title">Confusing terminology</p>
+<p>A "multivector" is any element of the vector space, while a "vector" in GA consists of only vector components, like <span class="arithmatex">\(2x-y\)</span> (but not <span class="arithmatex">\(4+2x-y\)</span>). But the term "basis vector" applies in the vector space as a whole, so <span class="arithmatex">\(1\)</span>, <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>, and <span class="arithmatex">\(z\)</span> are all basis vectors.</p>
+</div>
+<p>So we have four basis vectors: <span class="arithmatex">\(1\)</span>, <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>, and <span class="arithmatex">\(z\)</span>. But earlier I said that 3D <abbr title="Vectorspace Geometric Algebra">VGA</abbr> actually has <em>eight</em> basis vectors. How do we get all those extra basis vectors?</p>
+<h2 id="geometric-product">Geometric product<a class="headerlink" href="#geometric-product" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Conventions</p>
+<ul>
+<li><span class="arithmatex">\(a\)</span>, <span class="arithmatex">\(b\)</span>, <span class="arithmatex">\(c\)</span>, <span class="arithmatex">\(d\)</span> are arbitrary <strong>vectors</strong></li>
+<li><span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(C\)</span>, <span class="arithmatex">\(D\)</span> are arbitrary <strong>multivectors</strong></li>
+</ul>
+</div>
+<p>The geometric product is how we generalize multiplication to work on multivectors. We write it using ordinary multiplication, so <span class="arithmatex">\(AB\)</span> is the geometric product of <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>. In code, the geometric product of <code>a</code> and <code>b</code> is written <code>a * b</code>. For scalars, it does what you expect. The geometric product has some nice properties:</p>
+<ul>
+<li><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Associativity<sup id="fnref:assoc"><a class="footnote-ref" href="#fn:assoc">2</a></sup>: <span class="arithmatex">\(A(BC) = (AB)C\)</span></li>
+<li><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Distributivity: <span class="arithmatex">\(A(B + C) = AB + AC\)</span> and <span class="arithmatex">\((B + C)A = BA + CA\)</span></li>
+<li><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/274c.svg" title=":x:" /> No commutativity: <span class="arithmatex">\(AB = BA\)</span> isn't always true</li>
+</ul>
+<p>The geometric product of anything involving a scalar is just scalar multiplication, which does commute: <span class="arithmatex">\(x3 = 3x\)</span>. But what if we multiply two <em>vector</em> components? If the vectors are the same, like <span class="arithmatex">\(xx\)</span>, then they cancel and the result is <span class="arithmatex">\(1\)</span>. If the vectors are different, like <span class="arithmatex">\(xy\)</span>, then we get something new: a <strong>bivector</strong>.</p>
+<p>There are three unique bivectors in <abbr title="Vectorspace Geometric Algebra">VGA</abbr>: <span class="arithmatex">\(xy\)</span>, <span class="arithmatex">\(xz\)</span>, and <span class="arithmatex">\(yz\)</span>. You can swap the letters of a bivector if you swap the sign, like <span class="arithmatex">\(xy = -yx\)</span>, so we don't need a separate <span class="arithmatex">\(yx\)</span> component.</p>
+<p>Let's make a multiplication table! Check for yourself that each entry in here makes sense. (left times top)</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(1\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(x\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(y\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xy\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xz\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(y\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-xy\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(yz\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(z\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-xz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-yz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>What happens when you multiply a bivector by a vector? Well when we multiply <span class="arithmatex">\(xy\)</span> by <span class="arithmatex">\(x\)</span>, we get <span class="arithmatex">\(xyx\)</span>. We can simplify <span class="arithmatex">\(yx\)</span> to <span class="arithmatex">\(-xy\)</span>, and then <span class="arithmatex">\(xx\)</span> simplifies to <span class="arithmatex">\(1\)</span>, so:</p>
+<div class="arithmatex">\[
+\begin{align}
+xyx &amp;= x(-xy) \\
+&amp;= -xxy \\
+&amp;= -y
+\end{align}
+\]</div>
+<p>But if we have three different letters, then it doesn't simplify: multiplying <span class="arithmatex">\(xy\)</span> by <span class="arithmatex">\(z\)</span> results in the <strong>trivector</strong> <span class="arithmatex">\(xyz\)</span>, our eighth and final basis vector. In general, a geometric algebra with <span class="arithmatex">\(n\)</span> vector components will have <span class="arithmatex">\(2^n\)</span> basis vectors.</p>
+<p>Let's make an even bigger multiplication table!</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(1\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(x\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(y\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(z\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(xy\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(xz\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(yz\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(xyz\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xy\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(z\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xyz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(yz\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(y\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-xy\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(yz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-x\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-xyz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(z\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-xz\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(z\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-xz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-yz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xyz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-x\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-y\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xy\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(xy\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-y\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xyz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-yz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-z\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(xz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-z\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-xyz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(yz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-xy\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(yz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xyz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-z\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-xz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xy\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-x\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(xyz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(yz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-xz\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(xy\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-z\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(y\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-x\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(-1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>But what do all these components actually represent? Well just like the vector <span class="arithmatex">\(x\)</span> represents one unit of <em>distance</em> in the positive direction along the X axis, the bivector <span class="arithmatex">\(xy\)</span> represents one unit of <em>positively-oriented area</em> in the XY plane. And a trivector <span class="arithmatex">\(xyz\)</span> represents one unit of <em>positively-oriented volume</em> in 3D space. Orientation is just a thing that changes when you flip the sign, so <span class="arithmatex">\(xy\)</span> has positive orientation and <span class="arithmatex">\(-xy\)</span> has negative orientation. Don't worry if that doesn't make much sense.</p>
+<p>A bivector with multiple components represents non-axis-aligned area. Consider the vector <span class="arithmatex">\(x+2y\)</span>, which represents some length in the XY plane. Its projection onto the X axis is one unit long, and its projection onto the Y axis is two units long. Similarly, <span class="arithmatex">\(2xy+xz-3yz\)</span> represents an oriented area in the XYZ 3D space. Its projection (2D shadow) onto the XY plane has two units of positively-oriented area, its projection onto the XZ plane has 1 unit of positively-oriented area, and its projection onto the YZ plane has 3 units of negatively-oriented area. This is hard to visualize if you haven't seen it before; check out <a href="https://marctenbosch.com/quaternions/#h_12">Marc ten Bosch's explanation of rotors</a> if you're confused.</p>
+<h2 id="blades-and-grades">Blades and grades<a class="headerlink" href="#blades-and-grades" title="Permanent link">&para;</a></h2>
+<p>It's time for some new terminology:</p>
+<ul>
+<li>The <strong>grade</strong> of a multivector is the number of letters each component has. A scalar has grade 0, a vector has grade 1, a bivector has grade 2, a trivector has grade 3, etc.</li>
+<li>A <strong>blade</strong> is a multivector whose components all have the same grade.</li>
+<li>An <strong><span class="arithmatex">\(r\)</span>-blade</strong> is a blade with grade <span class="arithmatex">\(r\)</span> (where <span class="arithmatex">\(r\)</span> is a nonnegative integer).</li>
+<li>The <strong>pseudoscalar</strong> <span class="arithmatex">\(I\)</span> (or <code>pss</code> in code) is the unit-length multivector with maximum grade. In 3D space, <span class="arithmatex">\(I = xyz\)</span>.</li>
+</ul>
+<p>To get a blade from a multivector, you can <strong>grade-project</strong> it, which extracts all the components of a particular grade. The projection of <span class="arithmatex">\(A\)</span> into grade <span class="arithmatex">\(r\)</span> is written <span class="arithmatex">\(\langle A \rangle_r\)</span>.</p>
+<p>Most of the time, all the multivectors we see will be blades. The only exception to this rule is rotors, which we'll get to later.</p>
+<div class="admonition info">
+<p class="admonition-title">Conventions</p>
+<ul>
+<li><span class="arithmatex">\(C_r\)</span> is an arbitrary <strong>blade</strong> with <strong>grade</strong> <span class="arithmatex">\(r\)</span></li>
+<li><span class="arithmatex">\(D_s\)</span> is an arbitrary <strong>blade</strong> with <strong>grade</strong> <span class="arithmatex">\(s\)</span></li>
+</ul>
+</div>
+<h2 id="outer-product-wedge-product">Outer product (wedge product)<a class="headerlink" href="#outer-product-wedge-product" title="Permanent link">&para;</a></h2>
+<p>The <strong>wedge product</strong> or <strong>outer product</strong> of <span class="arithmatex">\(C_r\)</span> and <span class="arithmatex">\(D_s\)</span> is written <span class="arithmatex">\(C_r \wedge D_s\)</span> ("<span class="arithmatex">\(C_r\)</span> wedge <span class="arithmatex">\(D_s\)</span>") and is defined as <span class="arithmatex">\(\langle C_r D_s \rangle_{r+s}\)</span>. In code, the wedge product of <code>a</code> and <code>b</code> is written <code>a ^ b</code>.</p>
+<details>
+<summary>Wedge product of general multivectors</summary>
+<p>We only ever need to compute the wedge product of two blades, but the wedge product of general multivectors exists too. <span class="arithmatex">\(A \wedge B\)</span> can be computed by breaking down <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> into their individual terms, computing the wedge product of each pair of terms separately, and then summing the result.</p>
+</details>
+<p>To give an intuitive understanding: When computing the geometric product of two multivectors, you get a lot of different components of different grades. The outer product selects only the components with the maximum possible grade. Here's some examples of how that works:</p>
+<ul>
+<li>The outer product of two vectors is always a bivector, with no scalar component (or zero, if the vectors are parallel).</li>
+<li>The outer product of a bivector and a vector is always a trivector (or zero, if the vector is in the same plane as the bivector).</li>
+<li>The outer product of a trivector and a vector is always a quadvector or zero. In 3D <abbr title="Vectorspace Geometric Algebra">VGA</abbr>, we have no quadvectors, so it is always zero.</li>
+<li>The outer product with a scalar is the same as ordinary multiplication by that scalar.</li>
+</ul>
+<div class="admonition example inline end">
+<p class="admonition-title">Outer product visualization</p>
+<p><a class="glightbox" href="https://upload.wikimedia.org/wikipedia/commons/2/27/N_vector_positive.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Geometric interpretation of grade n elements in a real exterior algebra for n from 0 to 3" src="https://upload.wikimedia.org/wikipedia/commons/2/27/N_vector_positive.svg" /></a>
+<em><a href="https://commons.wikimedia.org/wiki/File:N_vector_positive.svg">CC0 from Wikipedia</a></em></p>
+<p>Click for full size</p>
+</div>
+<p>The outer product has a really nice geometric interpretation. The outer product of two vectors <span class="arithmatex">\(a \wedge b\)</span> is a bivector representing the oriented area swept out by moving <span class="arithmatex">\(b\)</span> along <span class="arithmatex">\(a\)</span>. Adding a third vector gives <span class="arithmatex">\(a \wedge b \wedge c\)</span>, a <em>trivector</em> that represents the oriented <em>volume</em> generated by sweeping <span class="arithmatex">\(c\)</span> over the whole surface of <span class="arithmatex">\(a \wedge b\)</span>.</p>
+<p>This area and volume are <em>oriented</em> because they face in a particular direction. In the image to the right, this is represented by the circular orange arrows. If you swap any two adjacent vectors in the outer product, then the sign of the result flips. In general, <span class="arithmatex">\(a \wedge b = -b \wedge a\)</span>. This property is called <strong>anticommutativity</strong>, and it will be a common theme as we learn more about geometric algebra. Note the outer product is anticommutative for vectors, but not generally for multivectors. Later we'll learn about how to compute these operations and how to know when the sign changes.</p>
+<div class="admonition success">
+<p class="admonition-title">This looks suspiciously similar to the determinant of a matrix ...</p>
+<p>This is no coincidence! The determinant of a matrix is exactly equal to the pseudoscalar component of the outer product of its column vectors. Think about properties of the determinant, like how behaves when you swap adjacent columns or its representation of signed area/volume.</p>
+</div>
+<h2 id="inner-product">Inner product<a class="headerlink" href="#inner-product" title="Permanent link">&para;</a></h2>
+<p>There's a few different ways to generalize inner products to work on multivectors.</p>
+<h3 id="scalar-dot-product">Scalar dot product<a class="headerlink" href="#scalar-dot-product" title="Permanent link">&para;</a></h3>
+<p>The <strong>scalar dot product</strong> (or simply <strong>dot product</strong>) of two multivectors <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> is written <span class="arithmatex">\(A \cdot B\)</span> ("<span class="arithmatex">\(A\)</span> dot <span class="arithmatex">\(B\)</span>") and is defined as <span class="arithmatex">\(\langle AB \rangle_{0}\)</span>, i.e., the scalar component of the geometric product. This is one of several <strong>inner products</strong>. The scalar dot product is commutative for vectors (so <span class="arithmatex">\(a \cdot b = b \cdot a\)</span>) but not generally for multivectors.</p>
+<div class="admonition tip">
+<p class="admonition-title">Exercise</p>
+<p>Think about why the dot product of two blades with different grades is always zero.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Common misconception: <span class="arithmatex">\(AB = A \wedge B + A \cdot B\)</span></p>
+<p>There's a misconception in geometric algebra that the geometric product is the sum of the outer and inner products. This is true when multiplying vectors (so <span class="arithmatex">\(ab = a \wedge b + a \cdot b\)</span> is true) but not generally for multivectors (so <span class="arithmatex">\(AB = A \wedge B + A \cdot B\)</span> does <em>not</em> always hold).</p>
+</div>
+<p>Using the dot product, we can also define the <strong>magnitude</strong> of a multivector <span class="arithmatex">\(\|A\| = \sqrt{A \cdot A}\)</span>. Note that the magnitude of a multivector is not always real; for example, the <span class="arithmatex">\(xy \cdot xy = -1\)</span>, so its magnitude would be <span class="arithmatex">\(\sqrt{-1}\)</span>, which is imaginary.</p>
+<h3 id="contraction">Contraction<a class="headerlink" href="#contraction" title="Permanent link">&para;</a></h3>
+<p>The <strong>left contraction</strong> of <span class="arithmatex">\(C_r\)</span> and <span class="arithmatex">\(D_s\)</span> is written <span class="arithmatex">\(C_r \rfloor D_s\)</span> ("<span class="arithmatex">\(C_r\)</span> left-contract <span class="arithmatex">\(D_s\)</span>" or "<span class="arithmatex">\(C_r\)</span> contracted from <span class="arithmatex">\(D_s\)</span>) and is defined as <span class="arithmatex">\(\langle C_r D_s \rangle_{s-r}\)</span>. In code, the left contraction of <code>a</code> and <code>b</code> is written <code>a &lt;&lt; b</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Exercise</p>
+<ol>
+<li>When is left contraction equivalent to the scalar dot product?</li>
+<li><strong><img alt="✨" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2728.svg" title=":sparkles:" /> Bonus <img alt="✨" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2728.svg" title=":sparkles:" /></strong> When is left contraction equivalent to the geometric product? (The answer is revealed later, in case you're stuck.)</li>
+</ol>
+</div>
+<p>I have to admit that I don't have a great geometric understanding of left contraction. My understanding is that it's sort of a way to "remove" some multivector from a product of vectors, but that intuition may be wrong.</p>
+<p>For completeness: the <strong>right contraction</strong> of <span class="arithmatex">\(C_r\)</span> and <span class="arithmatex">\(D_s\)</span> is written <span class="arithmatex">\(C_r \lfloor D_s\)</span> and is defined as <span class="arithmatex">\(\langle C_r D_s \rangle_{r-s}\)</span>, but we'll never use it.</p>
+<h2 id="reverse">Reverse<a class="headerlink" href="#reverse" title="Permanent link">&para;</a></h2>
+<p>The <strong>reverse</strong> of a multivector <span class="arithmatex">\(A\)</span> is written <span class="arithmatex">\(A^\dagger\)</span>. It's computed by reversing the order of all the basis vectors in each component. For example, the reverse of <span class="arithmatex">\(2x + 3xz + 4xyz\)</span> is <span class="arithmatex">\(2x + 3zx + 4zyx\)</span>. Using the rule that <span class="arithmatex">\(xy = -yx\)</span>, we can simplify this to <span class="arithmatex">\(2x - 3xz - 4xyz\)</span>.</p>
+<p>In general, a multivector can be reversed by negating each of its components with grade <span class="arithmatex">\(1\)</span> or <span class="arithmatex">\(2\)</span> mod 4. Components with grade <span class="arithmatex">\(0\)</span> or <span class="arithmatex">\(3\)</span> mod 4 remain unchanged.</p>
+<h2 id="inverse">Inverse<a class="headerlink" href="#inverse" title="Permanent link">&para;</a></h2>
+<p>The multiplicative <strong>inverse</strong> of a multivector is written <span class="arithmatex">\(A^{-1}\)</span>. It's computed using the formula <span class="arithmatex">\(A^{-1} = \frac{A^\dagger}{A A^\dagger}\)</span>, which I <a href="https://math.stackexchange.com/a/443680/1115019">stole from Mathematics Stack Exchange</a>. This means we can technically do division with multivectors? Wacky!</p>
+<p>Not all multivectors have a multiplicative inverse, especially once we get to projective and conformal geometric algebra.</p>
+<div class="admonition tip">
+<p class="admonition-title">Exercise</p>
+<p>A particularly important inverse is that of the pseudoscalar <span class="arithmatex">\(I\)</span>.</p>
+<ol>
+<li>Write the pseudoscalar and its inverse for dimensions 1 to 8.</li>
+<li>Identify a pattern in the relationship between the pseudoscalar and its inverse depending on the number of dimensions.</li>
+</ol>
+</div>
+<h2 id="dual">Dual<a class="headerlink" href="#dual" title="Permanent link">&para;</a></h2>
+<p>The <strong>dual</strong> of a multivector <span class="arithmatex">\(A\)</span> is written <span class="arithmatex">\(\tilde A\)</span> ("<span class="arithmatex">\(A\)</span> tilde"). In code, the dual of <code>a</code> is written <code>!a</code>, <code>a &lt;&lt; pss</code> where <code>pss</code> is the pseudoscalar.</p>
+<p>This hints at how to compute the dual of a multivector: just multiply it by the pseudoscalar. We'll usually avoid the notation <span class="arithmatex">\(\tilde A\)</span> in favor of explicitly multiplying by the pseudoscalar, since sometimes we'll have to multiply by the inverse of the pseudoscalar, which flips the sign in certain dimensions.</p>
+<div class="admonition tip">
+<p class="admonition-title">Exercise</p>
+<p>Think about why <code>a &lt;&lt; pss</code> and <code>a * pss</code> are always equivalent, even though in general <code>a &lt;&lt; b</code> isn't equivalent to <code>a * b</code>.</p>
+</div>
+<h2 id="rotors">Rotors<a class="headerlink" href="#rotors" title="Permanent link">&para;</a></h2>
+<p>Now that you understand multivectors and the geometric, outer, and inner products, read and/or watch <a href="https://marctenbosch.com/quaternions/#h_12">Marc ten Bosch's explanation of rotors</a>. It also contains excellent interactive demos of bivectors.</p>
+<p>Important things to note:</p>
+<ul>
+<li>In general, rotors use the <strong>even subalgebra</strong> of geometric algebra; i.e., they are multivectors where each component has even grade. That means they have scalar, bivector, quadvector, etc. components.</li>
+<li>The rotor <span class="arithmatex">\(ab\)</span> represents a rotation in the plane spanned by <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span> by twice the angle between <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span>.</li>
+<li>The <strong>reverse</strong> of a rotor represents the reverse transformation.</li>
+<li>The geometric product of two rotors is their composition.</li>
+<li>To apply a rotor <span class="arithmatex">\(R\)</span> to an object <span class="arithmatex">\(A\)</span>, compute the <strong>sandwich product</strong> <span class="arithmatex">\(R A R^\dagger\)</span>.</li>
+</ul>
+<p>Rotors can be generalized to <strong>rotoreflectors</strong>, which use the <strong>odd subalgebra</strong> of geometric algebra. These work exactly like rotors except that they represent an odd number of reflections and you have to negate the result when applying them: <span class="arithmatex">\(-R A R^\dagger\)</span>. (There's a negation for each reflection, but ordinary rotors have two reflections so the negations cancels.)</p>
+<!-- Geometric Algebra -->
+<!-- Software -->
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:complex">
+<p>In fact, complex numbers <em>are</em> a geometric algebra! You can think of them either as a 1D GA with a single extra basis vector <span class="arithmatex">\(i^2=-1\)</span>, or as the even subalgebra of 2D <abbr title="Vectorspace Geometric Algebra">VGA</abbr> — but I'm getting ahead of myself.&#160;<a class="footnote-backref" href="#fnref:complex" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:assoc">
+<p>If you ever see a non-associative algebra (like the <a href="https://en.wikipedia.org/wiki/Octonion">octonions</a>), run far, far away and never look back. They are utter hell.&#160;<a class="footnote-backref" href="#fnref:assoc" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1. Introduction">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1. Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../pga/" class="md-footer__link md-footer__link--next" aria-label="Next: 3. Projective GA">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3. Projective GA
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Hypercubers" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.gg/3hVSe8rDKa" target="_blank" rel="noopener" title="discord.gg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.code.copy", "navigation.footer", "navigation.instant", "navigation.sections", "navigation.top", "navigation.path"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
