@@ -126,6 +126,7 @@ Below is a list of all types that can be transformed:
 Transforms support the following operations:
 
 - `transform * transform` (composition of transforms)
+- `transform ^ int` (integer power of transform)
 - `transform == transform` (uses [approximate] floating-point comparison)
 - `transform ~= transform` (uses [approximate] floating-point comparison)
 - `type(transform)` returns `'transform'`
