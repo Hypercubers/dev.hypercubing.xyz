@@ -271,7 +271,7 @@ A puzzle name is specified using a string containing its ID.
 
 Many tags are expected to be specified on all puzzles, to ensure that nothing is forgotten and that new tags are added to existing puzzles. Hyperspeedcube will emit a warning when loading a puzzle definition that leaves certain tags unspecified. See [`tags_template.lua`][tags_template.lua].
 
-[tags_template.lua]: https://github.com/HactarCE/Hyperspeedcube/blob/main/tags_template.lua
+[tags_template.lua]: https://github.com/HactarCE/Hyperspeedcube/blob/main/crates/hyperpuzzle_lua/resources/lua/tags_template.lua
 
 ### Examples
 
