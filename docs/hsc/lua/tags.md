@@ -16,7 +16,7 @@ Some tags (such as `colors/system`) are automatically added when generating the 
 
 [`hyperpuzzle/src/tags.kdl`][tags.kdl] is the most up-to-date list of tags. If you're doing puzzle development, it's a good idea to skim that list. Note that leading underscores are removed, so `_120cell` becomes `120cell`.
 
-[tags.kdl]: https://github.com/HactarCE/Hyperspeedcube/blob/main/hyperpuzzle/src/tags.kdl
+[tags.kdl]: https://github.com/HactarCE/Hyperspeedcube/blob/main/crates/hyperpuzzle_core/src/tags.kdl
 
 ### Type
 
