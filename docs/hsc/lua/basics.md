@@ -46,7 +46,6 @@ The following global constants have been added:
 
 - `_PUZZLE_ENGINE` is a string containing the program name and version; e.g., `"hyperspeedcube v2.0.0"`
 - `AXES` is a table mapping axis names to numbers and vice versa
-- `FILENAME` is a string containing name of the file currently executing
 - `SPACE` is currently active [space](geometry/space.md)
 - `NDIM` is the number of dimensions of the currently active [space](geometry/space.md)
 - `lib` provides access to other Lua files; see below

@@ -13,7 +13,7 @@ The following global constants contain regions:
 
 ### `axis()`
 
-Calling an axis as a function returns a region. It can be called in any of several ways:
+Calling an [axis](../puzzle-construction/axes.md#axis) as a function returns a region. It can be called in any of several ways:
 
 - **Single layer.** Calling an axis with a single layer index constructs a region bounding that layer.
 - **Two layers.** Calling an axis with two layer indices constructs a region bounding that layer range.
@@ -35,7 +35,7 @@ local region5 = self.axes.A('1..-2') -- layers 1 to 4 of axis A
 
 ### `hyperplane.region`
 
-`hyperplane.region` returns the region bounded by a hyperplane, on the side its normal vector is pointing _away_ from.
+`hyperplane.region` returns the region bounded by a [hyperplane](hyperplane.md), on the side its normal vector is pointing _away_ from.
 
 ```lua title="Examples of hyperplane.region"
 local region1 = plane('x').region -- X <= 1
