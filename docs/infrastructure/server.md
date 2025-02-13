@@ -172,24 +172,12 @@ If you have access to a backup, save it on the server in `/mnt/backup` and enter
 
 The leaderboards are hosted by a single Rust program that controls the Discord bot, database, and web server.
 
-### Installation
+1. Follow the database setup and running instructions in `README.md` at `https://github.com/Hypercubers/hsc-leaderboard`.
+2. Run `crontab -e` and add the following line:
 
-1. `cd ~ && git clone https://github.com/Hypercubers/hsc-leaderboard.git && cd hsc-leaderboard` to download the leaderboards bot
-2. `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` to install Rust
-3. `sudo apt install postgresql` to install PostgreSQL (the database)
-4. `sudo systemctl enable --now postgresql` to run PostgreSQL at startup
-6. `sudo apt install gcc libssl-dev pkg-config` to install dependencies of `sqlx`
-5. `cargo install sqlx-cli` to install `sqlx`
-
-### Postgres setup
-
-Use `sudo -u postgres psql` to access the database. Within `psql`:
-
-1. `CREATE DATABASE leaderboards;`
-2. `CREATE USER leaderboards WITH PASSWORD 'password';`
-3. `ALTER DATABASE leaderboards OWNER TO leaderboards;`
-
-(Commands are case insensitive but I use the conventional casing for clarity.)
+```cron
+@reboot sh -c "cd ~/hsc-leaderboard/ && ./hsc-leaderboard"
+```
 
 ## Fancy command line setup
 
