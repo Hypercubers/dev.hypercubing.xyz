@@ -172,13 +172,7 @@ If you have access to a backup, save it on the server in `/mnt/backup` and enter
 
 The leaderboards are hosted by a single Rust program that controls the Discord bot, database, and web server.
 
-1. Create a new user `leaderboards` using `adduser` and log in as that user
-1. Follow the database setup and running instructions in `README.md` at `https://github.com/Hypercubers/hsc-leaderboard`
-2. Run `crontab -e` and add the following line:
-
-```cron
-@reboot sh -c "cd ~/hsc-leaderboard/ && ./hsc-leaderboard"
-```
+Follow the database setup and running instructions in `README.md` at `https://github.com/Hypercubers/hypercubing-leaderboards`, including the cron job and useful scripts.
 
 ## Fancy command line setup
 
