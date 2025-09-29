@@ -1,6 +1,6 @@
 # Server Setup
 
-As of the end of 2024, there is a [DigitalOcean](https://www.digitalocean.com/) droplet dedicated to the Hypercubing server with the following specs:
+As of 2025, there is a [DigitalOcean](https://www.digitalocean.com/) droplet dedicated to the Hypercubing server with the following specs:
 
 - RAM: 2 GB
 - Disk: 50 GB
@@ -9,16 +9,18 @@ As of the end of 2024, there is a [DigitalOcean](https://www.digitalocean.com/) 
 
 In the event that this droplet is no longer running, contact HactarCE at <hello@ajfarkas.dev>.
 
-This page contains instructions on how to recreate the server in case it is lost. All of these commands should be run on the server.
+This page contains instructions on how to recreate the server in case it is lost.
 
 ## Nextcloud
 
 The server runs an instance of [Nextcloud](https://nextcloud.com/) which hosts the images for [hypercubing.xyz](https://hypercubing.xyz/) and [dev.hypercubing.xyz](https://dev.hypercubing.xyz/).
 
+All of these commands should be run on the root account of the server. If you haven't already done so, you'll want to [generate an SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on your local machine and add the public key as a line in `~/.ssh/authorized_keys`.
+
 ### Install Docker
 
 ```sh
-curl -fsSL https://get.docker.com | sudo sh
+curl -fsSL https://get.docker.com | sh
 ```
 
 ### Create folder for Nextcloud
@@ -63,6 +65,8 @@ https://lb.hypercubing.xyz:443 {
     reverse_proxy localhost:3000
 }
 ```
+
+Note that, because Caddy is running within Docker
 
 ### Configure Docker
 
@@ -172,7 +176,9 @@ If you have access to a backup, save it on the server in `/mnt/backup` and enter
 
 The leaderboards are hosted by a single Rust program that controls the Discord bot, database, and web server.
 
-Follow the database setup and running instructions in `README.md` at `https://github.com/Hypercubers/hypercubing-leaderboards`, including the cron job and useful scripts.
+1. Create a new user: `useradd leaderboards`.
+2. Add your SSH key to `/home/leaderboards/.ssh/authorized_keys`.
+3. Follow the database setup and running instructions in `README.md` at `https://github.com/Hypercubers/hypercubing-leaderboards`, including the cron job and useful scripts.
 
 ## Fancy command line setup
 
