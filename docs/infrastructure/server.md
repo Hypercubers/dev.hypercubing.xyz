@@ -178,7 +178,8 @@ The leaderboards are hosted by a single Rust program that controls the Discord b
 
 1. Create a new user: `useradd leaderboards`.
 2. Add your SSH key to `/home/leaderboards/.ssh/authorized_keys`.
-3. Follow the database setup and running instructions in `README.md` at `https://github.com/Hypercubers/hypercubing-leaderboards`, including the cron job and useful scripts.
+3. SSH into the server as the `leaderboards` user.
+4. Follow the database setup and running instructions in `README.md` at `https://github.com/Hypercubers/hypercubing-leaderboards`, including the cron job and useful scripts.
 
 ## Fancy command line setup
 
